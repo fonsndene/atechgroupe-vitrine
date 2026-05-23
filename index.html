@@ -901,6 +901,105 @@ footer {
   .footer-top { grid-template-columns: 1fr; gap: 32px; }
   .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
 }
+
+/* ─── IMAGES UHD ──────────────────────────────── */
+.portfolio-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform .5s ease;
+}
+.portfolio-card:hover .portfolio-img { transform: scale(1.06); }
+
+.team-avatar { overflow: hidden; padding: 0; }
+.team-avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  border-radius: 50%;
+}
+.testi-avatar { overflow: hidden; padding: 0; }
+.testi-avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  border-radius: 50%;
+}
+
+/* Hero visual panel */
+.hero-visual {
+  position: absolute;
+  right: 60px; top: 50%;
+  transform: translateY(-50%);
+  width: 360px; height: 480px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 40px 80px rgba(0,0,0,.65);
+  display: none;
+}
+@media(min-width:1300px) {
+  .hero-visual { display: block; }
+  .hero h1 { max-width: 660px; }
+  .hero-sub { max-width: 560px; }
+}
+.hero-visual > img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(.82) saturate(1.15);
+}
+.hero-visual-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(11,12,16,.78) 100%);
+}
+.hero-visual-badge {
+  position: absolute; bottom: 22px; left: 20px;
+  background: rgba(11,12,16,.72);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 50px;
+  padding: 9px 18px;
+  font-size: 12px; font-weight: 600;
+  display: flex; align-items: center; gap: 8px;
+  color: var(--white);
+}
+.hero-visual-badge .flag { font-size: 16px; }
+.hero-visual-tag {
+  position: absolute; top: 20px; right: 20px;
+  background: var(--lime);
+  color: var(--ink);
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 12px; border-radius: 20px;
+}
+
+/* Dakar banner */
+.dakar-banner {
+  height: 380px;
+  position: relative; overflow: hidden;
+}
+.dakar-banner-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(.3) saturate(1.4);
+}
+.dakar-banner-content {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; text-align: center; padding: 40px;
+}
+.dakar-banner-flag { font-size: 52px; margin-bottom: 20px; }
+.dakar-banner-text {
+  font-family: 'Clash Display', sans-serif;
+  font-size: clamp(22px, 3vw, 40px);
+  font-weight: 700; letter-spacing: -1px;
+  line-height: 1.2; max-width: 640px;
+}
+.dakar-banner-text span { color: var(--lime); }
+.dakar-banner-sub {
+  margin-top: 16px;
+  font-size: 13px; color: rgba(255,255,255,.45);
+  letter-spacing: 3px; text-transform: uppercase;
+  font-weight: 400;
+}
 </style>
 </head>
 <body>
@@ -928,6 +1027,14 @@ footer {
   <div class="hero-bg-grid"></div>
   <div class="hero-glow"></div>
   <div class="hero-glow2"></div>
+
+  <!-- Panel image UHD — Dakar tech team -->
+  <div class="hero-visual">
+    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=90&auto=format&fit=crop" alt="Équipe tech à Dakar" loading="eager">
+    <div class="hero-visual-overlay"></div>
+    <div class="hero-visual-tag">Dakar · 2026</div>
+    <div class="hero-visual-badge"><span class="flag">🇸🇳</span> Sénégal</div>
+  </div>
 
   <div class="hero-eyebrow">
     <span class="eyebrow-dot"></span>
@@ -1110,6 +1217,16 @@ footer {
   </div>
 </section>
 
+<!-- DAKAR CITYSCAPE BANNER -->
+<div class="dakar-banner">
+  <img class="dakar-banner-img" src="https://images.unsplash.com/photo-1547981699-b8a57aea8e26?w=3840&q=90&auto=format&fit=crop" alt="Dakar, Sénégal" loading="lazy">
+  <div class="dakar-banner-content">
+    <div class="dakar-banner-flag">🇸🇳</div>
+    <div class="dakar-banner-text">Fièrement ancrés à <span>Dakar</span>,<br>nous bâtissons le digital sénégalais de demain.</div>
+    <div class="dakar-banner-sub">Teranga · Excellence · Innovation</div>
+  </div>
+</div>
+
 <!-- PORTFOLIO -->
 <section class="section services-bg" id="portfolio">
   <div class="section-label">Réalisations</div>
@@ -1118,7 +1235,7 @@ footer {
 
   <div class="portfolio-grid">
     <div class="portfolio-card tall" style="grid-row:span 2">
-      <div class="portfolio-bg" style="background:linear-gradient(135deg,#1a1a2e,#16213e);height:100%">🏥</div>
+      <img class="portfolio-img" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=3840&q=90&auto=format&fit=crop" alt="ClinicDakar Pro — Gestion de clinique à Dakar" loading="lazy">
       <div class="portfolio-overlay">
         <div class="portfolio-tag">Santé · Application Web</div>
         <div class="portfolio-name">ClinicDakar Pro</div>
@@ -1126,7 +1243,7 @@ footer {
       </div>
     </div>
     <div class="portfolio-card">
-      <div class="portfolio-bg" style="background:linear-gradient(135deg,#0f3460,#533483)">🛒</div>
+      <img class="portfolio-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=3840&q=90&auto=format&fit=crop" alt="Dakar Fashion Store — Boutique mode sénégalaise" loading="lazy">
       <div class="portfolio-overlay">
         <div class="portfolio-tag">E-Commerce · Mode</div>
         <div class="portfolio-name">Dakar Fashion Store</div>
@@ -1134,7 +1251,7 @@ footer {
       </div>
     </div>
     <div class="portfolio-card">
-      <div class="portfolio-bg" style="background:linear-gradient(135deg,#1b4332,#081c15)">🏫</div>
+      <img class="portfolio-img" src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=3840&q=90&auto=format&fit=crop" alt="SchoolSen — Gestion scolaire Sénégal" loading="lazy">
       <div class="portfolio-overlay">
         <div class="portfolio-tag">Éducation · SaaS</div>
         <div class="portfolio-name">SchoolSen</div>
@@ -1142,7 +1259,7 @@ footer {
       </div>
     </div>
     <div class="portfolio-card">
-      <div class="portfolio-bg" style="background:linear-gradient(135deg,#2d1b69,#11001c)">🍽️</div>
+      <img class="portfolio-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=3840&q=90&auto=format&fit=crop" alt="La Table de Dakar — Restaurant sénégalais" loading="lazy">
       <div class="portfolio-overlay">
         <div class="portfolio-tag">Restaurant · App Mobile</div>
         <div class="portfolio-name">La Table de Dakar</div>
@@ -1150,7 +1267,7 @@ footer {
       </div>
     </div>
     <div class="portfolio-card">
-      <div class="portfolio-bg" style="background:linear-gradient(135deg,#7f1d1d,#450a0a)">🏢</div>
+      <img class="portfolio-img" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=3840&q=90&auto=format&fit=crop" alt="Immo Sénégal — Agence immobilière Dakar" loading="lazy">
       <div class="portfolio-overlay">
         <div class="portfolio-tag">Immobilier · Vitrine</div>
         <div class="portfolio-name">Immo Sénégal</div>
@@ -1230,7 +1347,9 @@ footer {
       <div class="testi-stars">★★★★★</div>
       <div class="testi-text">"Atechgroupe a transformé notre boutique physique en une vraie plateforme en ligne. Les ventes ont augmenté dès le premier mois. Equipe très professionnelle et disponible."</div>
       <div class="testi-author">
-        <div class="testi-avatar">👔</div>
+        <div class="testi-avatar">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&q=90&auto=format&fit=crop&crop=face" alt="Moussa Diallo" loading="lazy">
+        </div>
         <div>
           <div class="testi-name">Moussa Diallo</div>
           <div class="testi-role">Gérant, Dakar Fashion Import</div>
@@ -1241,7 +1360,9 @@ footer {
       <div class="testi-stars">★★★★★</div>
       <div class="testi-text">"Notre application de gestion a été livrée dans les délais et exactement selon nos besoins. L'équipe comprend les réalités du marché sénégalais. Je recommande vivement."</div>
       <div class="testi-author">
-        <div class="testi-avatar">👩‍💼</div>
+        <div class="testi-avatar">
+          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&h=200&q=90&auto=format&fit=crop&crop=face" alt="Aïssatou Ndiaye" loading="lazy">
+        </div>
         <div>
           <div class="testi-name">Aïssatou Ndiaye</div>
           <div class="testi-role">Directrice, Clinique Santé Plus</div>
@@ -1252,7 +1373,9 @@ footer {
       <div class="testi-stars">★★★★★</div>
       <div class="testi-text">"J'avais peur de confier mon projet à une agence locale, mais Atechgroupe m'a surpris par leur niveau technique. Site livré en 2 semaines, design au top."</div>
       <div class="testi-author">
-        <div class="testi-avatar">👨‍🍳</div>
+        <div class="testi-avatar">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&q=90&auto=format&fit=crop&crop=face" alt="Ibrahima Sow" loading="lazy">
+        </div>
         <div>
           <div class="testi-name">Ibrahima Sow</div>
           <div class="testi-role">Propriétaire, Restaurant Le Teranga</div>
@@ -1270,14 +1393,16 @@ footer {
 
   <div class="team-grid">
     <div class="team-card">
-      <div class="team-avatar">AN</div>
+      <div class="team-avatar">
+        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&q=90&auto=format&fit=crop&crop=face" alt="Alphonse Ndiaye — Co-fondateur & CEO ATECH GROUPE" loading="lazy">
+      </div>
       <div class="team-name">Alphonse Ndiaye</div>
       <div class="team-role">Co-fondateur & CEO</div>
       <div class="team-bio">Entrepreneur tech, architecte de solutions digitales et e-commerce. Vision locale, standards internationaux.</div>
     </div>
     <div class="team-card">
       <div class="team-avatar">
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#c8f135" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&q=90&auto=format&fit=crop&crop=face" alt="Lead Développeur Full-Stack ATECH GROUPE" loading="lazy">
       </div>
       <div class="team-name">Lead Dev</div>
       <div class="team-role">Développement Full-Stack</div>
@@ -1285,7 +1410,7 @@ footer {
     </div>
     <div class="team-card">
       <div class="team-avatar">
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#c8f135" stroke-width="1.5"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12.5" r="2.5"/><path d="M12 22a7 7 0 007-7c0-3.87-2.24-7-5-7s-5 3.13-5 7a7 7 0 007 7z"/></svg>
+        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=400&q=90&auto=format&fit=crop&crop=face" alt="Designer UI/UX ATECH GROUPE" loading="lazy">
       </div>
       <div class="team-name">Designer UI/UX</div>
       <div class="team-role">Design & Expérience</div>
