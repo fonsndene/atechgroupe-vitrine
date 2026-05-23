@@ -1,0 +1,23 @@
+# Fichiers système
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Fichiers temporaires
+*.tmp
+*.log
+
+# Dossiers non liés au site web
+rtk/
+ATECH_GROUPE_Dakar.pptx
+atechgroupe_vitrine.html
+
+# Variables d'environnement
+.env
+.env.local

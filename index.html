@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atechgroupe — Agence Tech & E-commerce · Dakar</title>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Epilogue:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & ROOT ─────────────────────────────── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --ink:   #0b0c10;
+  --ink2:  #161820;
+  --ink3:  #22243a;
+  --lime:  #c8f135;
+  --lime2: #b0d820;
+  --white: #f8f8f4;
+  --off:   #f0efe9;
+  --muted: #7b7d8e;
+  --border:#2e3048;
+  --card:  #13141f;
+  --card2: #1a1c2e;
+  --grad: linear-gradient(135deg, #c8f135 0%, #7ddb5a 100%);
+  --shadow: 0 4px 32px rgba(0,0,0,.45);
+}
+
+body {
+  font-family: 'Epilogue', sans-serif;
+  background: var(--ink);
+  color: var(--white);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ─── CUSTOM CURSOR ───────────────────────────── */
+.cursor {
+  width: 10px; height: 10px;
+  background: var(--lime);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform .15s ease, width .2s, height .2s;
+  transform: translate(-50%, -50%);
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(200,241,53,.4);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform .35s ease;
+  transform: translate(-50%, -50%);
+}
+body:hover .cursor { opacity:1; }
+
+/* ─── NAVBAR ──────────────────────────────────── */
+nav {
+  position: fixed; top:0; left:0; right:0;
+  z-index: 500;
+  padding: 20px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background .4s, padding .4s;
+}
+nav.scrolled {
+  background: rgba(11,12,16,.92);
+  backdrop-filter: blur(16px);
+  padding: 14px 60px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.logo-mark {
+  font-family: 'Clash Display', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -.5px;
+  color: var(--white);
+}
+.logo-mark span { color: var(--lime); }
+.nav-links {
+  display: flex; gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: .3px;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-cta {
+  background: var(--lime);
+  color: var(--ink);
+  font-family: 'Epilogue', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 22px;
+  border-radius: 6px;
+  border: none;
+  cursor: none;
+  transition: background .2s, transform .2s;
+  text-decoration: none;
+}
+.nav-cta:hover { background: var(--lime2); transform: translateY(-1px); }
+
+/* ─── HERO ────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center;
+  padding: 140px 60px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(200,241,53,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,241,53,.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+.hero-glow {
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(200,241,53,.08) 0%, transparent 65%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero-glow2 {
+  position: absolute;
+  bottom: -150px; left: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(99,102,241,.07) 0%, transparent 65%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--lime);
+  margin-bottom: 32px;
+  opacity: 0; animation: fadeUp .8s .2s forwards;
+}
+.eyebrow-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--lime);
+  animation: blink 1.8s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+
+.hero h1 {
+  font-family: 'Clash Display', sans-serif;
+  font-size: clamp(52px, 7vw, 110px);
+  font-weight: 700;
+  line-height: .95;
+  letter-spacing: -3px;
+  max-width: 900px;
+  opacity: 0; animation: fadeUp .9s .4s forwards;
+}
+.hero h1 em {
+  font-style: italic;
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 300;
+  color: var(--lime);
+  font-size: .9em;
+}
+
+.hero-sub {
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 520px;
+  line-height: 1.7;
+  margin: 32px 0 48px;
+  opacity: 0; animation: fadeUp .9s .6s forwards;
+}
+.hero-sub strong { color: var(--white); font-weight: 500; }
+
+.hero-actions {
+  display: flex; gap: 16px; align-items: center;
+  opacity: 0; animation: fadeUp .9s .8s forwards;
+}
+.btn-lime {
+  background: var(--lime);
+  color: var(--ink);
+  font-family: 'Epilogue', sans-serif;
+  font-size: 14px; font-weight: 700;
+  padding: 15px 32px;
+  border-radius: 8px;
+  border: none; cursor: none;
+  transition: all .2s;
+}
+.btn-lime:hover { background: var(--lime2); transform: translateY(-2px); }
+.btn-ghost {
+  background: transparent;
+  color: var(--white);
+  font-family: 'Epilogue', sans-serif;
+  font-size: 14px; font-weight: 500;
+  padding: 15px 32px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.15);
+  cursor: none;
+  transition: all .2s;
+  text-decoration: none;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,.4); }
+
+.hero-stats {
+  display: flex; gap: 56px;
+  margin-top: 80px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(255,255,255,.07);
+  opacity: 0; animation: fadeUp .9s 1s forwards;
+}
+.stat-item {}
+.stat-num {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 40px; font-weight: 700;
+  color: var(--lime);
+  line-height: 1;
+}
+.stat-label { font-size: 12px; color: var(--muted); margin-top: 6px; letter-spacing: .3px; }
+
+/* SCROLL INDICATOR */
+.scroll-hint {
+  position: absolute; bottom: 40px; left: 60px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0; animation: fadeUp .9s 1.2s forwards;
+}
+.scroll-line {
+  width: 40px; height: 1px;
+  background: var(--muted);
+  position: relative; overflow: hidden;
+}
+.scroll-line::after {
+  content: '';
+  position: absolute; top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: var(--lime);
+  animation: scanLine 2s infinite;
+}
+@keyframes scanLine { 0%{left:-100%} 100%{left:100%} }
+
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(28px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+
+/* ─── MARQUEE TICKER ──────────────────────────── */
+.ticker {
+  background: var(--lime);
+  overflow: hidden;
+  padding: 14px 0;
+}
+.ticker-track {
+  display: flex; gap: 0;
+  animation: ticker 22s linear infinite;
+  white-space: nowrap;
+}
+.ticker-item {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 14px; font-weight: 600;
+  color: var(--ink);
+  padding: 0 32px;
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.ticker-sep { color: rgba(11,12,16,.3); }
+@keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ─── SERVICES ────────────────────────────────── */
+.section {
+  padding: 120px 60px;
+}
+.section-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--lime);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 28px; height: 1px;
+  background: var(--lime);
+}
+.section-title {
+  font-family: 'Clash Display', sans-serif;
+  font-size: clamp(36px, 4vw, 60px);
+  font-weight: 700; letter-spacing: -1.5px;
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+.section-sub {
+  font-size: 16px; font-weight: 300;
+  color: var(--muted); max-width: 500px;
+  line-height: 1.7; margin-bottom: 64px;
+}
+
+/* PÔLES */
+.poles-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.pole-card {
+  background: var(--card);
+  padding: 56px 52px;
+  position: relative;
+  overflow: hidden;
+  transition: background .3s;
+}
+.pole-card:hover { background: var(--card2); }
+.pole-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--lime);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .4s ease;
+}
+.pole-card:hover::before { transform: scaleX(1); }
+.pole-num {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 80px; font-weight: 700;
+  color: rgba(255,255,255,.04);
+  position: absolute; top: 20px; right: 28px;
+  line-height: 1;
+}
+.pole-icon {
+  width: 52px; height: 52px;
+  background: rgba(200,241,53,.1);
+  border: 1px solid rgba(200,241,53,.2);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  margin-bottom: 28px;
+}
+.pole-title {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 26px; font-weight: 700;
+  letter-spacing: -.5px;
+  margin-bottom: 14px;
+}
+.pole-desc {
+  font-size: 14px; color: var(--muted);
+  line-height: 1.8; margin-bottom: 32px;
+  max-width: 380px;
+}
+.pole-list {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 10px;
+  margin-bottom: 36px;
+}
+.pole-list li {
+  font-size: 13px; color: #9fa3b8;
+  display: flex; align-items: center; gap: 10px;
+}
+.pole-list li::before {
+  content: '→';
+  color: var(--lime); font-size: 12px; flex-shrink: 0;
+}
+.pole-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600;
+  color: var(--lime); text-decoration: none;
+  letter-spacing: .3px;
+  transition: gap .2s;
+  background: none; border: none; cursor: none;
+}
+.pole-link:hover { gap: 14px; }
+
+/* ─── SERVICES DETAIL ─────────────────────────── */
+.services-bg { background: var(--ink2); }
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.svc-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 28px;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+}
+.svc-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 0;
+  background: linear-gradient(to top, rgba(200,241,53,.05), transparent);
+  transition: height .3s;
+}
+.svc-card:hover { border-color: rgba(200,241,53,.25); transform: translateY(-4px); }
+.svc-card:hover::after { height: 100%; }
+.svc-emoji { font-size: 28px; margin-bottom: 18px; }
+.svc-name {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 18px; font-weight: 600;
+  margin-bottom: 10px; letter-spacing: -.3px;
+}
+.svc-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+.svc-price {
+  margin-top: 20px;
+  font-family: 'Clash Display', sans-serif;
+  font-size: 14px; color: var(--lime);
+  font-weight: 600;
+}
+
+/* ─── SVC ICON SVG ────────────────────────────── */
+.svc-icon {
+  width: 48px; height: 48px;
+  background: rgba(200,241,53,.08);
+  border: 1px solid rgba(200,241,53,.15);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+}
+.svc-icon svg { width: 22px; height: 22px; }
+
+/* ─── PROCESS ─────────────────────────────────── */
+.process-steps {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 32px; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), var(--border), transparent);
+}
+.process-step {
+  text-align: center;
+  padding: 0 20px;
+  position: relative;
+}
+.step-circle {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 24px;
+  font-family: 'Clash Display', sans-serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--lime);
+  transition: all .3s;
+  position: relative; z-index: 1;
+}
+.process-step:hover .step-circle {
+  background: var(--lime);
+  color: var(--ink);
+  border-color: var(--lime);
+}
+.step-title {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 16px; font-weight: 600;
+  margin-bottom: 8px;
+}
+.step-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+/* ─── PORTFOLIO ───────────────────────────────── */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.portfolio-card {
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  position: relative;
+  cursor: none;
+}
+.portfolio-card.tall { grid-row: span 2; aspect-ratio: auto; min-height: 400px; }
+.portfolio-bg {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 64px;
+  transition: transform .5s ease;
+}
+.portfolio-card:hover .portfolio-bg { transform: scale(1.06); }
+.portfolio-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(11,12,16,.95) 0%, transparent 50%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 24px;
+  opacity: 0; transition: opacity .3s;
+}
+.portfolio-card:hover .portfolio-overlay { opacity: 1; }
+.portfolio-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--lime);
+  margin-bottom: 6px;
+}
+.portfolio-name {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 20px; font-weight: 700;
+}
+.portfolio-desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+/* ─── TARIFS ──────────────────────────────────── */
+.tarifs-bg { background: var(--ink2); }
+.tarifs-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; align-items: start;
+}
+.tarif-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px 32px;
+  position: relative;
+  transition: transform .3s;
+}
+.tarif-card:hover { transform: translateY(-6px); }
+.tarif-card.featured {
+  background: var(--lime);
+  border-color: var(--lime);
+  color: var(--ink);
+}
+.tarif-card.featured .tarif-desc,
+.tarif-card.featured .tarif-item { color: rgba(11,12,16,.7); }
+.tarif-card.featured .tarif-price { color: var(--ink); }
+.tarif-pop {
+  position: absolute; top: -12px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: var(--lime);
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 16px; border-radius: 20px;
+  border: 1px solid var(--border);
+}
+.tarif-name {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 22px; font-weight: 700;
+  margin-bottom: 6px;
+}
+.tarif-desc {
+  font-size: 13px; color: var(--muted);
+  margin-bottom: 28px; line-height: 1.6;
+}
+.tarif-price {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 42px; font-weight: 700;
+  color: var(--lime); line-height: 1;
+  margin-bottom: 4px;
+}
+.tarif-price small {
+  font-size: 14px; font-weight: 400;
+  font-family: 'Epilogue', sans-serif;
+}
+.tarif-period { font-size: 11px; color: var(--muted); margin-bottom: 28px; }
+.tarif-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+.tarif-item {
+  font-size: 13px; color: #9fa3b8;
+  display: flex; align-items: center; gap: 10px;
+}
+.tarif-item::before { content: '✓'; color: var(--lime); font-weight: 700; flex-shrink: 0; }
+.tarif-card.featured .tarif-item::before { color: var(--ink); }
+.btn-tarif {
+  width: 100%; padding: 14px;
+  border-radius: 10px; border: none;
+  font-family: 'Epilogue', sans-serif;
+  font-size: 14px; font-weight: 700;
+  cursor: none; transition: all .2s;
+}
+.tarif-card:not(.featured) .btn-tarif {
+  background: rgba(200,241,53,.1);
+  color: var(--lime);
+  border: 1px solid rgba(200,241,53,.3);
+}
+.tarif-card:not(.featured) .btn-tarif:hover {
+  background: var(--lime); color: var(--ink);
+}
+.tarif-card.featured .btn-tarif {
+  background: var(--ink); color: var(--lime);
+}
+
+/* ─── TESTIMONIALS ────────────────────────────── */
+.testi-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.testi-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 28px;
+}
+.testi-stars { color: #f5c842; font-size: 14px; margin-bottom: 16px; }
+.testi-text {
+  font-size: 14px; font-style: italic; font-weight: 300;
+  color: #c0c4d6; line-height: 1.8; margin-bottom: 24px;
+}
+.testi-author { display: flex; align-items: center; gap: 12px; }
+.testi-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--ink3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.testi-name { font-size: 14px; font-weight: 600; }
+.testi-role { font-size: 11px; color: var(--muted); }
+
+/* ─── FAQ ─────────────────────────────────────── */
+.faq-bg { background: var(--ink2); }
+.faq-list { max-width: 760px; }
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+.faq-q {
+  width: 100%; background: none; border: none;
+  color: var(--white);
+  font-family: 'Epilogue', sans-serif;
+  font-size: 16px; font-weight: 500;
+  padding: 24px 0;
+  display: flex; justify-content: space-between; align-items: center;
+  cursor: none; text-align: left;
+  gap: 20px;
+}
+.faq-arrow {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--ink3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; flex-shrink: 0;
+  transition: transform .3s, background .3s;
+  color: var(--lime);
+}
+.faq-item.open .faq-arrow { transform: rotate(180deg); background: var(--lime); color: var(--ink); }
+.faq-a {
+  font-size: 14px; color: var(--muted); line-height: 1.8;
+  max-height: 0; overflow: hidden;
+  transition: max-height .4s ease, padding .3s;
+}
+.faq-item.open .faq-a { max-height: 200px; padding-bottom: 20px; }
+
+/* ─── CTA FINAL ───────────────────────────────── */
+.cta-section {
+  padding: 120px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-glow {
+  position: absolute; top: 50%; left: 50%;
+  width: 800px; height: 400px;
+  background: radial-gradient(ellipse, rgba(200,241,53,.07) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.cta-section h2 {
+  font-family: 'Clash Display', sans-serif;
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 700; letter-spacing: -2px;
+  line-height: 1.0; margin-bottom: 24px;
+}
+.cta-section h2 span { color: var(--lime); }
+.cta-section p {
+  font-size: 17px; color: var(--muted);
+  font-weight: 300; margin-bottom: 48px;
+}
+.cta-contacts {
+  display: flex; gap: 16px; justify-content: center;
+  flex-wrap: wrap; margin-top: 32px;
+}
+.cta-contact-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 28px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 14px; font-weight: 500;
+  transition: all .2s;
+}
+.cta-contact-item:hover { border-color: var(--lime); color: var(--lime); }
+.cta-contact-icon { font-size: 20px; }
+
+/* ─── TEAM ────────────────────────────────────── */
+.team-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px; max-width: 900px;
+}
+.team-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 28px;
+  text-align: center;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+}
+.team-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--lime);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .4s ease;
+}
+.team-card:hover { transform: translateY(-6px); border-color: rgba(200,241,53,.25); }
+.team-card:hover::before { transform: scaleX(1); }
+.team-avatar {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: linear-gradient(135deg, rgba(200,241,53,.15), rgba(200,241,53,.05));
+  border: 2px solid rgba(200,241,53,.25);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  font-family: 'Clash Display', sans-serif;
+  font-size: 28px; font-weight: 700;
+  color: var(--lime);
+}
+.team-name {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 20px; font-weight: 700;
+  margin-bottom: 6px; letter-spacing: -.3px;
+}
+.team-role {
+  font-size: 12px; font-weight: 600;
+  color: var(--lime); letter-spacing: 1.5px;
+  text-transform: uppercase; margin-bottom: 14px;
+}
+.team-bio {
+  font-size: 13px; color: var(--muted); line-height: 1.7;
+}
+
+/* ─── CONTACT FORM ────────────────────────────── */
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1.2fr;
+  gap: 60px; align-items: start;
+}
+.contact-info-block {}
+.contact-info-block h3 {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 32px; font-weight: 700;
+  letter-spacing: -1px; margin-bottom: 16px;
+}
+.contact-info-block p {
+  font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 36px;
+}
+.contact-items { display: flex; flex-direction: column; gap: 16px; }
+.c-item {
+  display: flex; align-items: center; gap: 16px;
+  font-size: 14px;
+}
+.c-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: rgba(200,241,53,.08);
+  border: 1px solid rgba(200,241,53,.2);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.c-icon svg { width: 18px; height: 18px; }
+.c-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
+.c-value { font-size: 14px; font-weight: 500; color: var(--white); }
+.contact-form-block {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 40px 36px;
+}
+.form-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 16px; margin-bottom: 16px;
+}
+.form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.form-group label {
+  font-size: 12px; font-weight: 600;
+  color: var(--muted); letter-spacing: .5px; text-transform: uppercase;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: var(--ink);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 16px;
+  color: var(--white);
+  font-family: 'Epilogue', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color .2s;
+  width: 100%;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: rgba(200,241,53,.5); }
+.form-group select { cursor: pointer; appearance: none; }
+.form-group textarea { resize: vertical; min-height: 110px; }
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: var(--muted); }
+.btn-form-submit {
+  width: 100%; padding: 15px;
+  background: var(--lime); color: var(--ink);
+  font-family: 'Epilogue', sans-serif;
+  font-size: 15px; font-weight: 700;
+  border: none; border-radius: 10px;
+  cursor: pointer; transition: all .2s;
+  margin-top: 8px;
+}
+.btn-form-submit:hover { background: var(--lime2); transform: translateY(-2px); }
+.form-success {
+  display: none; text-align: center;
+  padding: 24px;
+}
+.form-success .success-icon {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: rgba(200,241,53,.1);
+  border: 2px solid var(--lime);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 24px;
+}
+.form-success h4 {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 22px; font-weight: 700; margin-bottom: 8px;
+}
+.form-success p { font-size: 14px; color: var(--muted); }
+
+/* ─── FOOTER ──────────────────────────────────── */
+footer {
+  background: var(--ink2);
+  border-top: 1px solid var(--border);
+  padding: 60px;
+}
+.footer-top {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px; margin-bottom: 48px;
+}
+.footer-brand {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 26px; font-weight: 700;
+  margin-bottom: 14px;
+}
+.footer-brand span { color: var(--lime); }
+.footer-tagline { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+.footer-socials { display: flex; gap: 10px; }
+.f-social {
+  width: 36px; height: 36px;
+  background: var(--ink3);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; cursor: none;
+  transition: background .2s;
+}
+.f-social { color: var(--muted); text-decoration: none; }
+.f-social:hover { background: var(--lime); color: var(--ink); }
+.footer-col h5 {
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--white); margin-bottom: 20px;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col li { font-size: 13px; color: var(--muted); cursor: none; transition: color .2s; }
+.footer-col li:hover { color: var(--white); }
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px; color: var(--muted);
+}
+.footer-bottom a { color: var(--lime); text-decoration: none; }
+
+/* ─── MOBILE MENU ─────────────────────────────── */
+@media(max-width:900px){
+  .team-grid { grid-template-columns: 1fr; max-width: 100%; }
+  .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+  .form-row { grid-template-columns: 1fr; }
+
+  nav { padding: 16px 24px; }
+  nav.scrolled { padding: 12px 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 120px 24px 60px; }
+  .hero-stats { gap: 24px; flex-wrap: wrap; }
+  .section { padding: 80px 24px; }
+  .poles-grid { grid-template-columns: 1fr; }
+  .services-grid, .portfolio-grid, .tarifs-grid, .testi-grid { grid-template-columns: 1fr; }
+  .process-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .process-steps::before { display: none; }
+  footer { padding: 48px 24px; }
+  .footer-top { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="logo-mark">ATECH<span>GROUPE</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Réalisations</a></li>
+    <li><a href="#tarifs">Tarifs</a></li>
+    <li><a href="#equipe">Équipe</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Démarrer un projet →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <div class="hero-eyebrow">
+    <span class="eyebrow-dot"></span>
+    Agence Tech · Sénégal
+  </div>
+
+  <h1>Votre vision,<br>notre <em>code</em>,<br>votre succès.</h1>
+
+  <p class="hero-sub">
+    Atechgroupe conçoit des <strong>sites web haut de gamme</strong>, des <strong>applications mobiles</strong>,
+    des <strong>plateformes SaaS</strong> et des <strong>e-boutiques performantes</strong>
+    pour les entreprises ambitieuses du Sénégal.
+  </p>
+
+  <div class="hero-actions">
+    <button class="btn-lime" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Lancer mon projet</button>
+    <a href="#portfolio" class="btn-ghost">Voir nos réalisations</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">50+</div>
+      <div class="stat-label">Projets livrés</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">2</div>
+      <div class="stat-label">Pôles d'activité</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Clients satisfaits</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">Local</div>
+      <div class="stat-label">Ancré au Sénégal</div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span class="scroll-line"></span>
+    Défiler
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track" id="ticker">
+    <span class="ticker-item">Sites Web Haut de Gamme <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Applications Mobiles <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Plateformes SaaS <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">E-Boutiques <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Vente Matériels Informatiques <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Livraison à Dakar <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Wave · Orange Money <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Sites Web Haut de Gamme <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Applications Mobiles <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Plateformes SaaS <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">E-Boutiques <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Vente Matériels Informatiques <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Livraison à Dakar <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Wave · Orange Money <span class="ticker-sep">✦</span></span>
+  </div>
+</div>
+
+<!-- PÔLES D'ACTIVITÉ -->
+<section class="section" id="services">
+  <div class="section-label">Nos pôles</div>
+  <h2 class="section-title">Deux expertises,<br>une seule adresse.</h2>
+  <p class="section-sub">Que vous ayez besoin d'une solution digitale sur mesure ou de matériels informatiques fiables, Atechgroupe est votre partenaire à Dakar.</p>
+
+  <div class="poles-grid">
+    <div class="pole-card">
+      <div class="pole-num">01</div>
+      <div class="pole-icon">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#c8f135" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <div class="pole-title">Développement Digital</div>
+      <div class="pole-desc">Nous créons des expériences numériques exceptionnelles — des sites vitrines premium aux plateformes SaaS complexes, en passant par les applications mobiles iOS & Android.</div>
+      <ul class="pole-list">
+        <li>Sites web & landing pages haut de gamme</li>
+        <li>Applications mobiles iOS & Android</li>
+        <li>Plateformes SaaS & outils métier</li>
+        <li>E-commerce & marketplace</li>
+        <li>Maintenance & hébergement</li>
+      </ul>
+      <button class="pole-link" onclick="document.getElementById('tarifs').scrollIntoView({behavior:'smooth'})">Voir les tarifs →</button>
+    </div>
+    <div class="pole-card">
+      <div class="pole-num">02</div>
+      <div class="pole-icon">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#c8f135" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      </div>
+      <div class="pole-title">E-Boutique Informatique</div>
+      <div class="pole-desc">Notre boutique en ligne propose une sélection rigoureuse de matériels informatiques originaux — laptops, desktops, périphériques, réseau — avec livraison rapide à Dakar.</div>
+      <ul class="pole-list">
+        <li>Ordinateurs portables & de bureau</li>
+        <li>Écrans, claviers, souris & accessoires</li>
+        <li>Matériels réseau & WiFi</li>
+        <li>Stockage, imprimantes & consommables</li>
+        <li>Paiement Wave, Orange Money, cash</li>
+      </ul>
+      <a href="atechgroupe_ecommerce.html" class="pole-link">Visiter la boutique →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES DÉTAIL -->
+<section class="section services-bg">
+  <div class="section-label">Ce qu'on fait</div>
+  <h2 class="section-title">Nos services<br>en détail.</h2>
+  <p class="section-sub">Des prestations pensées pour les besoins réels des entreprises dakaroises.</p>
+
+  <div class="services-grid">
+    <div class="svc-card">
+      <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#c8f135" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+      <div class="svc-name">Site Vitrine Premium</div>
+      <div class="svc-desc">Un site web professionnel, rapide, responsive et bien référencé qui donne immédiatement confiance à vos visiteurs.</div>
+      <div class="svc-price">À partir de 250 000 FCFA</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#c8f135" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
+      <div class="svc-name">E-Commerce & Boutique</div>
+      <div class="svc-desc">Plateforme de vente en ligne avec paiement Wave/Orange Money intégré, gestion des stocks et tableau de bord.</div>
+      <div class="svc-price">À partir de 450 000 FCFA</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#c8f135" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+      <div class="svc-name">Application Mobile</div>
+      <div class="svc-desc">App iOS et Android native ou cross-platform, livrée sur les stores avec maintenance incluse la première année.</div>
+      <div class="svc-price">À partir de 800 000 FCFA</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#c8f135" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14M12 2v2M12 20v2M2 12h2M20 12h2"/></svg></div>
+      <div class="svc-name">Plateforme SaaS</div>
+      <div class="svc-desc">Outils métier, plateformes de gestion, systèmes d'information sur mesure pour votre activité spécifique.</div>
+      <div class="svc-price">Sur devis</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#c8f135" stroke-width="1.5"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12.5" r="2.5"/><path d="M12 22a7 7 0 007-7c0-3.87-2.24-7-5-7s-5 3.13-5 7a7 7 0 007 7z"/></svg></div>
+      <div class="svc-name">UI/UX Design</div>
+      <div class="svc-desc">Conception d'interfaces belles et intuitives — maquettes, prototypes interactifs et guides de style.</div>
+      <div class="svc-price">À partir de 120 000 FCFA</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#c8f135" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+      <div class="svc-name">Maintenance & SEO</div>
+      <div class="svc-desc">Contrat mensuel de maintenance, mises à jour, sauvegardes automatiques et optimisation moteurs de recherche.</div>
+      <div class="svc-price">À partir de 35 000 FCFA/mois</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section">
+  <div class="section-label">Notre méthode</div>
+  <h2 class="section-title">Comment on travaille.</h2>
+  <p class="section-sub">Un processus clair et transparent du brief à la livraison.</p>
+
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-circle">01</div>
+      <div class="step-title">Brief & Analyse</div>
+      <div class="step-desc">On écoute votre projet, vos objectifs et votre budget. On analyse le marché et vos concurrents.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-circle">02</div>
+      <div class="step-title">Design & Prototype</div>
+      <div class="step-desc">Maquettes visuelles, prototypes cliquables. Vous validez avant qu'on code une seule ligne.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-circle">03</div>
+      <div class="step-title">Développement</div>
+      <div class="step-desc">Développement agile avec des points réguliers. Vous suivez l'avancement en temps réel.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-circle">04</div>
+      <div class="step-title">Livraison & Suivi</div>
+      <div class="step-desc">Mise en ligne, formation à l'outil, support post-livraison et maintenance selon votre contrat.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="section services-bg" id="portfolio">
+  <div class="section-label">Réalisations</div>
+  <h2 class="section-title">Quelques projets<br>dont on est fiers.</h2>
+  <p class="section-sub">Des projets livrés pour des clients dakarois dans plusieurs secteurs.</p>
+
+  <div class="portfolio-grid">
+    <div class="portfolio-card tall" style="grid-row:span 2">
+      <div class="portfolio-bg" style="background:linear-gradient(135deg,#1a1a2e,#16213e);height:100%">🏥</div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-tag">Santé · Application Web</div>
+        <div class="portfolio-name">ClinicDakar Pro</div>
+        <div class="portfolio-desc">Plateforme de gestion de clinique avec prise de RDV en ligne</div>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-bg" style="background:linear-gradient(135deg,#0f3460,#533483)">🛒</div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-tag">E-Commerce · Mode</div>
+        <div class="portfolio-name">Dakar Fashion Store</div>
+        <div class="portfolio-desc">Boutique en ligne avec paiement Wave intégré</div>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-bg" style="background:linear-gradient(135deg,#1b4332,#081c15)">🏫</div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-tag">Éducation · SaaS</div>
+        <div class="portfolio-name">SchoolSen</div>
+        <div class="portfolio-desc">Plateforme de gestion scolaire pour lycées privés</div>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-bg" style="background:linear-gradient(135deg,#2d1b69,#11001c)">🍽️</div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-tag">Restaurant · App Mobile</div>
+        <div class="portfolio-name">La Table de Dakar</div>
+        <div class="portfolio-desc">App de commande en ligne et réservation de table</div>
+      </div>
+    </div>
+    <div class="portfolio-card">
+      <div class="portfolio-bg" style="background:linear-gradient(135deg,#7f1d1d,#450a0a)">🏢</div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-tag">Immobilier · Vitrine</div>
+        <div class="portfolio-name">Immo Sénégal</div>
+        <div class="portfolio-desc">Site vitrine premium pour agence immobilière</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TARIFS -->
+<section class="section tarifs-bg" id="tarifs">
+  <div class="section-label">Tarification</div>
+  <h2 class="section-title">Des offres claires,<br>sans surprises.</h2>
+  <p class="section-sub">Tarifs indicatifs pour les projets web. Chaque projet est unique — contactez-nous pour un devis personnalisé.</p>
+
+  <div class="tarifs-grid">
+    <div class="tarif-card">
+      <div class="tarif-name">Starter</div>
+      <div class="tarif-desc">Idéal pour les commerçants et indépendants qui veulent une présence en ligne professionnelle.</div>
+      <div class="tarif-price">250 000 <small>FCFA</small></div>
+      <div class="tarif-period">Paiement en 2 fois possible</div>
+      <ul class="tarif-list">
+        <li class="tarif-item">Site vitrine 5 pages</li>
+        <li class="tarif-item">Design responsive mobile</li>
+        <li class="tarif-item">Formulaire de contact</li>
+        <li class="tarif-item">Hébergement 1 an inclus</li>
+        <li class="tarif-item">Nom de domaine .sn inclus</li>
+        <li class="tarif-item">Livraison en 2 semaines</li>
+      </ul>
+      <button class="btn-tarif" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Démarrer →</button>
+    </div>
+
+    <div class="tarif-card featured">
+      <div class="tarif-pop">⭐ Plus populaire</div>
+      <div class="tarif-name">Business</div>
+      <div class="tarif-desc">Pour les PME et entreprises qui veulent un site performant et un outil de vente en ligne.</div>
+      <div class="tarif-price">550 000 <small>FCFA</small></div>
+      <div class="tarif-period">Paiement en 3 fois possible</div>
+      <ul class="tarif-list">
+        <li class="tarif-item">Site complet + e-commerce</li>
+        <li class="tarif-item">Paiement Wave/Orange Money</li>
+        <li class="tarif-item">Tableau de bord admin</li>
+        <li class="tarif-item">SEO & vitesse optimisés</li>
+        <li class="tarif-item">Formation à l'outil incluse</li>
+        <li class="tarif-item">3 mois de maintenance</li>
+        <li class="tarif-item">Livraison en 3-4 semaines</li>
+      </ul>
+      <button class="btn-tarif" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Démarrer →</button>
+    </div>
+
+    <div class="tarif-card">
+      <div class="tarif-name">Premium</div>
+      <div class="tarif-desc">Pour les projets ambitieux : applications mobiles, SaaS, plateformes complexes sur mesure.</div>
+      <div class="tarif-price">Sur <small>devis</small></div>
+      <div class="tarif-period">Selon complexité du projet</div>
+      <ul class="tarif-list">
+        <li class="tarif-item">Application mobile iOS & Android</li>
+        <li class="tarif-item">Plateforme SaaS sur mesure</li>
+        <li class="tarif-item">API & intégrations tierces</li>
+        <li class="tarif-item">Architecture scalable</li>
+        <li class="tarif-item">Contrat de maintenance dédié</li>
+        <li class="tarif-item">Support prioritaire</li>
+      </ul>
+      <button class="btn-tarif" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Demander un devis →</button>
+    </div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section class="section">
+  <div class="section-label">Témoignages</div>
+  <h2 class="section-title">Ils nous font<br>confiance.</h2>
+  <p class="section-sub">Ce que disent nos clients dakarois sur notre travail.</p>
+
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Atechgroupe a transformé notre boutique physique en une vraie plateforme en ligne. Les ventes ont augmenté dès le premier mois. Equipe très professionnelle et disponible."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">👔</div>
+        <div>
+          <div class="testi-name">Moussa Diallo</div>
+          <div class="testi-role">Gérant, Dakar Fashion Import</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Notre application de gestion a été livrée dans les délais et exactement selon nos besoins. L'équipe comprend les réalités du marché sénégalais. Je recommande vivement."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">👩‍💼</div>
+        <div>
+          <div class="testi-name">Aïssatou Ndiaye</div>
+          <div class="testi-role">Directrice, Clinique Santé Plus</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"J'avais peur de confier mon projet à une agence locale, mais Atechgroupe m'a surpris par leur niveau technique. Site livré en 2 semaines, design au top."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">👨‍🍳</div>
+        <div>
+          <div class="testi-name">Ibrahima Sow</div>
+          <div class="testi-role">Propriétaire, Restaurant Le Teranga</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÉQUIPE -->
+<section class="section services-bg" id="equipe">
+  <div class="section-label">L'équipe</div>
+  <h2 class="section-title">Des experts<br>engagés pour vous.</h2>
+  <p class="section-sub">Une équipe jeune, passionnée et ancrée dans les réalités du marché sénégalais.</p>
+
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar">AN</div>
+      <div class="team-name">Alphonse Ndiaye</div>
+      <div class="team-role">Co-fondateur & CEO</div>
+      <div class="team-bio">Entrepreneur tech, architecte de solutions digitales et e-commerce. Vision locale, standards internationaux.</div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#c8f135" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <div class="team-name">Lead Dev</div>
+      <div class="team-role">Développement Full-Stack</div>
+      <div class="team-bio">Spécialiste Next.js, React Native et architectures cloud. Livraison rapide, code propre et maintenable.</div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#c8f135" stroke-width="1.5"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12.5" r="2.5"/><path d="M12 22a7 7 0 007-7c0-3.87-2.24-7-5-7s-5 3.13-5 7a7 7 0 007 7z"/></svg>
+      </div>
+      <div class="team-name">Designer UI/UX</div>
+      <div class="team-role">Design & Expérience</div>
+      <div class="team-bio">Création d'interfaces belles et intuitives. Chaque pixel est pensé pour convertir et fidéliser vos clients.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq-bg" id="faq">
+  <div class="section-label">FAQ</div>
+  <h2 class="section-title">Questions<br>fréquentes.</h2>
+  <p class="section-sub">Tout ce que vous voulez savoir avant de nous contacter.</p>
+
+  <div class="faq-list">
+    <div class="faq-item open">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Comment se passe le paiement ?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a">Nous acceptons le paiement en plusieurs fois : généralement 50% à la commande, 50% à la livraison. Modes de paiement : Wave, Orange Money, virement bancaire (BICIS, Ecobank, etc.) ou espèces. Aucune mauvaise surprise.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Combien de temps pour livrer un site ?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a">Un site vitrine simple est livré en 7 à 14 jours ouvrables. Un e-commerce prend 3 à 4 semaines. Une application mobile ou une plateforme SaaS entre 6 semaines et 3 mois selon la complexité. Nous respectons les délais annoncés.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Est-ce que je peux modifier mon site moi-même ?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a">Oui, nous intégrons un tableau de bord simple pour modifier vos textes, images, prix et produits sans coder. Une formation est incluse dans toutes nos offres Business et Premium.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Proposez-vous la maintenance après la livraison ?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a">Oui, nous proposons des contrats de maintenance mensuels à partir de 35 000 FCFA/mois incluant : mises à jour, sauvegardes automatiques, corrections de bugs, hébergement et support technique par WhatsApp.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Travaillez-vous avec des clients hors de Dakar ?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a">Oui, nous travaillons avec des clients dans tout le Sénégal (Thiès, Saint-Louis, Ziguinchor…) et dans d'autres pays d'Afrique de l'Ouest. Tout le suivi se fait à distance via WhatsApp, Zoom et email.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="section-label">Contact</div>
+  <h2 class="section-title">Parlons de<br>votre projet.</h2>
+  <p class="section-sub">Réponse garantie sous 24h. Pas de frais de consultation.</p>
+
+  <div class="contact-grid">
+    <div class="contact-info-block">
+      <h3>On est là<br>pour vous.</h3>
+      <p>Que vous ayez une idée précise ou juste une envie de vous lancer, contactez-nous. On vous guidera vers la solution la mieux adaptée à votre budget et vos objectifs.</p>
+      <div class="contact-items">
+        <div class="c-item">
+          <div class="c-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#c8f135" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.01 1.18C0 .66.21.16.59-.21A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.06 6.06l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="c-label">Téléphone & WhatsApp</div>
+            <div class="c-value">+221 76 382 11 52</div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#c8f135" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="c-label">Email</div>
+            <div class="c-value">contact@atechgroupe.com</div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#c8f135" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="c-label">Adresse</div>
+            <div class="c-value">Fann, Dakar, Sénégal</div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#c8f135" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="c-label">Horaires</div>
+            <div class="c-value">Lun – Sam · 8h à 19h</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:32px">
+        <a href="https://wa.me/221763821152?text=Bonjour%20Atechgroupe%2C%20je%20souhaite%20discuter%20d%27un%20projet." target="_blank" class="btn-lime" style="display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:10px;font-size:14px;text-decoration:none">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Écrire sur WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-form-block">
+      <div id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Prénom & Nom</label>
+            <input type="text" id="fNom" placeholder="Moussa Diallo">
+          </div>
+          <div class="form-group">
+            <label>Téléphone</label>
+            <input type="tel" id="fTel" placeholder="+221 76 XXX XX XX">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="fEmail" placeholder="votre@email.com">
+        </div>
+        <div class="form-group">
+          <label>Type de projet</label>
+          <select id="fProjet">
+            <option value="">-- Sélectionner --</option>
+            <option>Site Vitrine</option>
+            <option>E-Commerce</option>
+            <option>Application Mobile</option>
+            <option>Plateforme SaaS</option>
+            <option>UI/UX Design</option>
+            <option>Maintenance & SEO</option>
+            <option>Achat matériel informatique</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Décrivez votre projet</label>
+          <textarea id="fMessage" placeholder="Parlez-nous de votre projet, vos objectifs, votre délai idéal..."></textarea>
+        </div>
+        <button class="btn-form-submit" onclick="submitForm()">Envoyer le message →</button>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#c8f135" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h4>Message envoyé !</h4>
+        <p>Merci pour votre message. Nous vous répondrons sous 24h sur WhatsApp ou par email.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">ATECH<span>GROUPE</span></div>
+      <div class="footer-tagline">Agence tech basée à Dakar, spécialisée dans le développement de solutions digitales haut de gamme et la vente de matériels informatiques.</div>
+      <div class="footer-socials">
+        <a href="#" class="f-social" title="Facebook">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="#" class="f-social" title="Instagram">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" class="f-social" title="LinkedIn">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://wa.me/221763821152" target="_blank" class="f-social" title="WhatsApp">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li>Sites Web Vitrine</li>
+        <li>E-Commerce</li>
+        <li>Apps Mobiles</li>
+        <li>Plateformes SaaS</li>
+        <li>UI/UX Design</li>
+        <li>Maintenance SEO</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Boutique</h5>
+      <ul>
+        <li>Laptops & PC</li>
+        <li>Écrans & Périphériques</li>
+        <li>Réseau & WiFi</li>
+        <li>Stockage & Backup</li>
+        <li>Imprimantes</li>
+        <li>Accessoires</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Entreprise</h5>
+      <ul>
+        <li>À propos</li>
+        <li>Nos réalisations</li>
+        <li>Témoignages</li>
+        <li>Blog Tech</li>
+        <li>Recrutement</li>
+        <li>Contact</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Atechgroupe · Fann, Dakar, Sénégal · Tous droits réservés</span>
+    <span>Développé avec ❤️ par <a href="#">Atechgroupe</a></span>
+  </div>
+</footer>
+
+<script>
+// ── CURSOR ──
+const cursor = document.getElementById('cursor');
+const ring   = document.getElementById('cursorRing');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; cursor.style.left=mx+'px'; cursor.style.top=my+'px'; });
+function animRing(){
+  rx += (mx-rx)*.12; ry += (my-ry)*.12;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+
+// ── NAVBAR SCROLL ──
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ── FAQ ──
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.svc-card, .pole-card, .tarif-card, .testi-card, .portfolio-card, .process-step, .faq-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity .6s ease, transform .6s ease';
+  observer.observe(el);
+});
+
+// ── COUNTER ANIMATION ──
+function animateCounter(el, target, suffix='') {
+  let start = 0;
+  const step = target / 60;
+  const timer = setInterval(() => {
+    start += step;
+    if (start >= target) { el.textContent = target + suffix; clearInterval(timer); return; }
+    el.textContent = Math.floor(start) + suffix;
+  }, 20);
+}
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const nums = e.target.querySelectorAll('.stat-num');
+      nums.forEach(n => {
+        const t = n.textContent;
+        if (t === '50+') animateCounter(n, 50, '+');
+        else if (t === '2') animateCounter(n, 2);
+        else if (t === '100%') animateCounter(n, 100, '%');
+      });
+      statsObserver.unobserve(e.target);
+    }
+  });
+}, {threshold:.5});
+const heroStats = document.querySelector('.hero-stats');
+if(heroStats) statsObserver.observe(heroStats);
+
+// ── CONTACT FORM ──
+function submitForm() {
+  const nom     = document.getElementById('fNom').value.trim();
+  const tel     = document.getElementById('fTel').value.trim();
+  const email   = document.getElementById('fEmail').value.trim();
+  const projet  = document.getElementById('fProjet').value;
+  const message = document.getElementById('fMessage').value.trim();
+
+  if (!nom || !tel || !projet) {
+    alert('Merci de remplir au minimum votre nom, téléphone et type de projet.');
+    return;
+  }
+
+  // Build WhatsApp message
+  const text = encodeURIComponent(
+    `Bonjour Atechgroupe !\n\n` +
+    `Nom : ${nom}\nTél : ${tel}\nEmail : ${email || 'Non renseigné'}\n` +
+    `Projet : ${projet}\n\n${message || '(Pas de description supplémentaire)'}`
+  );
+
+  // Open WhatsApp with the form data
+  window.open(`https://wa.me/221763821152?text=${text}`, '_blank');
+
+  // Show success state
+  document.getElementById('contactForm').style.display = 'none';
+  const success = document.getElementById('formSuccess');
+  success.style.display = 'block';
+}
+</script>
+</body>
+</html>
