@@ -881,25 +881,85 @@ footer {
 }
 .footer-bottom a { color: var(--lime); text-decoration: none; }
 
-/* ─── MOBILE MENU ─────────────────────────────── */
+/* ─── RESPONSIVE ──────────────────────────────── */
+
+/* Tablette : 600px – 900px — grilles 2 colonnes */
+@media(min-width:600px) and (max-width:900px){
+  .services-grid  { grid-template-columns: 1fr 1fr; }
+  .testi-grid     { grid-template-columns: 1fr 1fr; }
+  .tarifs-grid    { grid-template-columns: 1fr 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr 1fr; }
+  .portfolio-card.tall { grid-row: span 1; aspect-ratio: 4/3; min-height: auto; }
+  .team-grid      { grid-template-columns: 1fr 1fr; max-width: 100%; }
+  .poles-grid     { grid-template-columns: 1fr 1fr; }
+  .process-steps  { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .process-steps::before { display: none; }
+  .footer-top     { grid-template-columns: 1fr 1fr; gap: 24px; }
+}
+
+/* Mobile : < 900px */
 @media(max-width:900px){
-  .team-grid { grid-template-columns: 1fr; max-width: 100%; }
+  .team-grid { grid-template-columns: 1fr 1fr; max-width: 100%; }
   .contact-grid { grid-template-columns: 1fr; gap: 32px; }
   .form-row { grid-template-columns: 1fr; }
 
-  nav { padding: 16px 24px; }
-  nav.scrolled { padding: 12px 24px; }
+  nav { padding: 16px 20px; }
+  nav.scrolled { padding: 12px 20px; }
   .nav-links { display: none; }
-  .hero { padding: 120px 24px 60px; }
-  .hero-stats { gap: 24px; flex-wrap: wrap; }
-  .section { padding: 80px 24px; }
+  .hero { padding: 110px 20px 60px; }
+  .hero-visual { display: none !important; }
+  .hero h1 { font-size: clamp(38px, 9vw, 72px); letter-spacing: -2px; max-width: 100%; }
+  .hero-sub { font-size: 15px; max-width: 100%; margin: 20px 0 32px; }
+  .hero-actions { flex-wrap: wrap; gap: 12px; }
+  .hero-stats { gap: 20px; flex-wrap: wrap; margin-top: 48px; padding-top: 32px; }
+  .stat-num { font-size: 32px; }
+  .scroll-hint { display: none; }
+  .section { padding: 72px 20px; }
+  .section-title { font-size: clamp(28px, 6vw, 48px); }
   .poles-grid { grid-template-columns: 1fr; }
+  .pole-card { padding: 36px 28px; }
   .services-grid, .portfolio-grid, .tarifs-grid, .testi-grid { grid-template-columns: 1fr; }
-  .process-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .portfolio-card.tall { grid-row: span 1; aspect-ratio: 4/3; min-height: auto; }
+  .process-steps { grid-template-columns: 1fr 1fr; gap: 28px; }
   .process-steps::before { display: none; }
-  footer { padding: 48px 24px; }
-  .footer-top { grid-template-columns: 1fr; gap: 32px; }
+  .dakar-banner { height: 260px; }
+  .dakar-banner-text { font-size: clamp(18px, 5vw, 28px); }
+  .tarif-card { padding: 32px 24px; }
+  .tarif-price { font-size: 36px; }
+  footer { padding: 48px 20px; }
+  .footer-top { grid-template-columns: 1fr; gap: 28px; }
   .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+}
+
+/* Très petits écrans : < 480px */
+@media(max-width:480px){
+  nav { padding: 14px 16px; }
+  .logo-mark { font-size: 18px; }
+  .nav-cta { font-size: 11px; padding: 9px 14px; }
+  .hero { padding: 100px 16px 56px; }
+  .hero h1 { font-size: clamp(32px, 10vw, 52px); letter-spacing: -1.5px; }
+  .hero-sub { font-size: 14px; }
+  .btn-lime, .btn-ghost { padding: 13px 20px; font-size: 13px; }
+  .hero-stats { gap: 16px; }
+  .stat-num { font-size: 28px; }
+  .stat-label { font-size: 11px; }
+  .section { padding: 60px 16px; }
+  .section-title { letter-spacing: -0.5px; }
+  .pole-card { padding: 28px 20px; }
+  .svc-card { padding: 24px 20px; }
+  .process-steps { grid-template-columns: 1fr; gap: 24px; }
+  .tarifs-grid { grid-template-columns: 1fr; }
+  .tarif-card { padding: 28px 20px; }
+  .tarif-price { font-size: 32px; }
+  .contact-form-block { padding: 28px 20px; }
+  .testi-card { padding: 24px 18px; }
+  .team-card { padding: 28px 20px; }
+  .dakar-banner { height: 220px; }
+  footer { padding: 40px 16px; }
+  .footer-brand { font-size: 22px; }
+  .footer-bottom { font-size: 11px; }
+  .cta-section { padding: 80px 16px; }
+  .cta-contacts { flex-direction: column; align-items: center; }
 }
 
 /* ─── IMAGES UHD ──────────────────────────────── */
