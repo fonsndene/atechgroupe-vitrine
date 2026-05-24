@@ -215,7 +215,7 @@ input, select, textarea { font-family: inherit; }
 .categories { background: var(--ink2); }
 .cats-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 14px;
 }
 .cat-card {
@@ -734,6 +734,7 @@ input, select, textarea { font-family: inherit; }
 }
 @media (max-width: 900px) {
   .cats-grid { grid-template-columns: repeat(3, 1fr); }
+
   .trust-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .modal-box { grid-template-columns: 1fr; }
@@ -751,6 +752,7 @@ input, select, textarea { font-family: inherit; }
 }
 @media (max-width: 500px) {
   .cats-grid { grid-template-columns: repeat(2, 1fr); }
+
   .products-grid { grid-template-columns: 1fr; }
   .trust-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
@@ -854,25 +856,32 @@ input, select, textarea { font-family: inherit; }
         <div class="cat-name">Tout voir</div>
         <div class="cat-count">12 produits</div>
       </div>
-      <div class="cat-card" data-filter="informatique" onclick="filterCat(this)">
+      <div class="cat-card" data-filter="ordinateurs" onclick="filterCat(this)">
         <div class="cat-icon">
           <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
         </div>
-        <div class="cat-name">Informatique</div>
-        <div class="cat-count">3 produits</div>
+        <div class="cat-name">Ordinateurs</div>
+        <div class="cat-count">1 produit</div>
+      </div>
+      <div class="cat-card" data-filter="peripheriques" onclick="filterCat(this)">
+        <div class="cat-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="8" width="18" height="12" rx="2"/><path d="M10 8V5a2 2 0 0 1 4 0v3"/><circle cx="19" cy="10" r="2"/><path d="M19 12v8"/></svg>
+        </div>
+        <div class="cat-name">Périphériques</div>
+        <div class="cat-count">2 produits</div>
       </div>
       <div class="cat-card" data-filter="reseaux" onclick="filterCat(this)">
         <div class="cat-icon">
           <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
         </div>
-        <div class="cat-name">Réseaux</div>
+        <div class="cat-name">Réseaux & WiFi</div>
         <div class="cat-count">3 produits</div>
       </div>
       <div class="cat-card" data-filter="securite" onclick="filterCat(this)">
         <div class="cat-icon">
-          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M23 7l-7 5-7-5-7 5"/><rect x="1" y="4" width="22" height="16" rx="2"/></svg>
         </div>
-        <div class="cat-name">Sécurité</div>
+        <div class="cat-name">Vidéosurveillance</div>
         <div class="cat-count">3 produits</div>
       </div>
       <div class="cat-card" data-filter="consommables" onclick="filterCat(this)">
@@ -900,9 +909,9 @@ input, select, textarea { font-family: inherit; }
     </div>
     <div class="products-grid" id="productsGrid">
 
-      <!-- INFORMATIQUE -->
+      <!-- ORDINATEURS -->
       <div class="product-card fade-up"
-           data-cat="informatique"
+           data-cat="ordinateurs"
            data-name="Laptop ASUS VivoBook 15"
            data-price="449000"
            data-stock="5"
@@ -914,7 +923,7 @@ input, select, textarea { font-family: inherit; }
           <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80&auto=format&fit=crop" alt="Laptop ASUS VivoBook 15" loading="lazy">
         </div>
         <div class="product-body">
-          <div class="product-cat">Informatique</div>
+          <div class="product-cat">Ordinateurs</div>
           <div class="product-name">Laptop ASUS VivoBook 15</div>
           <div class="product-price">449 000 <span>FCFA</span></div>
           <div class="product-stock">
@@ -928,8 +937,9 @@ input, select, textarea { font-family: inherit; }
         </div>
       </div>
 
+      <!-- PÉRIPHÉRIQUES -->
       <div class="product-card fade-up"
-           data-cat="informatique"
+           data-cat="peripheriques"
            data-name="Écran LG 27 Full HD"
            data-price="189000"
            data-stock="8"
@@ -940,7 +950,7 @@ input, select, textarea { font-family: inherit; }
           <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600&q=80&auto=format&fit=crop" alt="Écran LG 27 Full HD" loading="lazy">
         </div>
         <div class="product-body">
-          <div class="product-cat">Informatique</div>
+          <div class="product-cat">Périphériques</div>
           <div class="product-name">Écran LG 27" Full HD</div>
           <div class="product-price">189 000 <span>FCFA</span></div>
           <div class="product-stock">
@@ -955,7 +965,7 @@ input, select, textarea { font-family: inherit; }
       </div>
 
       <div class="product-card fade-up"
-           data-cat="informatique"
+           data-cat="peripheriques"
            data-name="Souris Logitech MX Master 3"
            data-price="45000"
            data-stock="15"
@@ -967,7 +977,7 @@ input, select, textarea { font-family: inherit; }
           <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&q=80&auto=format&fit=crop" alt="Souris Logitech MX Master 3" loading="lazy">
         </div>
         <div class="product-body">
-          <div class="product-cat">Informatique</div>
+          <div class="product-cat">Périphériques</div>
           <div class="product-name">Souris Logitech MX Master 3</div>
           <div class="product-price">45 000 <span>FCFA</span></div>
           <div class="product-stock">
@@ -995,7 +1005,7 @@ input, select, textarea { font-family: inherit; }
           <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80&auto=format&fit=crop" alt="Routeur WiFi 6 TP-Link AX3000" loading="lazy">
         </div>
         <div class="product-body">
-          <div class="product-cat">Réseaux</div>
+          <div class="product-cat">Réseaux & WiFi</div>
           <div class="product-name">Routeur WiFi 6 TP-Link AX3000</div>
           <div class="product-price">119 000 <span>FCFA</span></div>
           <div class="product-stock">
@@ -1021,7 +1031,7 @@ input, select, textarea { font-family: inherit; }
           <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80&auto=format&fit=crop" alt="Switch 8 ports Gigabit" loading="lazy">
         </div>
         <div class="product-body">
-          <div class="product-cat">Réseaux</div>
+          <div class="product-cat">Réseaux & WiFi</div>
           <div class="product-name">Switch 8 ports Gigabit</div>
           <div class="product-price">38 000 <span>FCFA</span></div>
           <div class="product-stock">
@@ -1047,7 +1057,7 @@ input, select, textarea { font-family: inherit; }
           <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop" alt="Câble RJ45 Cat6 10m" loading="lazy">
         </div>
         <div class="product-body">
-          <div class="product-cat">Réseaux</div>
+          <div class="product-cat">Réseaux & WiFi</div>
           <div class="product-name">Câble RJ45 Cat6 (10m)</div>
           <div class="product-price">8 500 <span>FCFA</span></div>
           <div class="product-stock">
@@ -1075,7 +1085,7 @@ input, select, textarea { font-family: inherit; }
           <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80&auto=format&fit=crop" alt="Caméra IP Hikvision 4MP" loading="lazy">
         </div>
         <div class="product-body">
-          <div class="product-cat">Sécurité</div>
+          <div class="product-cat">Vidéosurveillance</div>
           <div class="product-name">Caméra IP Hikvision 4MP</div>
           <div class="product-price">79 000 <span>FCFA</span></div>
           <div class="product-stock">
@@ -1105,7 +1115,7 @@ input, select, textarea { font-family: inherit; }
           <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=80&auto=format&fit=crop" alt="Kit NVR 4 caméras Dahua" loading="lazy">
         </div>
         <div class="product-body">
-          <div class="product-cat">Sécurité</div>
+          <div class="product-cat">Vidéosurveillance</div>
           <div class="product-name">Kit NVR 4 caméras Dahua</div>
           <div class="product-price">285 000 <span>FCFA</span></div>
           <div class="product-stock low">
@@ -1131,7 +1141,7 @@ input, select, textarea { font-family: inherit; }
           <img src="https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=600&q=80&auto=format&fit=crop" alt="Disque dur surveillance 1To Seagate" loading="lazy">
         </div>
         <div class="product-body">
-          <div class="product-cat">Sécurité</div>
+          <div class="product-cat">Vidéosurveillance</div>
           <div class="product-name">Disque dur surveillance 1To Seagate</div>
           <div class="product-price">55 000 <span>FCFA</span></div>
           <div class="product-stock">
@@ -1299,9 +1309,10 @@ input, select, textarea { font-family: inherit; }
       <div class="footer-col">
         <h4>Catégories</h4>
         <ul>
-          <li><a href="#produits" onclick="filterByName('informatique')">Informatique</a></li>
-          <li><a href="#produits" onclick="filterByName('reseaux')">Réseaux</a></li>
-          <li><a href="#produits" onclick="filterByName('securite')">Sécurité</a></li>
+          <li><a href="#produits" onclick="filterByName('ordinateurs')">Ordinateurs & Laptops</a></li>
+          <li><a href="#produits" onclick="filterByName('peripheriques')">Périphériques</a></li>
+          <li><a href="#produits" onclick="filterByName('reseaux')">Réseaux & WiFi</a></li>
+          <li><a href="#produits" onclick="filterByName('securite')">Vidéosurveillance</a></li>
           <li><a href="#produits" onclick="filterByName('consommables')">Consommables</a></li>
         </ul>
       </div>
@@ -1616,13 +1627,14 @@ document.getElementById('cartBtn').addEventListener('click', openCart);
 function filterCat(el) {
   document.querySelectorAll('.cat-card').forEach(c => c.classList.remove('active'));
   el.classList.add('active');
-  const filter = el.dataset.filter;
-  applyFilter(filter);
+  applyFilter(el.dataset.filter);
+  document.getElementById('searchInput').value = '';
 }
 
 function filterByName(filter) {
   const matching = [...document.querySelectorAll('.cat-card')].find(c => c.dataset.filter === filter);
-  if (matching) filterCat(matching);
+  if (matching) { filterCat(matching); }
+  else { applyFilter(filter); }
   document.getElementById('produits').scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -1663,7 +1675,8 @@ function openModal(card) {
   document.getElementById('modalQty').textContent = 1;
   document.getElementById('modalImg').src = card.dataset.img;
   document.getElementById('modalImg').alt = card.dataset.name;
-  document.getElementById('modalCat').textContent = card.dataset.cat.charAt(0).toUpperCase() + card.dataset.cat.slice(1);
+  const catLabels = { ordinateurs: 'Ordinateurs & Laptops', peripheriques: 'Périphériques', reseaux: 'Réseaux & WiFi', securite: 'Vidéosurveillance', consommables: 'Consommables' };
+  document.getElementById('modalCat').textContent = catLabels[card.dataset.cat] || card.dataset.cat;
   document.getElementById('modalName').textContent = card.dataset.name;
   document.getElementById('modalPrice').innerHTML = parseInt(card.dataset.price).toLocaleString('fr-FR') + ' <span>FCFA</span>';
   const stock = parseInt(card.dataset.stock);
