@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATECH SHOP — Informatique, Réseaux & Sécurité · Dakar</title>
+<meta name="description" content="Boutique informatique ATECH : ordinateurs, réseaux, caméras de surveillance, consommables. Livraison Dakar. Paiement Wave & Orange Money.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─────────────────────────────────────────── */
+:root {
+  --ink:    #0b0c10;
+  --ink2:   #13141f;
+  --ink3:   #1a1c2e;
+  --ink4:   #2e3048;
+  --lime:   #c8f135;
+  --lime2:  #aed42a;
+  --white:  #ffffff;
+  --muted:  #8b90a0;
+  --border: rgba(200,241,53,.15);
+  --shadow: 0 4px 24px rgba(0,0,0,.45);
+  --radius-card: 12px;
+  --radius-btn: 8px;
+  --font-title: 'Clash Display', system-ui, sans-serif;
+  --font-body:  'Inter', system-ui, sans-serif;
+}
+
+/* ─── RESET ──────────────────────────────────────────── */
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--ink); color: var(--white); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; }
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+ul { list-style: none; }
+input, select, textarea { font-family: inherit; }
+
+/* ─── SCROLLBAR ──────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--ink2); }
+::-webkit-scrollbar-thumb { background: var(--ink4); border-radius: 3px; }
+
+/* ─── NAVBAR ─────────────────────────────────────────── */
+.navbar {
+  position: sticky; top: 0; z-index: 900;
+  background: rgba(11,12,16,.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 clamp(16px, 4vw, 48px);
+  height: 68px;
+  display: flex; align-items: center; gap: 20px;
+}
+.nav-logo {
+  font-family: var(--font-title);
+  font-size: 22px; font-weight: 700;
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.nav-logo span { color: var(--lime); }
+.nav-search {
+  flex: 1; max-width: 480px;
+  position: relative;
+}
+.nav-search input {
+  width: 100%;
+  background: var(--ink3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 40px 10px 16px;
+  color: var(--white);
+  font-size: 14px;
+  outline: none;
+  transition: border-color .2s;
+}
+.nav-search input::placeholder { color: var(--muted); }
+.nav-search input:focus { border-color: var(--lime); }
+.nav-search svg { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+.nav-actions { display: flex; align-items: center; gap: 12px; margin-left: auto; flex-shrink: 0; }
+.nav-back {
+  display: flex; align-items: center; gap: 6px;
+  color: var(--muted); font-size: 13px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-btn);
+  transition: color .2s, border-color .2s;
+  white-space: nowrap;
+}
+.nav-back:hover { color: var(--lime); border-color: var(--lime); }
+.nav-cart {
+  position: relative;
+  background: var(--lime); color: var(--ink);
+  border-radius: var(--radius-btn);
+  padding: 10px 18px;
+  font-weight: 600; font-size: 14px;
+  display: flex; align-items: center; gap: 8px;
+  transition: background .2s, transform .15s;
+}
+.nav-cart:hover { background: var(--lime2); transform: scale(1.03); }
+.cart-badge {
+  background: var(--ink);
+  color: var(--lime);
+  border-radius: 50%;
+  width: 20px; height: 20px;
+  font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  min-width: 20px;
+}
+.cart-badge.hidden { display: none; }
+
+/* ─── HERO ───────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 520px;
+  display: flex; align-items: center;
+  overflow: hidden;
+  background: var(--ink2);
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=1600&q=80&auto=format&fit=crop');
+  background-size: cover; background-position: center;
+  filter: brightness(.28);
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(11,12,16,.85) 0%, rgba(11,12,16,.4) 100%);
+}
+.hero-line-top { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--lime); }
+.hero-line-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--lime); }
+.hero-content {
+  position: relative; z-index: 2;
+  padding: clamp(48px, 8vw, 96px) clamp(24px, 6vw, 80px);
+  max-width: 680px;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(200,241,53,.12);
+  border: 1px solid var(--lime);
+  color: var(--lime);
+  font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+}
+.hero-title {
+  font-family: var(--font-title);
+  font-size: clamp(36px, 5vw, 62px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+  margin-bottom: 20px;
+}
+.hero-title .accent { color: var(--lime); }
+.hero-desc {
+  color: rgba(255,255,255,.72);
+  font-size: clamp(15px, 1.8vw, 18px);
+  margin-bottom: 36px;
+  max-width: 520px;
+}
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--lime); color: var(--ink);
+  padding: 14px 28px;
+  border-radius: var(--radius-btn);
+  font-weight: 700; font-size: 15px;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: background .2s, transform .15s;
+}
+.btn-primary:hover { background: var(--lime2); transform: translateY(-2px); }
+.btn-ghost {
+  border: 1px solid rgba(255,255,255,.25); color: var(--white);
+  padding: 14px 28px;
+  border-radius: var(--radius-btn);
+  font-weight: 600; font-size: 15px;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: border-color .2s, background .2s;
+}
+.btn-ghost:hover { border-color: var(--lime); background: rgba(200,241,53,.06); }
+.hero-stats {
+  display: flex; gap: 36px;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,.12);
+}
+.hero-stat strong {
+  display: block;
+  font-family: var(--font-title);
+  font-size: 28px; font-weight: 700; color: var(--lime);
+}
+.hero-stat span { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+
+/* ─── SECTION COMMON ─────────────────────────────────── */
+.section { padding: clamp(48px, 8vw, 96px) clamp(16px, 4vw, 48px); }
+.section-inner { max-width: 1280px; margin: 0 auto; }
+.section-header { margin-bottom: 40px; }
+.section-label {
+  display: inline-block;
+  font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--lime);
+  border: 1px solid var(--lime);
+  padding: 4px 12px; border-radius: 100px;
+  margin-bottom: 14px;
+}
+.section-title {
+  font-family: var(--font-title);
+  font-size: clamp(26px, 3.5vw, 42px);
+  font-weight: 700; letter-spacing: -1px;
+}
+
+/* ─── CATEGORIES ─────────────────────────────────────── */
+.categories { background: var(--ink2); }
+.cats-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+.cat-card {
+  background: var(--ink3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 20px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color .2s, background .2s, transform .15s;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.cat-card:hover, .cat-card.active {
+  border-color: var(--lime);
+  background: rgba(200,241,53,.06);
+  transform: translateY(-3px);
+}
+.cat-card.active .cat-icon { background: var(--lime); color: var(--ink); }
+.cat-icon {
+  width: 48px; height: 48px;
+  background: var(--ink4);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, color .2s;
+  color: var(--lime);
+}
+.cat-name { font-size: 13px; font-weight: 600; }
+.cat-count { font-size: 11px; color: var(--muted); }
+
+/* ─── PRODUCTS ───────────────────────────────────────── */
+.products { background: var(--ink); }
+.products-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 28px; gap: 16px; flex-wrap: wrap;
+}
+.products-count { color: var(--muted); font-size: 14px; }
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.product-card {
+  background: var(--ink3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+  cursor: pointer;
+  position: relative;
+}
+.product-card:hover {
+  border-color: rgba(200,241,53,.35);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+.product-card.hidden { display: none; }
+.product-badge-wrap {
+  position: absolute; top: 12px; left: 12px; z-index: 2;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.badge {
+  display: inline-block;
+  font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 100px;
+}
+.badge-new { background: var(--lime); color: var(--ink); }
+.badge-promo { background: #ff4d6d; color: #fff; }
+.badge-stock-low { background: #ff9d00; color: var(--ink); }
+.product-img {
+  height: 200px;
+  overflow: hidden;
+  background: var(--ink4);
+}
+.product-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .4s ease;
+}
+.product-card:hover .product-img img { transform: scale(1.06); }
+.product-body { padding: 18px; }
+.product-cat { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--lime); margin-bottom: 6px; }
+.product-name { font-family: var(--font-title); font-size: 15px; font-weight: 600; line-height: 1.3; margin-bottom: 10px; }
+.product-price { font-size: 20px; font-weight: 700; color: var(--lime); font-family: var(--font-title); margin-bottom: 6px; }
+.product-price span { font-size: 13px; font-weight: 500; color: var(--muted); }
+.product-stock { font-size: 12px; color: #4ade80; display: flex; align-items: center; gap: 5px; margin-bottom: 14px; }
+.product-stock.low { color: #ff9d00; }
+.product-stock.out { color: #f87171; }
+.btn-cart {
+  width: 100%;
+  background: var(--lime); color: var(--ink);
+  border-radius: var(--radius-btn);
+  padding: 11px;
+  font-weight: 700; font-size: 14px;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  transition: background .2s, transform .15s;
+}
+.btn-cart:hover { background: var(--lime2); transform: scale(1.02); }
+.btn-cart:disabled { background: var(--ink4); color: var(--muted); cursor: not-allowed; transform: none; }
+
+/* ─── TRUST BANDEAU ──────────────────────────────────── */
+.trust { background: var(--ink2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.trust-item {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 24px 20px;
+  background: var(--ink3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+}
+.trust-icon {
+  width: 48px; height: 48px; flex-shrink: 0;
+  background: rgba(200,241,53,.1);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--lime);
+}
+.trust-text strong { display: block; font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.trust-text span { font-size: 13px; color: var(--muted); }
+
+/* ─── CART DRAWER ────────────────────────────────────── */
+.drawer-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,.65);
+  opacity: 0; visibility: hidden;
+  transition: opacity .3s, visibility .3s;
+}
+.drawer-overlay.open { opacity: 1; visibility: visible; }
+.cart-drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 1001;
+  width: 100%; max-width: 440px;
+  background: var(--ink2);
+  border-left: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  transform: translateX(100%);
+  transition: transform .35s cubic-bezier(.4,0,.2,1);
+}
+.cart-drawer.open { transform: translateX(0); }
+.drawer-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+}
+.drawer-title { font-family: var(--font-title); font-size: 20px; font-weight: 700; }
+.drawer-close {
+  width: 36px; height: 36px;
+  background: var(--ink4);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted);
+  transition: background .2s, color .2s;
+}
+.drawer-close:hover { background: var(--ink3); color: var(--white); }
+.drawer-body { flex: 1; overflow-y: auto; padding: 20px 24px; }
+.cart-empty {
+  text-align: center; padding: 60px 0;
+  color: var(--muted);
+}
+.cart-empty svg { margin: 0 auto 16px; opacity: .4; }
+.cart-empty p { font-size: 15px; }
+.cart-item {
+  display: flex; gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.cart-item-img {
+  width: 72px; height: 72px; flex-shrink: 0;
+  border-radius: 8px; overflow: hidden;
+  background: var(--ink4);
+}
+.cart-item-img img { width: 100%; height: 100%; object-fit: cover; }
+.cart-item-info { flex: 1; min-width: 0; }
+.cart-item-name { font-size: 14px; font-weight: 600; line-height: 1.3; margin-bottom: 6px; }
+.cart-item-price { font-size: 15px; font-weight: 700; color: var(--lime); margin-bottom: 10px; }
+.qty-control {
+  display: flex; align-items: center; gap: 8px;
+}
+.qty-btn {
+  width: 28px; height: 28px;
+  background: var(--ink4);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 700; color: var(--white);
+  transition: background .15s;
+}
+.qty-btn:hover { background: var(--lime); color: var(--ink); }
+.qty-val { font-size: 14px; font-weight: 700; min-width: 24px; text-align: center; }
+.cart-item-remove { color: var(--muted); font-size: 12px; margin-left: auto; align-self: flex-start; transition: color .2s; }
+.cart-item-remove:hover { color: #f87171; }
+.drawer-footer {
+  padding: 20px 24px;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.cart-total-row {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 16px;
+}
+.cart-total-label { color: var(--muted); font-size: 14px; }
+.cart-total-val { font-family: var(--font-title); font-size: 24px; font-weight: 700; color: var(--lime); }
+.btn-checkout {
+  width: 100%;
+  background: var(--lime); color: var(--ink);
+  border-radius: var(--radius-btn);
+  padding: 15px;
+  font-weight: 700; font-size: 16px;
+  transition: background .2s;
+}
+.btn-checkout:hover { background: var(--lime2); }
+
+/* ─── MODAL PRODUIT ──────────────────────────────────── */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 1100;
+  background: rgba(0,0,0,.75);
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+  opacity: 0; visibility: hidden;
+  transition: opacity .25s, visibility .25s;
+}
+.modal-overlay.open { opacity: 1; visibility: visible; }
+.modal-box {
+  background: var(--ink2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  width: 100%; max-width: 820px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  transform: scale(.94);
+  transition: transform .25s;
+}
+.modal-overlay.open .modal-box { transform: scale(1); }
+.modal-img-wrap {
+  background: var(--ink4);
+  border-radius: 16px 0 0 16px;
+  overflow: hidden;
+  min-height: 360px;
+}
+.modal-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.modal-content { padding: 36px; display: flex; flex-direction: column; }
+.modal-close {
+  align-self: flex-end;
+  width: 34px; height: 34px;
+  background: var(--ink4);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted);
+  margin-bottom: 20px;
+  transition: background .2s, color .2s;
+}
+.modal-close:hover { background: var(--ink3); color: var(--white); }
+.modal-cat { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--lime); margin-bottom: 8px; }
+.modal-name { font-family: var(--font-title); font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; line-height: 1.2; margin-bottom: 12px; }
+.modal-price { font-family: var(--font-title); font-size: 32px; font-weight: 700; color: var(--lime); margin-bottom: 8px; }
+.modal-price span { font-size: 16px; color: var(--muted); font-weight: 500; }
+.modal-stock { font-size: 13px; color: #4ade80; margin-bottom: 20px; display: flex; align-items: center; gap: 6px; }
+.modal-desc { font-size: 14px; color: rgba(255,255,255,.7); line-height: 1.7; margin-bottom: 24px; flex: 1; }
+.modal-qty-row { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+.modal-qty-label { font-size: 13px; color: var(--muted); }
+.modal-qty-control { display: flex; align-items: center; gap: 10px; }
+.modal-qty-btn {
+  width: 36px; height: 36px;
+  background: var(--ink4);
+  border-radius: 8px;
+  font-size: 18px; font-weight: 700; color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s;
+}
+.modal-qty-btn:hover { background: var(--lime); color: var(--ink); }
+.modal-qty-val { font-size: 16px; font-weight: 700; min-width: 32px; text-align: center; }
+.modal-add-btn {
+  width: 100%;
+  background: var(--lime); color: var(--ink);
+  border-radius: var(--radius-btn);
+  padding: 14px;
+  font-weight: 700; font-size: 15px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: background .2s, transform .15s;
+}
+.modal-add-btn:hover { background: var(--lime2); transform: scale(1.02); }
+
+/* ─── CHECKOUT MODAL ─────────────────────────────────── */
+.checkout-overlay {
+  position: fixed; inset: 0; z-index: 1200;
+  background: rgba(0,0,0,.8);
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+  opacity: 0; visibility: hidden;
+  transition: opacity .25s, visibility .25s;
+}
+.checkout-overlay.open { opacity: 1; visibility: visible; }
+.checkout-box {
+  background: var(--ink2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  width: 100%; max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 36px;
+  transform: scale(.94);
+  transition: transform .25s;
+}
+.checkout-overlay.open .checkout-box { transform: scale(1); }
+.checkout-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 28px;
+}
+.checkout-title { font-family: var(--font-title); font-size: 22px; font-weight: 700; }
+.checkout-close {
+  width: 34px; height: 34px;
+  background: var(--ink4);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted);
+  transition: background .2s, color .2s;
+}
+.checkout-close:hover { background: var(--ink3); color: var(--white); }
+.form-group { margin-bottom: 18px; }
+.form-label { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: .06em; }
+.form-input {
+  width: 100%;
+  background: var(--ink3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--white);
+  font-size: 15px;
+  outline: none;
+  transition: border-color .2s;
+}
+.form-input:focus { border-color: var(--lime); }
+.form-input::placeholder { color: var(--muted); }
+.form-select {
+  width: 100%;
+  background: var(--ink3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--white);
+  font-size: 15px;
+  outline: none;
+  transition: border-color .2s;
+  appearance: none;
+  cursor: pointer;
+}
+.form-select:focus { border-color: var(--lime); }
+.form-select option { background: var(--ink2); }
+.payment-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+.payment-opt {
+  position: relative;
+}
+.payment-opt input { position: absolute; opacity: 0; }
+.payment-opt label {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 16px 12px;
+  background: var(--ink3);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+  text-align: center;
+}
+.payment-opt input:checked + label {
+  border-color: var(--lime);
+  background: rgba(200,241,53,.07);
+}
+.payment-logo { font-weight: 800; font-size: 18px; letter-spacing: -0.5px; }
+.wave-logo { color: #1B98F5; }
+.om-logo { color: #FF6600; }
+.payment-name { font-size: 13px; font-weight: 600; }
+.checkout-summary {
+  background: var(--ink3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+.checkout-summary-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 12px; }
+.checkout-summary-items { max-height: 120px; overflow-y: auto; }
+.checkout-summary-item {
+  display: flex; justify-content: space-between;
+  font-size: 13px; padding: 4px 0;
+  color: rgba(255,255,255,.8);
+}
+.checkout-total {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  margin-top: 10px;
+}
+.checkout-total-label { font-weight: 600; font-size: 14px; }
+.checkout-total-val { font-family: var(--font-title); font-size: 20px; font-weight: 700; color: var(--lime); }
+.form-error { color: #f87171; font-size: 12px; margin-top: 5px; display: none; }
+.form-error.show { display: block; }
+.btn-submit {
+  width: 100%;
+  background: var(--lime); color: var(--ink);
+  border-radius: var(--radius-btn);
+  padding: 15px;
+  font-weight: 700; font-size: 16px;
+  transition: background .2s;
+}
+.btn-submit:hover { background: var(--lime2); }
+
+/* ─── CONFIRMATION ───────────────────────────────────── */
+.confirm-screen {
+  text-align: center;
+  padding: 20px 0;
+  display: none;
+}
+.confirm-screen.show { display: block; }
+.confirm-icon {
+  width: 72px; height: 72px;
+  background: rgba(200,241,53,.15);
+  border: 2px solid var(--lime);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  color: var(--lime);
+}
+.confirm-title { font-family: var(--font-title); font-size: 24px; font-weight: 700; margin-bottom: 10px; }
+.confirm-desc { color: var(--muted); font-size: 14px; line-height: 1.7; margin-bottom: 20px; }
+.confirm-payment-info {
+  background: var(--ink3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+.confirm-payment-info h4 { font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--lime); }
+.confirm-payment-step { font-size: 14px; color: rgba(255,255,255,.8); padding: 6px 0; display: flex; align-items: flex-start; gap: 10px; }
+.confirm-payment-step .step-num {
+  background: var(--lime); color: var(--ink);
+  width: 20px; height: 20px; border-radius: 50%;
+  font-size: 11px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+}
+.btn-new-order {
+  background: var(--lime); color: var(--ink);
+  border-radius: var(--radius-btn);
+  padding: 13px 28px;
+  font-weight: 700; font-size: 15px;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: background .2s;
+}
+.btn-new-order:hover { background: var(--lime2); }
+
+/* ─── TOAST ──────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 24px; right: 24px; z-index: 2000;
+  background: var(--ink3);
+  border: 1px solid var(--lime);
+  border-radius: 10px;
+  padding: 14px 20px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 14px; font-weight: 600;
+  box-shadow: var(--shadow);
+  transform: translateY(80px);
+  opacity: 0;
+  transition: transform .3s, opacity .3s;
+  max-width: 320px;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast-icon { color: var(--lime); flex-shrink: 0; }
+
+/* ─── FOOTER ─────────────────────────────────────────── */
+.footer {
+  background: var(--ink2);
+  border-top: 1px solid var(--border);
+  padding: clamp(40px, 6vw, 72px) clamp(16px, 4vw, 48px) 28px;
+}
+.footer-inner { max-width: 1280px; margin: 0 auto; }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+.footer-brand { }
+.footer-logo { font-family: var(--font-title); font-size: 24px; font-weight: 700; margin-bottom: 14px; }
+.footer-logo span { color: var(--lime); }
+.footer-desc { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 280px; margin-bottom: 20px; }
+.footer-payments { display: flex; gap: 10px; flex-wrap: wrap; }
+.payment-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--ink4);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 7px 12px;
+  font-size: 12px; font-weight: 700;
+}
+.footer-col h4 { font-family: var(--font-title); font-size: 14px; font-weight: 700; letter-spacing: .04em; margin-bottom: 18px; }
+.footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul li a { font-size: 14px; color: var(--muted); transition: color .2s; }
+.footer-col ul li a:hover { color: var(--lime); }
+.footer-bottom {
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+}
+.footer-copy { font-size: 13px; color: var(--muted); }
+.footer-copy a { color: var(--lime); }
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .products-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 900px) {
+  .cats-grid { grid-template-columns: repeat(3, 1fr); }
+  .trust-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .modal-box { grid-template-columns: 1fr; }
+  .modal-img-wrap { border-radius: 16px 16px 0 0; min-height: 240px; }
+}
+@media (max-width: 768px) {
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-stats { gap: 20px; }
+  .hero-stat strong { font-size: 22px; }
+  .nav-back span { display: none; }
+  .nav-search { max-width: none; }
+  .cart-drawer { max-width: 100%; }
+  .checkout-box { padding: 24px; }
+  .modal-content { padding: 24px; }
+}
+@media (max-width: 500px) {
+  .cats-grid { grid-template-columns: repeat(2, 1fr); }
+  .products-grid { grid-template-columns: 1fr; }
+  .trust-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .hero-stats { flex-direction: column; gap: 12px; }
+  .payment-methods { grid-template-columns: 1fr; }
+  .modal-box { grid-template-columns: 1fr; }
+}
+
+/* ─── ANIMATE ON SCROLL ──────────────────────────────── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--  NAVBAR                                             -->
+<!-- ═══════════════════════════════════════════════════ -->
+<nav class="navbar">
+  <div class="nav-logo">ATECH<span>SHOP</span></div>
+
+  <div class="nav-search">
+    <input type="text" id="searchInput" placeholder="Rechercher un produit..." autocomplete="off">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+  </div>
+
+  <div class="nav-actions">
+    <a href="index.html" class="nav-back">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      <span>Retour vitrine</span>
+    </a>
+    <button class="nav-cart" id="cartBtn">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      Panier
+      <span class="cart-badge hidden" id="cartBadge">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--  HERO                                               -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-line-top"></div>
+  <div class="hero-line-bottom"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      Boutique Officielle ATECH — Dakar, Sénégal
+    </div>
+    <h1 class="hero-title">
+      Votre partenaire<br>
+      <span class="accent">Tech & Réseaux</span><br>
+      à Dakar
+    </h1>
+    <p class="hero-desc">
+      Informatique, réseaux, caméras de surveillance, consommables. Produits 100% originaux, livrés en 24-48h sur Dakar. Paiement Wave & Orange Money.
+    </p>
+    <div class="hero-ctas">
+      <a href="#produits" class="btn-primary">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Voir les produits
+      </a>
+      <a href="index.html#contact" class="btn-ghost">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.68h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.5 17.3z"/></svg>
+        Devis B2B
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>12+</strong><span>Références</span></div>
+      <div class="hero-stat"><strong>24h</strong><span>Livraison Dakar</span></div>
+      <div class="hero-stat"><strong>100%</strong><span>Originaux</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--  CATÉGORIES                                         -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="section categories">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Catalogue</div>
+      <h2 class="section-title">Nos catégories</h2>
+    </div>
+    <div class="cats-grid">
+      <div class="cat-card active" data-filter="all" onclick="filterCat(this)">
+        <div class="cat-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </div>
+        <div class="cat-name">Tout voir</div>
+        <div class="cat-count">12 produits</div>
+      </div>
+      <div class="cat-card" data-filter="informatique" onclick="filterCat(this)">
+        <div class="cat-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div class="cat-name">Informatique</div>
+        <div class="cat-count">3 produits</div>
+      </div>
+      <div class="cat-card" data-filter="reseaux" onclick="filterCat(this)">
+        <div class="cat-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
+        </div>
+        <div class="cat-name">Réseaux</div>
+        <div class="cat-count">3 produits</div>
+      </div>
+      <div class="cat-card" data-filter="securite" onclick="filterCat(this)">
+        <div class="cat-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="cat-name">Sécurité</div>
+        <div class="cat-count">3 produits</div>
+      </div>
+      <div class="cat-card" data-filter="consommables" onclick="filterCat(this)">
+        <div class="cat-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        </div>
+        <div class="cat-name">Consommables</div>
+        <div class="cat-count">3 produits</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--  PRODUITS                                           -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="section products" id="produits">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Boutique</div>
+      <h2 class="section-title">Nos produits</h2>
+    </div>
+    <div class="products-toolbar">
+      <div class="products-count" id="productsCount">12 produits</div>
+    </div>
+    <div class="products-grid" id="productsGrid">
+
+      <!-- INFORMATIQUE -->
+      <div class="product-card fade-up"
+           data-cat="informatique"
+           data-name="Laptop ASUS VivoBook 15"
+           data-price="449000"
+           data-stock="5"
+           data-img="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80&auto=format&fit=crop"
+           data-desc="PC portable ASUS VivoBook 15 — Intel Core i5 11ème génération, 8 Go RAM, 512 Go SSD NVMe, écran Full HD 15.6&quot;, Windows 11. Idéal usage professionnel et bureautique."
+           onclick="openModal(this)">
+        <div class="product-badge-wrap"><span class="badge badge-new">Nouveau</span></div>
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80&auto=format&fit=crop" alt="Laptop ASUS VivoBook 15" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Informatique</div>
+          <div class="product-name">Laptop ASUS VivoBook 15</div>
+          <div class="product-price">449 000 <span>FCFA</span></div>
+          <div class="product-stock">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            En stock (5 unités)
+          </div>
+          <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Ajouter au panier
+          </button>
+        </div>
+      </div>
+
+      <div class="product-card fade-up"
+           data-cat="informatique"
+           data-name="Écran LG 27 Full HD"
+           data-price="189000"
+           data-stock="8"
+           data-img="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600&q=80&auto=format&fit=crop"
+           data-desc="Écran LG 27&quot; Full HD IPS — résolution 1920×1080, dalle IPS 75Hz, temps de réponse 5ms, ports HDMI & DisplayPort, support réglable en hauteur. Confort visuel optimal pour le bureau."
+           onclick="openModal(this)">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600&q=80&auto=format&fit=crop" alt="Écran LG 27 Full HD" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Informatique</div>
+          <div class="product-name">Écran LG 27" Full HD</div>
+          <div class="product-price">189 000 <span>FCFA</span></div>
+          <div class="product-stock">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            En stock (8 unités)
+          </div>
+          <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Ajouter au panier
+          </button>
+        </div>
+      </div>
+
+      <div class="product-card fade-up"
+           data-cat="informatique"
+           data-name="Souris Logitech MX Master 3"
+           data-price="45000"
+           data-stock="15"
+           data-img="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&q=80&auto=format&fit=crop"
+           data-desc="Souris Logitech MX Master 3 — sans fil Bluetooth & USB, capteur optique 4000 DPI, molette MagSpeed, autonomie 70 jours. Compatible Windows, Mac, Linux. Ergonomie haut de gamme."
+           onclick="openModal(this)">
+        <div class="product-badge-wrap"><span class="badge badge-promo">Populaire</span></div>
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&q=80&auto=format&fit=crop" alt="Souris Logitech MX Master 3" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Informatique</div>
+          <div class="product-name">Souris Logitech MX Master 3</div>
+          <div class="product-price">45 000 <span>FCFA</span></div>
+          <div class="product-stock">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            En stock (15 unités)
+          </div>
+          <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Ajouter au panier
+          </button>
+        </div>
+      </div>
+
+      <!-- RÉSEAUX -->
+      <div class="product-card fade-up"
+           data-cat="reseaux"
+           data-name="Routeur WiFi 6 TP-Link AX3000"
+           data-price="119000"
+           data-stock="6"
+           data-img="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80&auto=format&fit=crop"
+           data-desc="Routeur WiFi 6 TP-Link AX3000 — double bande 2.4GHz + 5GHz, débit 3000 Mbps, MU-MIMO 4×4, 4 antennes haute gain, ports Gigabit. Couverture optimale pour maison ou bureau."
+           onclick="openModal(this)">
+        <div class="product-badge-wrap"><span class="badge badge-new">WiFi 6</span></div>
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80&auto=format&fit=crop" alt="Routeur WiFi 6 TP-Link AX3000" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Réseaux</div>
+          <div class="product-name">Routeur WiFi 6 TP-Link AX3000</div>
+          <div class="product-price">119 000 <span>FCFA</span></div>
+          <div class="product-stock">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            En stock (6 unités)
+          </div>
+          <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Ajouter au panier
+          </button>
+        </div>
+      </div>
+
+      <div class="product-card fade-up"
+           data-cat="reseaux"
+           data-name="Switch 8 ports Gigabit"
+           data-price="38000"
+           data-stock="12"
+           data-img="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80&auto=format&fit=crop"
+           data-desc="Switch non manageable 8 ports Gigabit 10/100/1000 Mbps — plug & play, boîtier métal robuste, auto-négociation, compatible tous équipements réseau. Idéal PME et data centers."
+           onclick="openModal(this)">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80&auto=format&fit=crop" alt="Switch 8 ports Gigabit" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Réseaux</div>
+          <div class="product-name">Switch 8 ports Gigabit</div>
+          <div class="product-price">38 000 <span>FCFA</span></div>
+          <div class="product-stock">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            En stock (12 unités)
+          </div>
+          <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Ajouter au panier
+          </button>
+        </div>
+      </div>
+
+      <div class="product-card fade-up"
+           data-cat="reseaux"
+           data-name="Câble RJ45 Cat6 10m"
+           data-price="8500"
+           data-stock="50"
+           data-img="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop"
+           data-desc="Câble réseau RJ45 Cat6 blindé 10 mètres — câblage FTP, bande passante 250 MHz, débit jusqu'à 10 Gbps, connecteurs plaqués or, gaine PVC souple. Certifié pour installation professionnelle."
+           onclick="openModal(this)">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop" alt="Câble RJ45 Cat6 10m" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Réseaux</div>
+          <div class="product-name">Câble RJ45 Cat6 (10m)</div>
+          <div class="product-price">8 500 <span>FCFA</span></div>
+          <div class="product-stock">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            En stock (50 unités)
+          </div>
+          <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Ajouter au panier
+          </button>
+        </div>
+      </div>
+
+      <!-- SÉCURITÉ -->
+      <div class="product-card fade-up"
+           data-cat="securite"
+           data-name="Caméra IP Hikvision 4MP"
+           data-price="79000"
+           data-stock="9"
+           data-img="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80&auto=format&fit=crop"
+           data-desc="Caméra IP Hikvision DS-2CD2143G2-I 4MP — résolution 2688×1520, IR portée 40m, H.265+, IP67, IK10 anti-vandalisme, motion detection IA, compatible NVR & Hik-Connect."
+           onclick="openModal(this)">
+        <div class="product-badge-wrap"><span class="badge badge-new">4MP</span></div>
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80&auto=format&fit=crop" alt="Caméra IP Hikvision 4MP" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Sécurité</div>
+          <div class="product-name">Caméra IP Hikvision 4MP</div>
+          <div class="product-price">79 000 <span>FCFA</span></div>
+          <div class="product-stock">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            En stock (9 unités)
+          </div>
+          <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Ajouter au panier
+          </button>
+        </div>
+      </div>
+
+      <div class="product-card fade-up"
+           data-cat="securite"
+           data-name="Kit NVR 4 caméras Dahua"
+           data-price="285000"
+           data-stock="3"
+           data-img="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=80&auto=format&fit=crop"
+           data-desc="Kit vidéosurveillance Dahua 4 caméras + NVR — NVR 8 canaux 4K, 4× caméras IP 4MP avec IR, câblage POE inclus, disque dur 1To pré-installé, interface SmartPSS. Installation clé en main."
+           onclick="openModal(this)">
+        <div class="product-badge-wrap">
+          <span class="badge badge-promo">Best seller</span>
+          <span class="badge badge-stock-low">Stock limité</span>
+        </div>
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=80&auto=format&fit=crop" alt="Kit NVR 4 caméras Dahua" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Sécurité</div>
+          <div class="product-name">Kit NVR 4 caméras Dahua</div>
+          <div class="product-price">285 000 <span>FCFA</span></div>
+          <div class="product-stock low">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+            Stock limité (3 unités)
+          </div>
+          <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Ajouter au panier
+          </button>
+        </div>
+      </div>
+
+      <div class="product-card fade-up"
+           data-cat="securite"
+           data-name="Disque dur surveillance 1To Seagate"
+           data-price="55000"
+           data-stock="7"
+           data-img="https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=600&q=80&auto=format&fit=crop"
+           data-desc="Disque dur Seagate SkyHawk 1 To — spécialement conçu pour DVR/NVR, optimisé pour l'enregistrement continu 24h/7j, cache 64 Mo, compatible jusqu'à 64 caméras, 3 ans de garantie."
+           onclick="openModal(this)">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=600&q=80&auto=format&fit=crop" alt="Disque dur surveillance 1To Seagate" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Sécurité</div>
+          <div class="product-name">Disque dur surveillance 1To Seagate</div>
+          <div class="product-price">55 000 <span>FCFA</span></div>
+          <div class="product-stock">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            En stock (7 unités)
+          </div>
+          <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Ajouter au panier
+          </button>
+        </div>
+      </div>
+
+      <!-- CONSOMMABLES -->
+      <div class="product-card fade-up"
+           data-cat="consommables"
+           data-name="Cartouche HP LaserJet lot 2"
+           data-price="32000"
+           data-stock="20"
+           data-img="https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=600&q=80&auto=format&fit=crop"
+           data-desc="Lot de 2 cartouches HP LaserJet 85A (CE285A) — compatibles HP LaserJet P1102, P1102w, M1130, M1210. Encre noire haute qualité, rendement ≈ 1600 pages/cartouche. Produit original HP."
+           onclick="openModal(this)">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=600&q=80&auto=format&fit=crop" alt="Cartouche HP LaserJet lot 2" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Consommables</div>
+          <div class="product-name">Cartouche HP LaserJet (lot 2)</div>
+          <div class="product-price">32 000 <span>FCFA</span></div>
+          <div class="product-stock">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            En stock (20 unités)
+          </div>
+          <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Ajouter au panier
+          </button>
+        </div>
+      </div>
+
+      <div class="product-card fade-up"
+           data-cat="consommables"
+           data-name="Batterie laptop universelle"
+           data-price="28000"
+           data-stock="14"
+           data-img="https://images.unsplash.com/photo-1587145820266-a5951ee6f620?w=600&q=80&auto=format&fit=crop"
+           data-desc="Batterie laptop universelle 90W — compatible HP, Dell, Lenovo, ASUS, Acer, Toshiba. Adaptateurs multiples inclus (12 embouts), protection contre surtension/court-circuit, certification CE."
+           onclick="openModal(this)">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1587145820266-a5951ee6f620?w=600&q=80&auto=format&fit=crop" alt="Batterie laptop universelle" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Consommables</div>
+          <div class="product-name">Batterie laptop universelle</div>
+          <div class="product-price">28 000 <span>FCFA</span></div>
+          <div class="product-stock">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            En stock (14 unités)
+          </div>
+          <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Ajouter au panier
+          </button>
+        </div>
+      </div>
+
+      <div class="product-card fade-up"
+           data-cat="consommables"
+           data-name="Multiprise parafoudre 6 prises"
+           data-price="18500"
+           data-stock="25"
+           data-img="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=600&q=80&auto=format&fit=crop"
+           data-desc="Multiprise parafoudre 6 prises + 2 ports USB — protection contre surtensions jusqu'à 2500 joules, câble 2m, interrupteur lumineux, protection thermique, homologuée NF. Protège vos équipements."
+           onclick="openModal(this)">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=600&q=80&auto=format&fit=crop" alt="Multiprise parafoudre 6 prises" loading="lazy">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Consommables</div>
+          <div class="product-name">Multiprise parafoudre 6 prises</div>
+          <div class="product-price">18 500 <span>FCFA</span></div>
+          <div class="product-stock">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            En stock (25 unités)
+          </div>
+          <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Ajouter au panier
+          </button>
+        </div>
+      </div>
+
+    </div><!-- /products-grid -->
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--  TRUST BANDEAU                                      -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section class="section trust">
+  <div class="section-inner">
+    <div class="trust-grid">
+      <div class="trust-item fade-up">
+        <div class="trust-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3m-5 0h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-3"/></svg>
+        </div>
+        <div class="trust-text">
+          <strong>Livraison 24-48h</strong>
+          <span>Dakar & banlieue. Partout au Sénégal sur devis.</span>
+        </div>
+      </div>
+      <div class="trust-item fade-up">
+        <div class="trust-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="trust-text">
+          <strong>Produits 100% originaux</strong>
+          <span>Garantie constructeur. Facture officielle fournie.</span>
+        </div>
+      </div>
+      <div class="trust-item fade-up">
+        <div class="trust-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <div class="trust-text">
+          <strong>Wave & Orange Money</strong>
+          <span>Paiement mobile sécurisé. Pas de frais cachés.</span>
+        </div>
+      </div>
+      <div class="trust-item fade-up">
+        <div class="trust-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.68h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10a16 16 0 0 0 6 6z"/></svg>
+        </div>
+        <div class="trust-text">
+          <strong>SAV WhatsApp</strong>
+          <span>Support technique 7j/7. Réponse en moins d'1h.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--  FOOTER                                             -->
+<!-- ═══════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">ATECH<span>SHOP</span></div>
+        <p class="footer-desc">
+          Votre boutique tech de confiance à Dakar. Informatique, réseaux, vidéosurveillance et consommables. Produits originaux, SAV professionnel.
+        </p>
+        <div class="footer-payments">
+          <div class="payment-badge" style="color:#1B98F5">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+            Wave
+          </div>
+          <div class="payment-badge" style="color:#FF6600">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+            Orange Money
+          </div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Catégories</h4>
+        <ul>
+          <li><a href="#produits" onclick="filterByName('informatique')">Informatique</a></li>
+          <li><a href="#produits" onclick="filterByName('reseaux')">Réseaux</a></li>
+          <li><a href="#produits" onclick="filterByName('securite')">Sécurité</a></li>
+          <li><a href="#produits" onclick="filterByName('consommables')">Consommables</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Informations</h4>
+        <ul>
+          <li><a href="index.html">Retour vitrine</a></li>
+          <li><a href="index.html#contact">Nous contacter</a></li>
+          <li><a href="index.html#tarifs">Nos offres B2B</a></li>
+          <li><a href="index.html#about">À propos d'ATECH</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+221770000000">+221 77 000 00 00</a></li>
+          <li><a href="mailto:shop@atechgroupe.com">shop@atechgroupe.com</a></li>
+          <li><a href="#">WhatsApp SAV</a></li>
+          <li><a href="#">Dakar, Sénégal</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 <a href="index.html">ATECH GROUPE</a> — Tous droits réservés · Dakar, Sénégal</div>
+      <div class="footer-copy">Paiement sécurisé · Wave · Orange Money</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--  CART DRAWER                                        -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="drawer-header">
+    <div class="drawer-title">Votre panier</div>
+    <button class="drawer-close" onclick="closeCart()">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-body" id="drawerBody">
+    <div class="cart-empty" id="cartEmpty">
+      <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      <p>Votre panier est vide</p>
+    </div>
+    <div id="cartItemsList"></div>
+  </div>
+  <div class="drawer-footer" id="drawerFooter" style="display:none">
+    <div class="cart-total-row">
+      <div class="cart-total-label">Total</div>
+      <div class="cart-total-val" id="cartTotal">0 FCFA</div>
+    </div>
+    <button class="btn-checkout" onclick="openCheckout()">
+      Passer la commande →
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--  MODAL PRODUIT                                      -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="productModal" onclick="handleModalClick(event)">
+  <div class="modal-box">
+    <div class="modal-img-wrap">
+      <img id="modalImg" src="" alt="">
+    </div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="modal-cat" id="modalCat"></div>
+      <div class="modal-name" id="modalName"></div>
+      <div class="modal-price" id="modalPrice"></div>
+      <div class="modal-stock" id="modalStock"></div>
+      <div class="modal-desc" id="modalDesc"></div>
+      <div class="modal-qty-row">
+        <div class="modal-qty-label">Quantité</div>
+        <div class="modal-qty-control">
+          <button class="modal-qty-btn" onclick="changeModalQty(-1)">−</button>
+          <div class="modal-qty-val" id="modalQty">1</div>
+          <button class="modal-qty-btn" onclick="changeModalQty(1)">+</button>
+        </div>
+      </div>
+      <button class="modal-add-btn" id="modalAddBtn" onclick="addFromModal()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Ajouter au panier
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--  CHECKOUT MODAL                                     -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="checkout-overlay" id="checkoutOverlay" onclick="handleCheckoutClick(event)">
+  <div class="checkout-box">
+    <div id="checkoutForm">
+      <div class="checkout-header">
+        <div class="checkout-title">Finaliser la commande</div>
+        <button class="checkout-close" onclick="closeCheckout()">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="checkout-summary">
+        <div class="checkout-summary-title">Récapitulatif</div>
+        <div class="checkout-summary-items" id="checkoutSummaryItems"></div>
+        <div class="checkout-total">
+          <div class="checkout-total-label">Total à payer</div>
+          <div class="checkout-total-val" id="checkoutTotal"></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Nom complet *</label>
+        <input type="text" class="form-input" id="fieldName" placeholder="Votre nom et prénom">
+        <div class="form-error" id="errName">Veuillez entrer votre nom</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Téléphone *</label>
+        <input type="tel" class="form-input" id="fieldPhone" placeholder="7X XXX XX XX">
+        <div class="form-error" id="errPhone">Numéro invalide (ex: 77 123 45 67)</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Zone / Quartier *</label>
+        <select class="form-select" id="fieldZone">
+          <option value="">Sélectionner votre zone</option>
+          <option>Plateau / Centre-ville</option>
+          <option>Almadies / Ngor</option>
+          <option>Ouakam / Yoff</option>
+          <option>Parcelles Assainies</option>
+          <option>Guédiawaye / Pikine</option>
+          <option>Rufisque</option>
+          <option>Thiès</option>
+          <option>Autre (préciser en note)</option>
+        </select>
+        <div class="form-error" id="errZone">Veuillez sélectionner votre zone</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Type de client</label>
+        <select class="form-select" id="fieldType">
+          <option value="particulier">Particulier</option>
+          <option value="entreprise">Entreprise / B2B</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Mode de paiement *</label>
+        <div class="payment-methods">
+          <div class="payment-opt">
+            <input type="radio" name="payment" id="payWave" value="wave" checked>
+            <label for="payWave">
+              <div class="payment-logo wave-logo">Wave</div>
+              <div class="payment-name">Wave Mobile Money</div>
+            </label>
+          </div>
+          <div class="payment-opt">
+            <input type="radio" name="payment" id="payOM" value="om">
+            <label for="payOM">
+              <div class="payment-logo om-logo">OM</div>
+              <div class="payment-name">Orange Money</div>
+            </label>
+          </div>
+        </div>
+      </div>
+      <button class="btn-submit" onclick="submitOrder()">
+        Confirmer la commande →
+      </button>
+    </div>
+
+    <div class="confirm-screen" id="confirmScreen">
+      <div class="confirm-icon">
+        <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="confirm-title">Commande confirmée !</div>
+      <div class="confirm-desc" id="confirmDesc"></div>
+      <div class="confirm-payment-info" id="confirmPayInfo"></div>
+      <button class="btn-new-order" onclick="newOrder()">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Continuer mes achats
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ─── TOAST ─────────────────────────────────────────── -->
+<div class="toast" id="toast">
+  <div class="toast-icon">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+  </div>
+  <span id="toastMsg"></span>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!--  JAVASCRIPT                                         -->
+<!-- ═══════════════════════════════════════════════════ -->
+<script>
+/* ─── CART STATE ──────────────────────────────────── */
+let cart = JSON.parse(localStorage.getItem('atech_cart') || '[]');
+let currentModalCard = null;
+let modalQty = 1;
+
+function saveCart() {
+  localStorage.setItem('atech_cart', JSON.stringify(cart));
+  updateBadge();
+  renderCartDrawer();
+}
+
+function updateBadge() {
+  const total = cart.reduce((s, i) => s + i.qty, 0);
+  const badge = document.getElementById('cartBadge');
+  if (total > 0) {
+    badge.textContent = total;
+    badge.classList.remove('hidden');
+  } else {
+    badge.classList.add('hidden');
+  }
+}
+
+function formatPrice(n) {
+  return n.toLocaleString('fr-FR') + ' FCFA';
+}
+
+/* ─── ADD TO CART ─────────────────────────────────── */
+function addToCart(card) {
+  const id = card.dataset.name;
+  const price = parseInt(card.dataset.price);
+  const img = card.dataset.img;
+  const cat = card.dataset.cat;
+  const existing = cart.find(i => i.id === id);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ id, name: id, price, img, cat, qty: 1 });
+  }
+  saveCart();
+  showToast('Ajouté au panier : ' + id.split(' ').slice(0, 3).join(' '));
+}
+
+/* ─── RENDER DRAWER ───────────────────────────────── */
+function renderCartDrawer() {
+  const list = document.getElementById('cartItemsList');
+  const empty = document.getElementById('cartEmpty');
+  const footer = document.getElementById('drawerFooter');
+  const totalEl = document.getElementById('cartTotal');
+
+  list.innerHTML = '';
+
+  if (cart.length === 0) {
+    empty.style.display = 'block';
+    footer.style.display = 'none';
+    return;
+  }
+
+  empty.style.display = 'none';
+  footer.style.display = 'block';
+
+  let total = 0;
+  cart.forEach(item => {
+    total += item.price * item.qty;
+    const div = document.createElement('div');
+    div.className = 'cart-item';
+    div.innerHTML = `
+      <div class="cart-item-img"><img src="${item.img}" alt="${item.name}" loading="lazy"></div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">${formatPrice(item.price * item.qty)}</div>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="changeQty('${item.id}', -1)">−</button>
+          <span class="qty-val">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+        </div>
+      </div>
+      <button class="cart-item-remove" onclick="removeItem('${item.id}')">✕ Retirer</button>
+    `;
+    list.appendChild(div);
+  });
+
+  totalEl.textContent = formatPrice(total);
+}
+
+function changeQty(id, delta) {
+  const item = cart.find(i => i.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+  saveCart();
+}
+
+function removeItem(id) {
+  cart = cart.filter(i => i.id !== id);
+  saveCart();
+}
+
+/* ─── DRAWER OPEN/CLOSE ───────────────────────────── */
+function openCart() {
+  document.getElementById('cartDrawer').classList.add('open');
+  document.getElementById('drawerOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCart() {
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.getElementById('drawerOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('cartBtn').addEventListener('click', openCart);
+
+/* ─── FILTER CATEGORIES ───────────────────────────── */
+function filterCat(el) {
+  document.querySelectorAll('.cat-card').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  const filter = el.dataset.filter;
+  applyFilter(filter);
+}
+
+function filterByName(filter) {
+  const matching = [...document.querySelectorAll('.cat-card')].find(c => c.dataset.filter === filter);
+  if (matching) filterCat(matching);
+  document.getElementById('produits').scrollIntoView({ behavior: 'smooth' });
+}
+
+function applyFilter(filter) {
+  const cards = document.querySelectorAll('.product-card');
+  let visible = 0;
+  cards.forEach(c => {
+    const show = filter === 'all' || c.dataset.cat === filter;
+    c.classList.toggle('hidden', !show);
+    if (show) visible++;
+  });
+  document.getElementById('productsCount').textContent = visible + ' produit' + (visible > 1 ? 's' : '');
+}
+
+/* ─── SEARCH ──────────────────────────────────────── */
+document.getElementById('searchInput').addEventListener('input', function() {
+  const q = this.value.toLowerCase().trim();
+  const cards = document.querySelectorAll('.product-card');
+  let visible = 0;
+  cards.forEach(c => {
+    const name = (c.dataset.name || '').toLowerCase();
+    const cat = (c.dataset.cat || '').toLowerCase();
+    const show = !q || name.includes(q) || cat.includes(q);
+    c.classList.toggle('hidden', !show);
+    if (show) visible++;
+  });
+  document.getElementById('productsCount').textContent = visible + ' produit' + (visible > 1 ? 's' : '');
+  if (q) {
+    document.querySelectorAll('.cat-card').forEach(c => c.classList.remove('active'));
+    document.querySelector('[data-filter="all"]').classList.add('active');
+  }
+});
+
+/* ─── PRODUCT MODAL ───────────────────────────────── */
+function openModal(card) {
+  currentModalCard = card;
+  modalQty = 1;
+  document.getElementById('modalQty').textContent = 1;
+  document.getElementById('modalImg').src = card.dataset.img;
+  document.getElementById('modalImg').alt = card.dataset.name;
+  document.getElementById('modalCat').textContent = card.dataset.cat.charAt(0).toUpperCase() + card.dataset.cat.slice(1);
+  document.getElementById('modalName').textContent = card.dataset.name;
+  document.getElementById('modalPrice').innerHTML = parseInt(card.dataset.price).toLocaleString('fr-FR') + ' <span>FCFA</span>';
+  const stock = parseInt(card.dataset.stock);
+  const stockEl = document.getElementById('modalStock');
+  if (stock > 3) {
+    stockEl.innerHTML = '<svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> En stock (' + stock + ' unités)';
+    stockEl.style.color = '#4ade80';
+  } else if (stock > 0) {
+    stockEl.innerHTML = '<svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg> Stock limité (' + stock + ' restant' + (stock > 1 ? 's' : '') + ')';
+    stockEl.style.color = '#ff9d00';
+  } else {
+    stockEl.innerHTML = '✕ Rupture de stock';
+    stockEl.style.color = '#f87171';
+  }
+  document.getElementById('modalDesc').innerHTML = card.dataset.desc;
+  document.getElementById('productModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('productModal').classList.remove('open');
+  document.body.style.overflow = '';
+  currentModalCard = null;
+}
+
+function handleModalClick(e) {
+  if (e.target === document.getElementById('productModal')) closeModal();
+}
+
+function changeModalQty(delta) {
+  const stock = currentModalCard ? parseInt(currentModalCard.dataset.stock) : 99;
+  modalQty = Math.max(1, Math.min(stock, modalQty + delta));
+  document.getElementById('modalQty').textContent = modalQty;
+}
+
+function addFromModal() {
+  if (!currentModalCard) return;
+  const id = currentModalCard.dataset.name;
+  const price = parseInt(currentModalCard.dataset.price);
+  const img = currentModalCard.dataset.img;
+  const cat = currentModalCard.dataset.cat;
+  const existing = cart.find(i => i.id === id);
+  if (existing) {
+    existing.qty += modalQty;
+  } else {
+    cart.push({ id, name: id, price, img, cat, qty: modalQty });
+  }
+  saveCart();
+  closeModal();
+  showToast('Ajouté au panier : ' + id.split(' ').slice(0, 3).join(' '));
+  setTimeout(openCart, 300);
+}
+
+/* ─── CHECKOUT ────────────────────────────────────── */
+function openCheckout() {
+  if (cart.length === 0) return;
+  renderCheckoutSummary();
+  document.getElementById('checkoutOverlay').classList.add('open');
+  document.getElementById('checkoutForm').style.display = 'block';
+  document.getElementById('confirmScreen').classList.remove('show');
+  document.body.style.overflow = 'hidden';
+  closeCart();
+}
+
+function closeCheckout() {
+  document.getElementById('checkoutOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleCheckoutClick(e) {
+  if (e.target === document.getElementById('checkoutOverlay')) closeCheckout();
+}
+
+function renderCheckoutSummary() {
+  const items = document.getElementById('checkoutSummaryItems');
+  const totalEl = document.getElementById('checkoutTotal');
+  items.innerHTML = '';
+  let total = 0;
+  cart.forEach(item => {
+    total += item.price * item.qty;
+    const div = document.createElement('div');
+    div.className = 'checkout-summary-item';
+    div.innerHTML = `<span>${item.name} ×${item.qty}</span><span>${formatPrice(item.price * item.qty)}</span>`;
+    items.appendChild(div);
+  });
+  totalEl.textContent = formatPrice(total);
+}
+
+function submitOrder() {
+  const name = document.getElementById('fieldName').value.trim();
+  const phone = document.getElementById('fieldPhone').value.trim();
+  const zone = document.getElementById('fieldZone').value;
+  let valid = true;
+
+  document.getElementById('errName').classList.toggle('show', !name);
+  if (!name) valid = false;
+
+  const phoneOk = /^[0-9\s\+]{8,15}$/.test(phone.replace(/\s/g, ''));
+  document.getElementById('errPhone').classList.toggle('show', !phoneOk);
+  if (!phoneOk) valid = false;
+
+  document.getElementById('errZone').classList.toggle('show', !zone);
+  if (!zone) valid = false;
+
+  if (!valid) return;
+
+  const payment = document.querySelector('input[name="payment"]:checked').value;
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const isWave = payment === 'wave';
+
+  document.getElementById('confirmDesc').innerHTML =
+    `Merci <strong>${name}</strong> ! Votre commande de <strong>${formatPrice(total)}</strong> a bien été enregistrée. Nous vous contacterons au <strong>${phone}</strong> pour confirmer la livraison à <strong>${zone}</strong>.`;
+
+  const payInfo = document.getElementById('confirmPayInfo');
+  if (isWave) {
+    payInfo.innerHTML = `
+      <h4>Paiement par Wave</h4>
+      <div class="confirm-payment-step"><span class="step-num">1</span><span>Ouvrez l'application <strong>Wave</strong> sur votre téléphone.</span></div>
+      <div class="confirm-payment-step"><span class="step-num">2</span><span>Envoyez <strong>${formatPrice(total)}</strong> au numéro <strong>77 XXX XX XX</strong> (ATECH SHOP).</span></div>
+      <div class="confirm-payment-step"><span class="step-num">3</span><span>Indiquez en message : <strong>CMD-${Date.now().toString().slice(-6)}</strong></span></div>
+      <div class="confirm-payment-step"><span class="step-num">4</span><span>Envoyez le reçu par WhatsApp — livraison sous 24-48h.</span></div>
+    `;
+  } else {
+    payInfo.innerHTML = `
+      <h4>Paiement par Orange Money</h4>
+      <div class="confirm-payment-step"><span class="step-num">1</span><span>Composez le <strong>#144#</strong> sur votre téléphone Orange.</span></div>
+      <div class="confirm-payment-step"><span class="step-num">2</span><span>Envoyez <strong>${formatPrice(total)}</strong> au numéro <strong>77 XXX XX XX</strong> (ATECH SHOP).</span></div>
+      <div class="confirm-payment-step"><span class="step-num">3</span><span>Référence paiement : <strong>CMD-${Date.now().toString().slice(-6)}</strong></span></div>
+      <div class="confirm-payment-step"><span class="step-num">4</span><span>Envoyez le reçu par WhatsApp — livraison sous 24-48h.</span></div>
+    `;
+  }
+
+  document.getElementById('checkoutForm').style.display = 'none';
+  document.getElementById('confirmScreen').classList.add('show');
+
+  cart = [];
+  saveCart();
+}
+
+function newOrder() {
+  closeCheckout();
+  document.getElementById('fieldName').value = '';
+  document.getElementById('fieldPhone').value = '';
+  document.getElementById('fieldZone').value = '';
+}
+
+/* ─── TOAST ───────────────────────────────────────── */
+let toastTimer;
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+/* ─── INTERSECTION OBSERVER (fade-up) ────────────── */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+/* ─── ESC KEY ─────────────────────────────────────── */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeModal(); closeCart(); closeCheckout(); }
+});
+
+/* ─── INIT ────────────────────────────────────────── */
+updateBadge();
+renderCartDrawer();
+</script>
+</body>
+</html>
