@@ -400,6 +400,25 @@ nav.scrolled {
   background: none; border: none; cursor: none;
 }
 .pole-link:hover { gap: 14px; }
+.pole-img {
+  height: 220px;
+  margin: -56px -52px 44px;
+  overflow: hidden;
+  position: relative;
+}
+.pole-img img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  filter: brightness(.58) saturate(1.3);
+  transition: transform .7s ease;
+}
+.pole-card:hover .pole-img img { transform: scale(1.05); }
+.pole-img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(11,12,16,.15) 20%, var(--card) 100%);
+  pointer-events: none;
+}
 
 /* ─── SERVICES DETAIL ─────────────────────────── */
 .services-bg { background: var(--ink2); }
@@ -938,6 +957,7 @@ footer {
   .section-title { font-size: clamp(28px, 6vw, 48px); }
   .poles-grid { grid-template-columns: 1fr; }
   .pole-card { padding: 36px 28px; }
+  .pole-img { margin: -36px -28px 36px; height: 200px; }
   .services-grid, .portfolio-grid, .tarifs-grid, .testi-grid { grid-template-columns: 1fr; }
   .portfolio-card.tall { grid-row: span 1; aspect-ratio: 4/3; min-height: auto; }
   .process-steps { grid-template-columns: 1fr 1fr; gap: 28px; }
@@ -966,6 +986,7 @@ footer {
   .section { padding: 60px 16px; }
   .section-title { letter-spacing: -0.5px; }
   .pole-card { padding: 28px 20px; }
+  .pole-img { margin: -28px -20px 28px; height: 180px; }
   .svc-card { padding: 24px 20px; }
   .process-steps { grid-template-columns: 1fr; gap: 24px; }
   .tarifs-grid { grid-template-columns: 1fr; }
@@ -1177,6 +1198,9 @@ footer {
 
   <div class="poles-grid">
     <div class="pole-card">
+      <div class="pole-img">
+        <img src="https://images.unsplash.com/photo-1754548930550-be9fa88874f4?w=1600&q=85&auto=format&fit=crop" alt="Développement digital — setup multi-écrans" loading="lazy">
+      </div>
       <div class="pole-num">01</div>
       <div class="pole-icon">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#c8f135" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
@@ -1193,6 +1217,9 @@ footer {
       <button class="pole-link" onclick="document.getElementById('tarifs').scrollIntoView({behavior:'smooth'})">Voir les tarifs →</button>
     </div>
     <div class="pole-card">
+      <div class="pole-img">
+        <img src="https://images.unsplash.com/photo-1588620353536-ded12e518f45?w=1600&q=85&auto=format&fit=crop" alt="E-boutique — matériels informatiques" loading="lazy">
+      </div>
       <div class="pole-num">02</div>
       <div class="pole-icon">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#c8f135" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
