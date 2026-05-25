@@ -126,13 +126,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: #1dc9a4;
   border-color: rgba(29,201,164,.25);
 }
-.pay-logo-wave svg { width: 14px; height: 14px; fill: #1dc9a4; flex-shrink: 0; }
+.pay-logo-wave img { width: 18px; height: 18px; border-radius: 4px; object-fit: contain; flex-shrink: 0; }
 .pay-logo-om {
   background: rgba(255,102,0,.12);
   color: #ff8533;
   border-color: rgba(255,102,0,.25);
 }
-.pay-logo-om svg { width: 14px; height: 14px; flex-shrink: 0; }
+.pay-logo-om img { width: 18px; height: 18px; border-radius: 4px; object-fit: contain; flex-shrink: 0; }
 @media (max-width: 480px) {
   .topbar-pay-label { display: none; }
   .topbar-wa-label { display: none; }
@@ -847,19 +847,17 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
       <!-- Wave -->
       <div class="pay-logo pay-logo-wave">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="12" r="10" fill="#1dc9a4"/>
-          <text x="12" y="16.5" text-anchor="middle" font-size="11" font-weight="900" fill="#fff" font-family="Arial,sans-serif">W</text>
-        </svg>
+        <img src="https://logo.clearbit.com/wave.com"
+             alt="Wave"
+             onerror="this.style.display='none'">
         Wave
       </div>
 
       <!-- Orange Money -->
       <div class="pay-logo pay-logo-om">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="12" r="10" fill="#ff6600"/>
-          <text x="12" y="16" text-anchor="middle" font-size="9" font-weight="900" fill="#fff" font-family="Arial,sans-serif">OM</text>
-        </svg>
+        <img src="https://logo.clearbit.com/orange.sn"
+             alt="Orange Money"
+             onerror="this.style.display='none'">
         <span>Orange Money</span>
       </div>
     </div>
@@ -1486,8 +1484,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   <div class="footer-bottom">
     <p>© 2024 ATECH GROUPE · Tous droits réservés</p>
     <div class="payment-methods">
-      <span class="pay-badge">📲 Wave</span>
-      <span class="pay-badge">🟠 Orange Money</span>
+      <span class="pay-badge" style="display:flex;align-items:center;gap:5px;">
+        <img src="https://logo.clearbit.com/wave.com" alt="Wave" width="14" height="14" style="border-radius:3px;object-fit:contain;" onerror="this.style.display='none'"> Wave
+      </span>
+      <span class="pay-badge" style="display:flex;align-items:center;gap:5px;">
+        <img src="https://logo.clearbit.com/orange.sn" alt="Orange Money" width="14" height="14" style="border-radius:3px;object-fit:contain;" onerror="this.style.display='none'"> Orange Money
+      </span>
     </div>
   </div>
 </footer>
