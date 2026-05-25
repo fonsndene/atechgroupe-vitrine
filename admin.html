@@ -430,6 +430,99 @@ input, select, textarea { font-family: inherit; }
 .section-spacer { margin-top: 24px; }
 
 /* ============================================================
+   IMPORT EXCEL
+   ============================================================ */
+.btn-import-excel {
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border-radius: 8px;
+  background: var(--bg4); color: var(--ink);
+  font-size: .85rem; font-weight: 600;
+  border: 1px solid var(--border); transition: background .2s;
+}
+.btn-import-excel:hover { background: var(--bg2); }
+.import-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(11,12,16,.55); backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity .2s;
+}
+.import-overlay.open { opacity: 1; pointer-events: all; }
+.import-box {
+  background: var(--bg3); border-radius: 16px;
+  width: min(720px, calc(100vw - 32px));
+  max-height: 90vh; display: flex; flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  transform: scale(.96); transition: transform .25s;
+}
+.import-overlay.open .import-box { transform: scale(1); }
+.import-head {
+  padding: 18px 24px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+}
+.import-head h3 { font-size: 1rem; font-weight: 700; }
+.import-close {
+  width: 32px; height: 32px; border-radius: 6px;
+  background: var(--bg4); color: var(--muted);
+  display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+  transition: background .2s;
+}
+.import-close:hover { background: var(--bg2); color: var(--ink); }
+.import-body { flex: 1; overflow-y: auto; padding: 24px; }
+.import-drop-zone {
+  border: 2px dashed var(--border); border-radius: 12px;
+  padding: 40px 24px; text-align: center; cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+.import-drop-zone:hover, .import-drop-zone.dragover {
+  border-color: var(--lime-dk); background: rgba(200,241,53,.06);
+}
+.import-drop-zone p { font-size: .9rem; color: var(--muted); margin-bottom: 16px; }
+.import-drop-zone strong { color: var(--ink); }
+.btn-template {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: 8px;
+  background: var(--bg4); color: var(--ink);
+  font-size: .82rem; font-weight: 600;
+  border: 1px solid var(--border); transition: background .2s;
+}
+.btn-template:hover { background: var(--bg2); }
+.import-summary { display: flex; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
+.import-summary-item {
+  display: flex; align-items: center; gap: 6px;
+  font-size: .82rem; font-weight: 600;
+  padding: 5px 12px; border-radius: 9999px;
+}
+.sum-ok   { background: #d1fae5; color: #065f46; }
+.sum-warn { background: #fef3c7; color: #92400e; }
+.sum-err  { background: #fee2e2; color: #991b1b; }
+.import-preview-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+.import-preview-table th {
+  background: var(--bg2); padding: 8px 10px; text-align: left;
+  font-size: .72rem; font-weight: 700; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .04em;
+  position: sticky; top: 0; z-index: 1;
+}
+.import-preview-table td { padding: 7px 10px; border-top: 1px solid var(--border); vertical-align: middle; }
+.row-ok    { background: #f0fdf4; }
+.row-warn  { background: #fffbeb; }
+.row-error { background: #fef2f2; }
+.status-chip { display: inline-block; padding: 2px 8px; border-radius: 9999px; font-size: .7rem; font-weight: 700; }
+.chip-ok   { background: #d1fae5; color: #065f46; }
+.chip-warn { background: #fef3c7; color: #92400e; }
+.chip-err  { background: #fee2e2; color: #991b1b; }
+.import-preview-table .col-cb { width: 36px; text-align: center; }
+.import-result { text-align: center; padding: 32px 0; }
+.import-result-icon { font-size: 3rem; margin-bottom: 12px; }
+.import-result h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+.import-result p { font-size: .88rem; color: var(--muted); }
+.import-footer { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; gap: 10px; justify-content: flex-end; flex-shrink: 0; }
+.btn-import-cancel { padding: 9px 18px; border-radius: 8px; background: var(--bg4); color: var(--ink); font-size: .87rem; font-weight: 600; transition: background .2s; }
+.btn-import-cancel:hover { background: var(--bg2); }
+.btn-import-confirm { padding: 9px 22px; border-radius: 8px; background: var(--lime); color: var(--ink); font-size: .87rem; font-weight: 700; transition: background .2s, opacity .2s; }
+.btn-import-confirm:hover { background: var(--lime2); }
+.btn-import-confirm:disabled { opacity: .6; cursor: default; }
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1024px) {
@@ -536,6 +629,9 @@ input, select, textarea { font-family: inherit; }
         <button class="btn-add-product" id="topbarAddBtn" onclick="openProductForm(null)" style="display:none">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           Ajouter un produit
+        </button>
+        <button class="btn-import-excel" id="topbarImportBtn" onclick="openImportModal()" style="display:none">
+          📊 Importer Excel
         </button>
         <a class="btn-boutique" href="atechgroupe_ecommerce.html" target="_blank">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -694,10 +790,87 @@ input, select, textarea { font-family: inherit; }
   </div>
 </div>
 
+<!-- IMPORT EXCEL MODAL -->
+<div class="import-overlay" id="importOverlay">
+  <div class="import-box">
+    <div class="import-head">
+      <h3>📊 Importer des produits depuis Excel</h3>
+      <button class="import-close" onclick="closeImportModal()">✕</button>
+    </div>
+
+    <!-- Étape 1 : Upload -->
+    <div class="import-body" id="importStep1">
+      <div class="import-drop-zone" id="importDropZone"
+           onclick="document.getElementById('importFileInput').click()"
+           ondragover="event.preventDefault(); this.classList.add('dragover')"
+           ondragleave="this.classList.remove('dragover')"
+           ondrop="event.preventDefault(); this.classList.remove('dragover'); handleImportFile(event.dataTransfer.files[0])">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+             style="width:44px;height:44px;color:var(--muted);margin:0 auto 14px;display:block">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="12" y1="11" x2="12" y2="17"/>
+          <polyline points="9 14 12 11 15 14"/>
+        </svg>
+        <p><strong>Glissez votre fichier Excel ici</strong><br>ou cliquez pour choisir (.xlsx, .xls, .csv)</p>
+        <input type="file" id="importFileInput" accept=".xlsx,.xls,.csv" style="display:none"
+               onchange="handleImportFile(this.files[0])">
+      </div>
+      <div style="text-align:center;margin-top:20px">
+        <button class="btn-template" onclick="downloadTemplate()">⬇️ Télécharger le modèle .xlsx</button>
+      </div>
+      <div style="margin-top:20px;padding:14px 16px;background:var(--bg2);border-radius:10px;font-size:.8rem;color:var(--muted)">
+        <strong style="color:var(--ink)">Colonnes attendues :</strong>
+        Nom*, Catégorie*, Marque, Prix FCFA*, Stock*, URL Image, Description<br>
+        <em>Catégories acceptées : Ordinateurs &amp; Laptops · Périphériques · Réseau &amp; Sécurité · Caméras IP · Consommables · Multimédia</em>
+      </div>
+    </div>
+
+    <!-- Étape 2 : Prévisualisation -->
+    <div class="import-body" id="importStep2" style="display:none">
+      <div class="import-summary" id="importSummary"></div>
+      <div style="overflow-x:auto">
+        <table class="import-preview-table" id="importPreviewTable">
+          <thead>
+            <tr>
+              <th class="col-cb">✓</th>
+              <th>#</th>
+              <th>Nom</th>
+              <th>Catégorie</th>
+              <th>Marque</th>
+              <th>Prix</th>
+              <th>Stock</th>
+              <th>Statut</th>
+            </tr>
+          </thead>
+          <tbody id="importPreviewBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Étape 3 : Résultat -->
+    <div class="import-body" id="importStep3" style="display:none">
+      <div class="import-result">
+        <div class="import-result-icon" id="importResultIcon">✅</div>
+        <h4 id="importResultTitle">Import terminé</h4>
+        <p id="importResultMsg"></p>
+      </div>
+    </div>
+
+    <div class="import-footer" id="importFooter">
+      <button class="btn-import-cancel" onclick="closeImportModal()">Annuler</button>
+      <button class="btn-import-confirm" id="btnImportConfirm" onclick="executeImport()" style="display:none">
+        Confirmer l'import
+      </button>
+    </div>
+  </div>
+</div>
+
 <!-- ============================================================
      JAVASCRIPT
      ============================================================ -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script>
 'use strict';
 
@@ -772,9 +945,11 @@ function showSection(name) {
     document.getElementById(id).style.display = k === name ? 'block' : 'none';
   });
 
-  // Bouton topbar contextuel
-  const addBtn = document.getElementById('topbarAddBtn');
-  if (addBtn) addBtn.style.display = name === 'products' ? '' : 'none';
+  // Boutons topbar contextuels
+  const addBtn    = document.getElementById('topbarAddBtn');
+  const importBtn = document.getElementById('topbarImportBtn');
+  if (addBtn)    addBtn.style.display    = name === 'products' ? '' : 'none';
+  if (importBtn) importBtn.style.display = name === 'products' ? '' : 'none';
 
   // Sidebar active state
   document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
@@ -1188,6 +1363,225 @@ async function confirmPayment(orderId) {
 /* ---------- UTILS ---------- */
 function scrollToOrders() {
   document.getElementById('ordersSection').scrollIntoView({ behavior: 'smooth' });
+}
+
+/* ---------- IMPORT EXCEL ---------- */
+const CAT_MAP = {
+  'ordinateurs & laptops': '9526039a-6970-4df8-86f6-99f9a4d430fe',
+  'ordinateurs':           '9526039a-6970-4df8-86f6-99f9a4d430fe',
+  'laptops':               '9526039a-6970-4df8-86f6-99f9a4d430fe',
+  'pc bureau':             '9526039a-6970-4df8-86f6-99f9a4d430fe',
+  'périphériques':         '67ecbb0e-d6fc-48ab-ad26-bdd953c14eb5',
+  'peripheriques':         '67ecbb0e-d6fc-48ab-ad26-bdd953c14eb5',
+  'réseau & sécurité':     '3ae948f2-2bd3-43c9-be24-64e7cc41b02a',
+  'reseau & securite':     '3ae948f2-2bd3-43c9-be24-64e7cc41b02a',
+  'réseau':                '3ae948f2-2bd3-43c9-be24-64e7cc41b02a',
+  'reseau':                '3ae948f2-2bd3-43c9-be24-64e7cc41b02a',
+  'réseaux':               '3ae948f2-2bd3-43c9-be24-64e7cc41b02a',
+  'wifi':                  '3ae948f2-2bd3-43c9-be24-64e7cc41b02a',
+  'caméras ip':            '74ddda6b-e061-4c4e-9775-91185cd30c2c',
+  'cameras ip':            '74ddda6b-e061-4c4e-9775-91185cd30c2c',
+  'vidéosurveillance':     '74ddda6b-e061-4c4e-9775-91185cd30c2c',
+  'videosurveillance':     '74ddda6b-e061-4c4e-9775-91185cd30c2c',
+  'sécurité':              '74ddda6b-e061-4c4e-9775-91185cd30c2c',
+  'securite':              '74ddda6b-e061-4c4e-9775-91185cd30c2c',
+  'consommables':          'c09ce9af-8185-4917-bdbc-39bbd38567f0',
+  'multimédia':            '08fc455a-4578-48b6-b3f9-1cdced864907',
+  'multimedia':            '08fc455a-4578-48b6-b3f9-1cdced864907',
+};
+
+const CAT_LABELS = {
+  '9526039a-6970-4df8-86f6-99f9a4d430fe': 'Ordinateurs & Laptops',
+  '67ecbb0e-d6fc-48ab-ad26-bdd953c14eb5': 'Périphériques',
+  '3ae948f2-2bd3-43c9-be24-64e7cc41b02a': 'Réseau & Sécurité',
+  '74ddda6b-e061-4c4e-9775-91185cd30c2c': 'Caméras IP',
+  'c09ce9af-8185-4917-bdbc-39bbd38567f0': 'Consommables',
+  '08fc455a-4578-48b6-b3f9-1cdced864907': 'Multimédia',
+};
+
+let _importRows = [];
+
+function openImportModal() {
+  _importRows = [];
+  document.getElementById('importStep1').style.display = '';
+  document.getElementById('importStep2').style.display = 'none';
+  document.getElementById('importStep3').style.display = 'none';
+  document.getElementById('btnImportConfirm').style.display = 'none';
+  document.getElementById('importFileInput').value = '';
+  document.getElementById('importFooter').innerHTML = `
+    <button class="btn-import-cancel" onclick="closeImportModal()">Annuler</button>
+    <button class="btn-import-confirm" id="btnImportConfirm" onclick="executeImport()" style="display:none">Confirmer l'import</button>`;
+  document.getElementById('importOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeImportModal() {
+  document.getElementById('importOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+  if (document.getElementById('importStep3').style.display !== 'none') loadProducts();
+}
+
+document.getElementById('importOverlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('importOverlay')) closeImportModal();
+});
+
+function downloadTemplate() {
+  const XLSX = window.XLSX;
+  const ws = XLSX.utils.aoa_to_sheet([
+    ['Nom', 'Catégorie', 'Marque', 'Prix FCFA', 'Stock', 'URL Image', 'Description'],
+    ['Laptop Dell Inspiron 15', 'Ordinateurs & Laptops', 'Dell', 350000, 10, 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600', 'Processeur i5 12e gén, RAM 8Go, SSD 512Go'],
+  ]);
+  ws['!cols'] = [{wch:30},{wch:22},{wch:12},{wch:12},{wch:8},{wch:40},{wch:40}];
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Produits');
+  XLSX.writeFile(wb, 'modele_produits_atechshop.xlsx');
+}
+
+function handleImportFile(file) {
+  if (!file) return;
+  const XLSX = window.XLSX;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const wb = XLSX.read(e.target.result, { type: 'array' });
+      parseAndAnalyze(wb);
+    } catch (err) {
+      alert('Impossible de lire le fichier : ' + err.message);
+    }
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+function parseAndAnalyze(workbook) {
+  const XLSX = window.XLSX;
+  const sheet = workbook.Sheets[workbook.SheetNames[0]];
+  const raw = XLSX.utils.sheet_to_json(sheet, { defval: '' });
+  const existingNames = new Set(_allProducts.map(p => (p.name || '').toLowerCase().trim()));
+
+  _importRows = [];
+  raw.forEach((r, i) => {
+    const nom   = String(r['Nom']        || '').trim();
+    const cat   = String(r['Catégorie']  || r['Categorie'] || '').trim();
+    const brand = String(r['Marque']     || '').trim();
+    const prix  = parseFloat(String(r['Prix FCFA'] || '').replace(/\s/g, ''));
+    const stock = parseInt(String(r['Stock'] || ''), 10);
+    const img   = String(r['URL Image']  || '').trim();
+    const desc  = String(r['Description']|| '').trim();
+
+    if (!nom && !cat && isNaN(prix)) return;
+
+    const errors = [], warnings = [];
+    if (!nom)            errors.push('Nom manquant');
+    else if (nom.length > 200) errors.push('Nom trop long (max 200 car.)');
+
+    const catId = CAT_MAP[cat.toLowerCase()] || null;
+    if (!catId) errors.push('Catégorie inconnue : "' + cat + '"');
+
+    if (isNaN(prix) || prix <= 0) errors.push('Prix invalide (doit être > 0)');
+    if (isNaN(stock) || stock < 0) errors.push('Stock invalide (doit être ≥ 0)');
+
+    if (img && !img.startsWith('http')) warnings.push('URL image doit commencer par http');
+    if (nom && existingNames.has(nom.toLowerCase())) warnings.push('Produit déjà existant (doublon)');
+
+    _importRows.push({
+      idx: i + 1, nom, cat, catId, brand, prix, stock, img, desc,
+      errors, warnings,
+      hasError: errors.length > 0,
+      checked: errors.length === 0,
+    });
+  });
+
+  if (_importRows.length === 0) {
+    alert('Aucune ligne trouvée dans le fichier. Vérifiez les entêtes de colonnes.');
+    return;
+  }
+
+  renderPreviewTable(_importRows);
+  document.getElementById('importStep1').style.display = 'none';
+  document.getElementById('importStep2').style.display = '';
+  updateConfirmBtn();
+}
+
+function renderPreviewTable(rows) {
+  const ok   = rows.filter(r => !r.hasError && r.warnings.length === 0).length;
+  const warn = rows.filter(r => !r.hasError && r.warnings.length > 0).length;
+  const err  = rows.filter(r => r.hasError).length;
+
+  document.getElementById('importSummary').innerHTML =
+    `<div class="import-summary-item sum-ok">✅ ${ok} valide${ok > 1 ? 's' : ''}</div>` +
+    (warn > 0 ? `<div class="import-summary-item sum-warn">⚠️ ${warn} avertissement${warn > 1 ? 's' : ''}</div>` : '') +
+    (err  > 0 ? `<div class="import-summary-item sum-err">❌ ${err} erreur${err > 1 ? 's' : ''}</div>` : '');
+
+  document.getElementById('importPreviewBody').innerHTML = rows.map((r, i) => {
+    const rowCls = r.hasError ? 'row-error' : r.warnings.length ? 'row-warn' : 'row-ok';
+    const chip   = r.hasError
+      ? '<span class="status-chip chip-err">❌ Erreur</span>'
+      : r.warnings.length
+        ? '<span class="status-chip chip-warn">⚠️ Avert.</span>'
+        : '<span class="status-chip chip-ok">✅ OK</span>';
+    const msgs = [...r.errors, ...r.warnings].join(' · ');
+    return `<tr class="${rowCls}">
+      <td class="col-cb">
+        <input type="checkbox" ${r.checked ? 'checked' : ''} ${r.hasError ? 'disabled' : ''}
+          onchange="_importRows[${i}].checked=this.checked;updateConfirmBtn()">
+      </td>
+      <td style="color:var(--muted);font-size:.75rem">${r.idx}</td>
+      <td title="${r.nom}" style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.nom || '—'}</td>
+      <td style="font-size:.78rem;white-space:nowrap">${CAT_LABELS[r.catId] || r.cat || '—'}</td>
+      <td style="font-size:.78rem">${r.brand || '—'}</td>
+      <td style="font-weight:700;white-space:nowrap">${isNaN(r.prix) ? '—' : new Intl.NumberFormat('fr-FR').format(r.prix)}</td>
+      <td>${isNaN(r.stock) ? '—' : r.stock}</td>
+      <td>${chip}${msgs ? `<div style="font-size:.7rem;color:var(--muted);margin-top:2px">${msgs}</div>` : ''}</td>
+    </tr>`;
+  }).join('');
+}
+
+function updateConfirmBtn() {
+  const valid = _importRows.filter(r => !r.hasError && r.checked).length;
+  const btn   = document.getElementById('btnImportConfirm');
+  if (!btn) return;
+  btn.style.display = valid > 0 ? '' : 'none';
+  btn.textContent   = `Confirmer l'import (${valid} produit${valid > 1 ? 's' : ''})`;
+}
+
+async function executeImport() {
+  const btn = document.getElementById('btnImportConfirm');
+  if (btn) { btn.disabled = true; btn.textContent = 'Import en cours…'; }
+
+  const toInsert = _importRows.filter(r => !r.hasError && r.checked);
+  const ts = Date.now();
+  const payloads = toInsert.map((r, i) => ({
+    name:              r.nom,
+    brand:             r.brand || null,
+    price_fcfa:        r.prix,
+    stock_qty:         r.stock,
+    category_id:       r.catId,
+    short_description: r.desc || null,
+    images:            r.img ? [{ url: r.img, alt: r.nom, is_primary: true }] : [],
+    slug:              r.nom.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+    sku:               'IMPORT-' + ts + '-' + i,
+  }));
+
+  const { data, error } = await _sb.from('products').insert(payloads).select('id');
+
+  document.getElementById('importStep2').style.display = 'none';
+  document.getElementById('importStep3').style.display = '';
+  document.getElementById('importFooter').innerHTML =
+    '<button class="btn-import-confirm" onclick="closeImportModal()">Fermer et actualiser</button>';
+
+  if (error) {
+    document.getElementById('importResultIcon').textContent  = '❌';
+    document.getElementById('importResultTitle').textContent = "Erreur lors de l'import";
+    document.getElementById('importResultMsg').textContent   = error.message;
+  } else {
+    const n = data?.length ?? payloads.length;
+    const ignored = _importRows.filter(r => r.hasError || !r.checked).length;
+    document.getElementById('importResultIcon').textContent  = '✅';
+    document.getElementById('importResultTitle').textContent = 'Import terminé avec succès !';
+    document.getElementById('importResultMsg').innerHTML =
+      `<strong>${n} produit${n > 1 ? 's' : ''}</strong> ajouté${n > 1 ? 's' : ''} au catalogue.` +
+      (ignored > 0 ? `<br><span style="color:var(--muted)">${ignored} ligne${ignored > 1 ? 's' : ''} ignorée${ignored > 1 ? 's' : ''} (erreurs ou décochées).</span>` : '');
+  }
 }
 </script>
 </body>
