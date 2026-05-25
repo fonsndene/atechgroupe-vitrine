@@ -533,6 +533,10 @@ input, select, textarea { font-family: inherit; }
     <div class="topbar-admin">
       <span class="topbar-title" id="topbarTitle">Tableau de bord</span>
       <div class="topbar-actions">
+        <button class="btn-add-product" id="topbarAddBtn" onclick="openProductForm(null)" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Ajouter un produit
+        </button>
         <a class="btn-boutique" href="atechgroupe_ecommerce.html" target="_blank">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           Boutique
@@ -602,10 +606,6 @@ input, select, textarea { font-family: inherit; }
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             <input type="text" class="search-input" id="searchProducts" placeholder="Nom, marque…" oninput="renderProductsTable()">
           </div>
-          <button class="btn-add-product" onclick="openProductForm(null)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Ajouter un produit
-          </button>
         </div>
         <div id="productsTableWrap"><div class="table-loading">Chargement…</div></div>
       </div>
@@ -763,12 +763,27 @@ let _currentSection = 'orders';
 function showSection(name) {
   _currentSection = name;
   document.getElementById('topbarTitle').textContent = TITLES[name] || name;
+
+  // Stats grid : visible seulement sur le tableau de bord (orders)
+  document.getElementById('statsGrid').style.display = name === 'orders' ? '' : 'none';
+
+  // Sections
   Object.entries(SECTIONS).forEach(([k, id]) => {
     document.getElementById(id).style.display = k === name ? 'block' : 'none';
   });
-  document.getElementById('ordersSection').style.display = name === 'orders' ? '' : 'none';
-  document.querySelectorAll('.nav-item').forEach((el, i) => el.classList.remove('active'));
-  document.querySelectorAll('.nav-item')[['orders','products','clients'].indexOf(name) + 1]?.classList.add('active');
+
+  // Bouton topbar contextuel
+  const addBtn = document.getElementById('topbarAddBtn');
+  if (addBtn) addBtn.style.display = name === 'products' ? '' : 'none';
+
+  // Sidebar active state
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  const idx = ['orders', 'products', 'clients'].indexOf(name);
+  if (idx >= 0) document.querySelectorAll('.nav-item')[idx + 1]?.classList.add('active');
+
+  // Scroll haut
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
   if (name === 'products') loadProducts();
   if (name === 'clients')  loadClients();
 }
