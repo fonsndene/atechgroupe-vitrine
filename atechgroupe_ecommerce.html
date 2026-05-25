@@ -919,7 +919,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     </div>
     <div class="hero-stats">
       <div>
-        <span class="hero-stat-val">12+</span>
+        <span class="hero-stat-val">16+</span>
         <span class="hero-stat-lbl">Produits référencés</span>
       </div>
       <div>
@@ -1000,6 +1000,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     <div class="cat-pill" data-filter="consommables" onclick="filterCat(this)">
       <div class="cat-pill-icon">🔧</div>
       <div class="cat-pill-lbl">Consommables</div>
+    </div>
+    <div class="cat-pill" data-filter="multimedia" onclick="filterCat(this)">
+      <div class="cat-pill-icon">🎧</div>
+      <div class="cat-pill-lbl">Multimédia</div>
     </div>
   </div>
 </div>
@@ -1109,7 +1113,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
       <div class="section-label">Notre sélection</div>
       <h2>Catalogue Complet</h2>
     </div>
-    <div class="products-count" id="productsCount">12 produits</div>
+    <div class="products-count" id="productsCount">16 produits</div>
   </div>
 
   <div class="products-grid" id="productsGrid">
@@ -1342,6 +1346,83 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
         <div class="product-cat">Consommables</div>
         <div class="product-name">Multiprise parafoudre 6 prises</div>
         <div class="product-price">18 500 <span>FCFA</span></div>
+        <div class="product-stock"></div>
+        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
+      </div>
+    </div>
+
+    <!-- Multimédia -->
+    <div class="product-card fade-up"
+         data-name="Webcam Logitech HD 1080p"
+         data-price="35000"
+         data-img="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=500&q=80&auto=format&fit=crop"
+         data-cat="multimedia"
+         data-stock="10"
+         onclick="openModal(this)">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=500&q=80&auto=format&fit=crop" alt="Webcam Logitech HD 1080p" loading="lazy">
+      </div>
+      <div class="product-body">
+        <div class="product-cat">Multimédia</div>
+        <div class="product-name">Webcam Logitech HD 1080p</div>
+        <div class="product-price">35 000 <span>FCFA</span></div>
+        <div class="product-stock"></div>
+        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
+      </div>
+    </div>
+
+    <div class="product-card fade-up"
+         data-name="Enceinte Bluetooth JBL Flip 5"
+         data-price="65000"
+         data-img="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&q=80&auto=format&fit=crop"
+         data-cat="multimedia"
+         data-stock="8"
+         onclick="openModal(this)">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&q=80&auto=format&fit=crop" alt="Enceinte Bluetooth JBL Flip 5" loading="lazy">
+      </div>
+      <div class="product-body">
+        <div class="product-cat">Multimédia</div>
+        <div class="product-name">Enceinte Bluetooth JBL Flip 5</div>
+        <div class="product-price">65 000 <span>FCFA</span></div>
+        <div class="product-stock"></div>
+        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
+      </div>
+    </div>
+
+    <div class="product-card fade-up"
+         data-name="Casque Sony WH-1000XM4"
+         data-price="125000"
+         data-img="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500&q=80&auto=format&fit=crop"
+         data-cat="multimedia"
+         data-stock="5"
+         onclick="openModal(this)">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500&q=80&auto=format&fit=crop" alt="Casque Sony WH-1000XM4" loading="lazy">
+      </div>
+      <div class="product-body">
+        <div class="product-cat">Multimédia</div>
+        <div class="product-name">Casque Sony WH-1000XM4</div>
+        <div class="product-price">125 000 <span>FCFA</span></div>
+        <div class="product-stock"></div>
+        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
+      </div>
+    </div>
+
+    <div class="product-card fade-up"
+         data-name="Clé USB 3.0 SanDisk 64Go"
+         data-price="9500"
+         data-img="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=500&q=80&auto=format&fit=crop"
+         data-cat="multimedia"
+         data-stock="30"
+         onclick="openModal(this)">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=500&q=80&auto=format&fit=crop" alt="Clé USB 3.0 SanDisk 64Go" loading="lazy">
+      </div>
+      <div class="product-body">
+        <div class="product-cat">Multimédia</div>
+        <div class="product-name">Clé USB 3.0 SanDisk 64Go</div>
+        <div class="product-price">9 500 <span>FCFA</span></div>
         <div class="product-stock"></div>
         <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
       </div>
@@ -1665,7 +1746,8 @@ const catLabels = {
   peripheriques: 'Périphériques',
   reseaux:       'Réseaux & WiFi',
   securite:      'Vidéosurveillance',
-  consommables:  'Consommables'
+  consommables:  'Consommables',
+  multimedia:    'Multimédia'
 };
 
 const productDescs = {
@@ -1680,7 +1762,11 @@ const productDescs = {
   'Disque dur surveillance 1To':       'Conçu pour enregistrement continu 24h/24. Capacité 1 To, SATA 6Gbps. Compatible NVR/DVR du marché.',
   'Cartouche HP LaserJet (lot 2)':     'Lot de 2 cartouches toner noires compatibles HP LaserJet Pro. ~1600 pages/cartouche. Originales avec puce intégrée.',
   'Batterie laptop universelle':        'Batterie universelle 10400 mAh. Connecteurs multiples inclus. Protection surcharge et courts-circuits.',
-  'Multiprise parafoudre 6 prises':    '6 prises universelles + 2 USB. Protection parafoudre intégrée. Câble 2 mètres. Protège vos équipements contre les surtensions.'
+  'Multiprise parafoudre 6 prises':    '6 prises universelles + 2 USB. Protection parafoudre intégrée. Câble 2 mètres. Protège vos équipements contre les surtensions.',
+  'Webcam Logitech HD 1080p':          'Webcam Full HD 1080p/30fps, micro intégré avec réduction de bruit. Plug & Play USB. Compatible Zoom, Teams, Meet. Idéale pour le télétravail.',
+  'Enceinte Bluetooth JBL Flip 5':     'Enceinte portable étanche IPX7, autonomie 12h, son puissant 20W. Connexion Bluetooth 4.2. Compatible JBL PartyBoost pour une sono multi-enceintes.',
+  'Casque Sony WH-1000XM4':            'Casque sans fil à réduction de bruit active leader du marché. Autonomie 30h, charge rapide 10min=5h. Qualité audio Hi-Res, micro intégré.',
+  'Clé USB 3.0 SanDisk 64Go':          'Clé USB 3.0 ultra-rapide, lecture jusqu\'à 100 Mo/s. Capacité 64 Go. Format compact, rétractable. Compatible Windows, Mac, Linux et Smart TV.'
 };
 
 /* ---------- INIT ---------- */
