@@ -1673,7 +1673,12 @@ async function loadProductsFromDB() {
   if (error || !products?.length) {
     document.getElementById('productsCount').textContent = '';
     const empty = document.getElementById('catalogueEmpty');
-    if (empty) empty.textContent = 'Aucun produit disponible pour le moment. Revenez bientôt !';
+    if (error) {
+      console.error('[ATECHSHOP] Supabase error:', error.message, error.details, error.hint);
+      if (empty) empty.textContent = `Erreur Supabase : ${error.message}`;
+    } else {
+      if (empty) empty.textContent = 'Aucun produit disponible pour le moment. Revenez bientôt !';
+    }
     const featSection = document.getElementById('meilleures-ventes');
     if (featSection) featSection.style.display = 'none';
     return;
@@ -1691,7 +1696,7 @@ async function loadProductsFromDB() {
   const grid = document.getElementById('productsGrid');
   if (!grid) return;
   grid.innerHTML = mapped.map(p => `
-    <div class="product-card fade-up"
+    <div class="product-card fade-up visible"
          data-name="${p.name.replace(/"/g,'&quot;')}"
          data-price="${p.price}"
          data-img="${p.img.replace(/"/g,'&quot;')}"
