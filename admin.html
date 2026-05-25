@@ -325,6 +325,21 @@ input, select, textarea { font-family: inherit; }
 .status-saved { font-size: .78rem; color: #16a34a; font-weight: 600; display: none; }
 .status-saved.show { display: inline; }
 
+/* Confirm payment button */
+.btn-confirm-payment {
+  margin-top: 12px; width: 100%; padding: 11px;
+  background: #16a34a; color: #fff;
+  font-size: .87rem; font-weight: 700; border-radius: 8px;
+  transition: background .2s, opacity .2s;
+}
+.btn-confirm-payment:hover { background: #15803d; }
+.btn-confirm-payment:disabled { opacity: .6; cursor: default; }
+.payment-confirmed-badge {
+  margin-top: 12px; padding: 10px 14px;
+  background: #d1fae5; color: #065f46; border-radius: 8px;
+  font-size: .85rem; font-weight: 600; text-align: center;
+}
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
@@ -737,6 +752,9 @@ function openDetail(orderId) {
         <button class="btn-save-status" id="btnSaveStatus" onclick="saveStatus('${o.id}')">Enregistrer</button>
         <span class="status-saved" id="statusSaved">✓ Sauvegardé</span>
       </div>
+      ${o.payment_status !== 'paid' ? `<button class="btn-confirm-payment" id="btnConfirmPay" onclick="confirmPayment('${o.id}')">
+        ✓ Marquer paiement reçu
+      </button>` : `<div class="payment-confirmed-badge">💰 Paiement confirmé</div>`}
     </div>`;
 
   document.getElementById('detailOverlay').classList.add('open');
@@ -771,6 +789,32 @@ async function saveStatus(orderId) {
   if (o) o.status = newSt;
   saved.classList.add('show');
   setTimeout(() => saved.classList.remove('show'), 2500);
+  renderTable();
+  renderStats();
+}
+
+/* ---------- CONFIRM PAYMENT ---------- */
+async function confirmPayment(orderId) {
+  const btn = document.getElementById('btnConfirmPay');
+  if (btn) { btn.disabled = true; btn.textContent = '…'; }
+
+  const { error } = await _sb
+    .from('orders')
+    .update({
+      status:         'confirmed',
+      payment_status: 'paid',
+      updated_at:     new Date().toISOString()
+    })
+    .eq('id', orderId);
+
+  if (error) { alert('Erreur : ' + error.message); if (btn) { btn.disabled = false; btn.textContent = '✓ Marquer paiement reçu'; } return; }
+
+  const o = _allOrders.find(x => x.id === orderId);
+  if (o) { o.status = 'confirmed'; o.payment_status = 'paid'; }
+
+  if (btn) {
+    btn.outerHTML = '<div class="payment-confirmed-badge">💰 Paiement confirmé</div>';
+  }
   renderTable();
   renderStats();
 }
