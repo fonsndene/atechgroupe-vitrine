@@ -1222,84 +1222,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     </a>
   </div>
 
-  <div class="featured-grid">
-
-    <!-- Kit NVR — Top Vente -->
-    <div class="featured-card"
-         data-name="Kit NVR 4 caméras Dahua"
-         data-price="285000"
-         data-img="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=80&auto=format&fit=crop"
-         data-cat="securite"
-         data-stock="3"
-         onclick="openModal(this)">
-      <div class="featured-badge">
-        <span class="badge badge-red">🔴 Top Vente · 3 restants</span>
-      </div>
-      <div class="featured-img-wrap">
-        <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=80&auto=format&fit=crop" alt="Kit NVR 4 caméras Dahua" loading="lazy">
-      </div>
-      <div class="featured-info">
-        <div class="featured-cat">Vidéosurveillance</div>
-        <div class="featured-name">Kit NVR 4 caméras Dahua</div>
-        <div class="stars">★★★★★ <span>(48 avis)</span></div>
-        <div class="featured-price">285 000 FCFA</div>
-        <button class="btn-add-featured" onclick="event.stopPropagation(); addToCart(this.closest('.featured-card'))">
-          🛒 Ajouter au panier
-        </button>
-      </div>
-    </div>
-
-    <!-- Souris Logitech — Recommandé -->
-    <div class="featured-card"
-         data-name="Souris Logitech MX Master 3"
-         data-price="45000"
-         data-img="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&q=80&auto=format&fit=crop"
-         data-cat="peripheriques"
-         data-stock="15"
-         onclick="openModal(this)">
-      <div class="featured-badge">
-        <span class="badge badge-blue">⭐ Recommandé</span>
-      </div>
-      <div class="featured-img-wrap">
-        <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=600&q=80&auto=format&fit=crop" alt="Souris Logitech MX Master 3" loading="lazy">
-      </div>
-      <div class="featured-info">
-        <div class="featured-cat">Périphériques</div>
-        <div class="featured-name">Souris Logitech MX Master 3</div>
-        <div class="stars">★★★★★ <span>(124 avis)</span></div>
-        <div class="featured-price">45 000 FCFA</div>
-        <button class="btn-add-featured" onclick="event.stopPropagation(); addToCart(this.closest('.featured-card'))">
-          🛒 Ajouter au panier
-        </button>
-      </div>
-    </div>
-
-    <!-- Laptop ASUS — Meilleur Prix -->
-    <div class="featured-card"
-         data-name="Laptop ASUS VivoBook 15"
-         data-price="449000"
-         data-img="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80&auto=format&fit=crop"
-         data-cat="ordinateurs"
-         data-stock="5"
-         onclick="openModal(this)">
-      <div class="featured-badge">
-        <span class="badge badge-lime">💰 Meilleur Prix</span>
-      </div>
-      <div class="featured-img-wrap">
-        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80&auto=format&fit=crop" alt="Laptop ASUS VivoBook 15" loading="lazy">
-      </div>
-      <div class="featured-info">
-        <div class="featured-cat">Ordinateurs</div>
-        <div class="featured-name">Laptop ASUS VivoBook 15</div>
-        <div class="stars">★★★★☆ <span>(37 avis)</span></div>
-        <div class="featured-price">449 000 FCFA</div>
-        <button class="btn-add-featured" onclick="event.stopPropagation(); addToCart(this.closest('.featured-card'))">
-          🛒 Ajouter au panier
-        </button>
-      </div>
-    </div>
-
-  </div>
+  <div class="featured-grid" id="featuredGrid"></div>
 </section>
 
 
@@ -1312,320 +1235,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
       <div class="section-label">Notre sélection</div>
       <h2>Catalogue Complet</h2>
     </div>
-    <div class="products-count" id="productsCount">16 produits</div>
+    <div class="products-count" id="productsCount"></div>
   </div>
 
   <div class="products-grid" id="productsGrid">
-
-    <!-- Ordinateurs -->
-    <div class="product-card fade-up"
-         data-name="Laptop ASUS VivoBook 15"
-         data-price="449000"
-         data-img="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&q=80&auto=format&fit=crop"
-         data-cat="ordinateurs"
-         data-stock="5"
-         onclick="openModal(this)">
-      <div class="product-img">
-        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&q=80&auto=format&fit=crop" alt="Laptop ASUS VivoBook 15" loading="lazy">
-      </div>
-      <div class="product-body">
-        <div class="product-cat">Ordinateurs</div>
-        <div class="product-name">Laptop ASUS VivoBook 15</div>
-        <div class="product-price">449 000 <span>FCFA</span></div>
-        <div class="product-stock"></div>
-        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
-      </div>
-    </div>
-
-    <!-- Périphériques -->
-    <div class="product-card fade-up"
-         data-name="Écran LG 27 Full HD"
-         data-price="189000"
-         data-img="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500&q=80&auto=format&fit=crop"
-         data-cat="peripheriques"
-         data-stock="8"
-         onclick="openModal(this)">
-      <div class="product-img">
-        <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500&q=80&auto=format&fit=crop" alt="Écran LG 27 Full HD" loading="lazy">
-      </div>
-      <div class="product-body">
-        <div class="product-cat">Périphériques</div>
-        <div class="product-name">Écran LG 27" Full HD</div>
-        <div class="product-price">189 000 <span>FCFA</span></div>
-        <div class="product-stock"></div>
-        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
-      </div>
-    </div>
-
-    <div class="product-card fade-up"
-         data-name="Souris Logitech MX Master 3"
-         data-price="45000"
-         data-img="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&q=80&auto=format&fit=crop"
-         data-cat="peripheriques"
-         data-stock="15"
-         onclick="openModal(this)">
-      <div class="product-img">
-        <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&q=80&auto=format&fit=crop" alt="Souris Logitech MX Master 3" loading="lazy">
-      </div>
-      <div class="product-body">
-        <div class="product-cat">Périphériques</div>
-        <div class="product-name">Souris Logitech MX Master 3</div>
-        <div class="product-price">45 000 <span>FCFA</span></div>
-        <div class="product-stock"></div>
-        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
-      </div>
-    </div>
-
-    <!-- Réseaux -->
-    <div class="product-card fade-up"
-         data-name="Routeur WiFi 6 TP-Link AX3000"
-         data-price="119000"
-         data-img="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&q=80&auto=format&fit=crop"
-         data-cat="reseaux"
-         data-stock="6"
-         onclick="openModal(this)">
-      <div class="product-img">
-        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500&q=80&auto=format&fit=crop" alt="Routeur WiFi 6 TP-Link AX3000" loading="lazy">
-      </div>
-      <div class="product-body">
-        <div class="product-cat">Réseaux &amp; WiFi</div>
-        <div class="product-name">Routeur WiFi 6 TP-Link AX3000</div>
-        <div class="product-price">119 000 <span>FCFA</span></div>
-        <div class="product-stock"></div>
-        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
-      </div>
-    </div>
-
-    <div class="product-card fade-up"
-         data-name="Switch 8 ports Gigabit"
-         data-price="38000"
-         data-img="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=500&q=80&auto=format&fit=crop"
-         data-cat="reseaux"
-         data-stock="12"
-         onclick="openModal(this)">
-      <div class="product-img">
-        <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=500&q=80&auto=format&fit=crop" alt="Switch 8 ports Gigabit" loading="lazy">
-      </div>
-      <div class="product-body">
-        <div class="product-cat">Réseaux &amp; WiFi</div>
-        <div class="product-name">Switch 8 ports Gigabit</div>
-        <div class="product-price">38 000 <span>FCFA</span></div>
-        <div class="product-stock"></div>
-        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
-      </div>
-    </div>
-
-    <div class="product-card fade-up"
-         data-name="Câble RJ45 Cat6 10m"
-         data-price="8500"
-         data-img="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80&auto=format&fit=crop"
-         data-cat="reseaux"
-         data-stock="50"
-         onclick="openModal(this)">
-      <div class="product-img">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80&auto=format&fit=crop" alt="Câble RJ45 Cat6 10m" loading="lazy">
-      </div>
-      <div class="product-body">
-        <div class="product-cat">Réseaux &amp; WiFi</div>
-        <div class="product-name">Câble RJ45 Cat6 10m</div>
-        <div class="product-price">8 500 <span>FCFA</span></div>
-        <div class="product-stock"></div>
-        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
-      </div>
-    </div>
-
-    <!-- Vidéosurveillance -->
-    <div class="product-card fade-up"
-         data-name="Caméra IP Hikvision 4MP"
-         data-price="79000"
-         data-img="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=500&q=80&auto=format&fit=crop"
-         data-cat="securite"
-         data-stock="9"
-         onclick="openModal(this)">
-      <div class="product-img">
-        <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=500&q=80&auto=format&fit=crop" alt="Caméra IP Hikvision 4MP" loading="lazy">
-      </div>
-      <div class="product-body">
-        <div class="product-cat">Vidéosurveillance</div>
-        <div class="product-name">Caméra IP Hikvision 4MP</div>
-        <div class="product-price">79 000 <span>FCFA</span></div>
-        <div class="product-stock"></div>
-        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
-      </div>
-    </div>
-
-    <div class="product-card fade-up"
-         data-name="Kit NVR 4 caméras Dahua"
-         data-price="285000"
-         data-img="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=500&q=80&auto=format&fit=crop"
-         data-cat="securite"
-         data-stock="3"
-         onclick="openModal(this)">
-      <div class="product-img">
-        <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=500&q=80&auto=format&fit=crop" alt="Kit NVR 4 caméras Dahua" loading="lazy">
-      </div>
-      <div class="product-body">
-        <div class="product-cat">Vidéosurveillance</div>
-        <div class="product-name">Kit NVR 4 caméras Dahua</div>
-        <div class="product-price">285 000 <span>FCFA</span></div>
-        <div class="product-stock"></div>
-        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
-      </div>
-    </div>
-
-    <div class="product-card fade-up"
-         data-name="Disque dur surveillance 1To"
-         data-price="55000"
-         data-img="https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=500&q=80&auto=format&fit=crop"
-         data-cat="securite"
-         data-stock="7"
-         onclick="openModal(this)">
-      <div class="product-img">
-        <img src="https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=500&q=80&auto=format&fit=crop" alt="Disque dur surveillance 1To" loading="lazy">
-      </div>
-      <div class="product-body">
-        <div class="product-cat">Vidéosurveillance</div>
-        <div class="product-name">Disque dur surveillance 1To</div>
-        <div class="product-price">55 000 <span>FCFA</span></div>
-        <div class="product-stock"></div>
-        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
-      </div>
-    </div>
-
-    <!-- Consommables -->
-    <div class="product-card fade-up"
-         data-name="Cartouche HP LaserJet (lot 2)"
-         data-price="32000"
-         data-img="https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=500&q=80&auto=format&fit=crop"
-         data-cat="consommables"
-         data-stock="20"
-         onclick="openModal(this)">
-      <div class="product-img">
-        <img src="https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=500&q=80&auto=format&fit=crop" alt="Cartouche HP LaserJet lot 2" loading="lazy">
-      </div>
-      <div class="product-body">
-        <div class="product-cat">Consommables</div>
-        <div class="product-name">Cartouche HP LaserJet (lot 2)</div>
-        <div class="product-price">32 000 <span>FCFA</span></div>
-        <div class="product-stock"></div>
-        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
-      </div>
-    </div>
-
-    <div class="product-card fade-up"
-         data-name="Batterie laptop universelle"
-         data-price="28000"
-         data-img="https://images.unsplash.com/photo-1587145820266-a5951ee6f620?w=500&q=80&auto=format&fit=crop"
-         data-cat="consommables"
-         data-stock="14"
-         onclick="openModal(this)">
-      <div class="product-img">
-        <img src="https://images.unsplash.com/photo-1587145820266-a5951ee6f620?w=500&q=80&auto=format&fit=crop" alt="Batterie laptop universelle" loading="lazy">
-      </div>
-      <div class="product-body">
-        <div class="product-cat">Consommables</div>
-        <div class="product-name">Batterie laptop universelle</div>
-        <div class="product-price">28 000 <span>FCFA</span></div>
-        <div class="product-stock"></div>
-        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
-      </div>
-    </div>
-
-    <div class="product-card fade-up"
-         data-name="Multiprise parafoudre 6 prises"
-         data-price="18500"
-         data-img="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=500&q=80&auto=format&fit=crop"
-         data-cat="consommables"
-         data-stock="25"
-         onclick="openModal(this)">
-      <div class="product-img">
-        <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=500&q=80&auto=format&fit=crop" alt="Multiprise parafoudre 6 prises" loading="lazy">
-      </div>
-      <div class="product-body">
-        <div class="product-cat">Consommables</div>
-        <div class="product-name">Multiprise parafoudre 6 prises</div>
-        <div class="product-price">18 500 <span>FCFA</span></div>
-        <div class="product-stock"></div>
-        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
-      </div>
-    </div>
-
-    <!-- Multimédia -->
-    <div class="product-card fade-up"
-         data-name="Webcam Logitech HD 1080p"
-         data-price="35000"
-         data-img="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=500&q=80&auto=format&fit=crop"
-         data-cat="multimedia"
-         data-stock="10"
-         onclick="openModal(this)">
-      <div class="product-img">
-        <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=500&q=80&auto=format&fit=crop" alt="Webcam Logitech HD 1080p" loading="lazy">
-      </div>
-      <div class="product-body">
-        <div class="product-cat">Multimédia</div>
-        <div class="product-name">Webcam Logitech HD 1080p</div>
-        <div class="product-price">35 000 <span>FCFA</span></div>
-        <div class="product-stock"></div>
-        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
-      </div>
-    </div>
-
-    <div class="product-card fade-up"
-         data-name="Enceinte Bluetooth JBL Flip 5"
-         data-price="65000"
-         data-img="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&q=80&auto=format&fit=crop"
-         data-cat="multimedia"
-         data-stock="8"
-         onclick="openModal(this)">
-      <div class="product-img">
-        <img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500&q=80&auto=format&fit=crop" alt="Enceinte Bluetooth JBL Flip 5" loading="lazy">
-      </div>
-      <div class="product-body">
-        <div class="product-cat">Multimédia</div>
-        <div class="product-name">Enceinte Bluetooth JBL Flip 5</div>
-        <div class="product-price">65 000 <span>FCFA</span></div>
-        <div class="product-stock"></div>
-        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
-      </div>
-    </div>
-
-    <div class="product-card fade-up"
-         data-name="Casque Sony WH-1000XM4"
-         data-price="125000"
-         data-img="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500&q=80&auto=format&fit=crop"
-         data-cat="multimedia"
-         data-stock="5"
-         onclick="openModal(this)">
-      <div class="product-img">
-        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500&q=80&auto=format&fit=crop" alt="Casque Sony WH-1000XM4" loading="lazy">
-      </div>
-      <div class="product-body">
-        <div class="product-cat">Multimédia</div>
-        <div class="product-name">Casque Sony WH-1000XM4</div>
-        <div class="product-price">125 000 <span>FCFA</span></div>
-        <div class="product-stock"></div>
-        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
-      </div>
-    </div>
-
-    <div class="product-card fade-up"
-         data-name="Clé USB 3.0 SanDisk 64Go"
-         data-price="9500"
-         data-img="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=500&q=80&auto=format&fit=crop"
-         data-cat="multimedia"
-         data-stock="30"
-         onclick="openModal(this)">
-      <div class="product-img">
-        <img src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=500&q=80&auto=format&fit=crop" alt="Clé USB 3.0 SanDisk 64Go" loading="lazy">
-      </div>
-      <div class="product-body">
-        <div class="product-cat">Multimédia</div>
-        <div class="product-name">Clé USB 3.0 SanDisk 64Go</div>
-        <div class="product-price">9 500 <span>FCFA</span></div>
-        <div class="product-stock"></div>
-        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
-      </div>
-    </div>
+    <p id="catalogueEmpty" style="grid-column:1/-1;text-align:center;color:var(--muted);padding:60px 0">
+      Chargement du catalogue…
+    </p>
 
     <div class="no-results hidden" id="noResults">
       Aucun produit trouvé. Essayez un autre terme. 🔍
@@ -2050,17 +1666,26 @@ const DB_SLUG_MAP = {
 async function loadProductsFromDB() {
   const { data: products, error } = await _sb
     .from('products')
-    .select('name, price_fcfa, stock_qty, images, categories!inner(slug, name)')
+    .select('name, price_fcfa, stock_qty, short_description, images, categories!inner(slug, name)')
     .eq('is_active', true)
     .order('price_fcfa');
-  if (error || !products?.length) return;
+
+  if (error || !products?.length) {
+    document.getElementById('productsCount').textContent = '';
+    const empty = document.getElementById('catalogueEmpty');
+    if (empty) empty.textContent = 'Aucun produit disponible pour le moment. Revenez bientôt !';
+    const featSection = document.getElementById('meilleures-ventes');
+    if (featSection) featSection.style.display = 'none';
+    return;
+  }
 
   const mapped = products.map(p => ({
     name:  p.name,
     price: p.price_fcfa,
     img:   p.images?.[0]?.url || '',
     cat:   DB_SLUG_MAP[p.categories?.slug] || p.categories?.slug || 'autre',
-    stock: p.stock_qty
+    stock: p.stock_qty,
+    desc:  p.short_description || ''
   }));
 
   const grid = document.getElementById('productsGrid');
@@ -2072,6 +1697,7 @@ async function loadProductsFromDB() {
          data-img="${p.img.replace(/"/g,'&quot;')}"
          data-cat="${p.cat}"
          data-stock="${p.stock}"
+         data-desc="${p.desc.replace(/"/g,'&quot;')}"
          onclick="openModal(this)">
       <div class="product-img">
         <img src="${p.img}" alt="${p.name.replace(/"/g,'&quot;')}" loading="lazy">
@@ -2089,6 +1715,39 @@ async function loadProductsFromDB() {
   document.querySelectorAll('.product-card.fade-up').forEach(el => {
     if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
   });
+
+  // Peupler "Meilleures ventes" avec le top 3 (prix décroissant)
+  const top3 = [...mapped].sort((a, b) => b.price - a.price).slice(0, 3);
+  const featBadges = ['🔥 Populaire', '⭐ Recommandé', '💰 Meilleur Prix'];
+  const featGrid = document.getElementById('featuredGrid');
+  const featSection = document.getElementById('meilleures-ventes');
+  if (featGrid && top3.length) {
+    featGrid.innerHTML = top3.map((p, i) => `
+      <div class="featured-card"
+           data-name="${p.name.replace(/"/g,'&quot;')}"
+           data-price="${p.price}"
+           data-img="${p.img.replace(/"/g,'&quot;')}"
+           data-cat="${p.cat}"
+           data-stock="${p.stock}"
+           data-desc="${p.desc.replace(/"/g,'&quot;')}"
+           onclick="openModal(this)">
+        <div class="featured-badge"><span class="badge badge-lime">${featBadges[i]}</span></div>
+        <div class="featured-img-wrap">
+          <img src="${p.img}" alt="${p.name.replace(/"/g,'&quot;')}" loading="lazy">
+        </div>
+        <div class="featured-info">
+          <div class="featured-cat">${catLabels[p.cat] || p.cat}</div>
+          <div class="featured-name">${p.name}</div>
+          <div class="featured-price">${p.price.toLocaleString('fr-FR')} FCFA</div>
+          <button class="btn-add-featured" onclick="event.stopPropagation(); addToCart(this.closest('.featured-card'))">
+            🛒 Ajouter au panier
+          </button>
+        </div>
+      </div>`).join('');
+    if (featSection) featSection.style.display = '';
+  } else if (featSection) {
+    featSection.style.display = 'none';
+  }
 }
 
 /* ---------- STATE ---------- */
@@ -2105,24 +1764,7 @@ const catLabels = {
   multimedia:    'Multimédia'
 };
 
-const productDescs = {
-  'Laptop ASUS VivoBook 15':           'Intel Core i5 11e génération, 8 Go RAM DDR4, SSD 512 Go. Écran Full HD 15,6". Idéal pour professionnels et étudiants. Garantie 1 an.',
-  'Écran LG 27 Full HD':               'Dalle IPS 27", résolution 1920×1080, 5ms. Connectique HDMI + DisplayPort. Certifié Eye Care pour réduire la fatigue visuelle.',
-  'Souris Logitech MX Master 3':       'Sans fil Bluetooth et Unifying. Roue MagSpeed ultra-précise. Jusqu\'à 70 jours d\'autonomie. Compatible Mac, Windows, Linux.',
-  'Routeur WiFi 6 TP-Link AX3000':     'WiFi 6 (802.11ax), 3000 Mbps combinés, 4 antennes. Idéal pour foyers avec nombreux appareils connectés.',
-  'Switch 8 ports Gigabit':            '8 ports Gigabit 10/100/1000 Mbps. Plug & Play, aucune configuration. Boîtier métal robuste pour petits réseaux professionnels.',
-  'Câble RJ45 Cat6 10m':               'Câble Ethernet Cat6, blindage FTP, 10 mètres. Compatible Gigabit. Connecteurs RJ45 plaqués or.',
-  'Caméra IP Hikvision 4MP':           'Résolution 4MP (2560×1440), vision nocturne IR 30m. Résistant IP67. Compatible NVR ONVIF.',
-  'Kit NVR 4 caméras Dahua':           'Kit complet : 1 NVR 4 canaux + 4 caméras 2MP + câbles + disque 1To préinstallé. Accès à distance via app mobile.',
-  'Disque dur surveillance 1To':       'Conçu pour enregistrement continu 24h/24. Capacité 1 To, SATA 6Gbps. Compatible NVR/DVR du marché.',
-  'Cartouche HP LaserJet (lot 2)':     'Lot de 2 cartouches toner noires compatibles HP LaserJet Pro. ~1600 pages/cartouche. Originales avec puce intégrée.',
-  'Batterie laptop universelle':        'Batterie universelle 10400 mAh. Connecteurs multiples inclus. Protection surcharge et courts-circuits.',
-  'Multiprise parafoudre 6 prises':    '6 prises universelles + 2 USB. Protection parafoudre intégrée. Câble 2 mètres. Protège vos équipements contre les surtensions.',
-  'Webcam Logitech HD 1080p':          'Webcam Full HD 1080p/30fps, micro intégré avec réduction de bruit. Plug & Play USB. Compatible Zoom, Teams, Meet. Idéale pour le télétravail.',
-  'Enceinte Bluetooth JBL Flip 5':     'Enceinte portable étanche IPX7, autonomie 12h, son puissant 20W. Connexion Bluetooth 4.2. Compatible JBL PartyBoost pour une sono multi-enceintes.',
-  'Casque Sony WH-1000XM4':            'Casque sans fil à réduction de bruit active leader du marché. Autonomie 30h, charge rapide 10min=5h. Qualité audio Hi-Res, micro intégré.',
-  'Clé USB 3.0 SanDisk 64Go':          'Clé USB 3.0 ultra-rapide, lecture jusqu\'à 100 Mo/s. Capacité 64 Go. Format compact, rétractable. Compatible Windows, Mac, Linux et Smart TV.'
-};
+const productDescs = {};
 
 /* ---------- INIT ---------- */
 document.addEventListener('DOMContentLoaded', async () => {
@@ -2338,7 +1980,7 @@ function openModal(card) {
   document.getElementById('modalTitle').textContent = name;
   document.getElementById('modalPrice').textContent = formatPrice(parseInt(card.dataset.price));
   document.getElementById('modalQtyVal').textContent = '1';
-  document.getElementById('modalDesc').textContent = productDescs[name] || 'Produit de qualité sélectionné par ATECH GROUPE.';
+  document.getElementById('modalDesc').textContent = card.dataset.desc || productDescs[name] || 'Produit de qualité sélectionné par ATECH GROUPE.';
 
   const stockEl = document.getElementById('modalStock');
   const addBtn  = document.getElementById('btnModalAdd');
