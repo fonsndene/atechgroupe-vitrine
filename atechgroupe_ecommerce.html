@@ -197,7 +197,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    SECTION 2 — HERO (reste sombre, glassmorphism)
    ============================================================ */
 .hero {
-  position: relative; min-height: 500px;
+  position: relative;
+  min-height: clamp(380px, 70vh, 700px);
   display: flex; align-items: center;
   overflow: hidden;
 }
@@ -209,14 +210,17 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .hero-content {
   position: relative; z-index: 2;
-  margin: clamp(32px, 5vw, 72px) clamp(20px, 5vw, 72px);
-  max-width: 600px;
+  margin: 0 clamp(20px, 5vw, 80px);
+  width: 100%; max-width: 620px;
   background: rgba(10,11,16,.62);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255,255,255,.12);
   border-radius: 20px;
-  padding: clamp(28px, 4vw, 52px);
+  padding: 80px clamp(28px, 4vw, 52px);
+}
+@media (max-width: 640px) {
+  .hero-content { padding-top: 48px; padding-bottom: 48px; }
 }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 8px;
