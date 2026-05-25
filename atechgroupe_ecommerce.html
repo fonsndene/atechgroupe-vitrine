@@ -2037,6 +2037,60 @@ const _sb = window.supabase.createClient(
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3eWJzZnVibXJ3anlpanhzYmJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2NTIwOTUsImV4cCI6MjA5NTIyODA5NX0.1mYbu_Yn3IjSWPRH_0sW9lhc1cCVJnRI82gLEYWvJs0'
 );
 
+/* ---------- PRODUCT DB LOADER ---------- */
+const DB_SLUG_MAP = {
+  'ordinateurs':'ordinateurs','laptops':'ordinateurs','pc-bureau':'ordinateurs',
+  'peripheriques':'peripheriques','souris':'peripheriques','claviers':'peripheriques','accessoires':'peripheriques',
+  'reseau-securite':'reseaux',
+  'cameras-ip':'securite',
+  'consommables':'consommables','cartouches':'consommables',
+  'multimedia':'multimedia',
+};
+
+async function loadProductsFromDB() {
+  const { data: products, error } = await _sb
+    .from('products')
+    .select('name, price_fcfa, stock_qty, images, categories!inner(slug, name)')
+    .eq('is_active', true)
+    .order('price_fcfa');
+  if (error || !products?.length) return;
+
+  const mapped = products.map(p => ({
+    name:  p.name,
+    price: p.price_fcfa,
+    img:   p.images?.[0]?.url || '',
+    cat:   DB_SLUG_MAP[p.categories?.slug] || p.categories?.slug || 'autre',
+    stock: p.stock_qty
+  }));
+
+  const grid = document.getElementById('productsGrid');
+  if (!grid) return;
+  grid.innerHTML = mapped.map(p => `
+    <div class="product-card fade-up"
+         data-name="${p.name.replace(/"/g,'&quot;')}"
+         data-price="${p.price}"
+         data-img="${p.img.replace(/"/g,'&quot;')}"
+         data-cat="${p.cat}"
+         data-stock="${p.stock}"
+         onclick="openModal(this)">
+      <div class="product-img">
+        <img src="${p.img}" alt="${p.name.replace(/"/g,'&quot;')}" loading="lazy">
+      </div>
+      <div class="product-body">
+        <div class="product-cat">${catLabels[p.cat] || p.cat}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-price">${p.price.toLocaleString('fr-FR')} <span>FCFA</span></div>
+        <div class="product-stock"></div>
+        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
+      </div>
+    </div>`).join('') + '<div class="no-results hidden" id="noResults">Aucun produit trouvé. 🔍</div>';
+
+  document.getElementById('productsCount').textContent = mapped.length + ' produit' + (mapped.length !== 1 ? 's' : '');
+  document.querySelectorAll('.product-card.fade-up').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+  });
+}
+
 /* ---------- STATE ---------- */
 let cart = JSON.parse(localStorage.getItem('atech_cart') || '[]');
 let currentModalCard = null;
@@ -2071,7 +2125,8 @@ const productDescs = {
 };
 
 /* ---------- INIT ---------- */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadProductsFromDB();
   initStocks();
   updateBadge();
   renderCartDrawer();

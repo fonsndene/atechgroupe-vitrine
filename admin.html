@@ -341,6 +341,95 @@ input, select, textarea { font-family: inherit; }
 }
 
 /* ============================================================
+   PRODUITS
+   ============================================================ */
+.product-thumb { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; background: var(--bg4); }
+.product-name-cell { font-weight: 600; }
+.product-brand { font-size: .75rem; color: var(--muted); margin-top: 1px; }
+.stock-ok  { color: #16a34a; font-weight: 700; }
+.stock-low { color: #d97706; font-weight: 700; }
+.stock-out { color: #dc2626; font-weight: 700; }
+.btn-edit  { padding: 4px 10px; border-radius: 6px; background: var(--bg4); color: var(--ink); font-size: .78rem; font-weight: 600; border: 1px solid var(--border); transition: background .15s; margin-right: 4px; }
+.btn-edit:hover { background: var(--bg2); }
+.btn-toggle-off { padding: 4px 10px; border-radius: 6px; background: #fee2e2; color: #991b1b; font-size: .78rem; font-weight: 600; transition: background .15s; }
+.btn-toggle-off:hover { background: #fecaca; }
+.btn-toggle-on  { padding: 4px 10px; border-radius: 6px; background: #d1fae5; color: #065f46; font-size: .78rem; font-weight: 600; transition: background .15s; }
+.btn-toggle-on:hover { background: #a7f3d0; }
+.btn-add-product {
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border-radius: 8px;
+  background: var(--lime); color: var(--ink);
+  font-size: .85rem; font-weight: 700; margin-left: auto;
+  transition: background .2s;
+}
+.btn-add-product:hover { background: var(--lime2); }
+
+/* Product form modal */
+.pf-overlay {
+  position: fixed; inset: 0; z-index: 900;
+  background: rgba(11,12,16,.5); backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px; opacity: 0; pointer-events: none; transition: opacity .25s;
+}
+.pf-overlay.open { opacity: 1; pointer-events: all; }
+.pf-box {
+  background: var(--bg3); border-radius: 16px;
+  width: min(560px, 100%); max-height: 90vh;
+  display: flex; flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  transform: scale(.96); transition: transform .25s;
+}
+.pf-overlay.open .pf-box { transform: scale(1); }
+.pf-head {
+  padding: 18px 24px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+}
+.pf-head h3 { font-size: 1rem; font-weight: 700; }
+.pf-close {
+  width: 32px; height: 32px; border-radius: 6px;
+  background: var(--bg4); color: var(--muted);
+  display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+  transition: background .2s;
+}
+.pf-close:hover { background: var(--bg2); color: var(--ink); }
+.pf-body { flex: 1; overflow-y: auto; padding: 22px 24px; }
+.pf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.pf-full { grid-column: 1/-1; }
+.pf-label { font-size: .76rem; font-weight: 600; color: var(--muted); display: block; margin-bottom: 5px; }
+.pf-input, .pf-select, .pf-textarea {
+  width: 100%; padding: 9px 12px;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 8px; font-size: .87rem; color: var(--ink);
+  transition: border-color .2s;
+}
+.pf-input:focus, .pf-select:focus, .pf-textarea:focus {
+  outline: none; border-color: var(--lime-dk); box-shadow: 0 0 0 3px rgba(93,122,0,.1);
+}
+.pf-input::placeholder, .pf-textarea::placeholder { color: var(--muted); }
+.pf-textarea { resize: vertical; min-height: 70px; }
+.pf-preview { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; background: var(--bg4); margin-top: 8px; display: block; }
+.pf-footer { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; gap: 10px; justify-content: flex-end; flex-shrink: 0; }
+.btn-pf-cancel { padding: 9px 18px; border-radius: 8px; background: var(--bg4); color: var(--ink); font-size: .87rem; font-weight: 600; transition: background .2s; }
+.btn-pf-cancel:hover { background: var(--bg2); }
+.btn-pf-save { padding: 9px 22px; border-radius: 8px; background: var(--lime); color: var(--ink); font-size: .87rem; font-weight: 700; transition: background .2s, opacity .2s; }
+.btn-pf-save:hover { background: var(--lime2); }
+.btn-pf-save:disabled { opacity: .6; cursor: default; }
+
+/* ============================================================
+   CLIENTS
+   ============================================================ */
+.client-avatar {
+  width: 32px; height: 32px; border-radius: 9999px;
+  background: var(--lime); color: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .72rem; font-weight: 800; flex-shrink: 0;
+}
+.client-name-cell { display: flex; align-items: center; gap: 10px; }
+.client-name { font-weight: 600; font-size: .85rem; }
+.client-phone { font-size: .75rem; color: var(--muted); }
+.section-spacer { margin-top: 24px; }
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1024px) {
@@ -405,9 +494,17 @@ input, select, textarea { font-family: inherit; }
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
         Tableau de bord
       </div>
-      <div class="nav-item" onclick="scrollToOrders()">
+      <div class="nav-item" onclick="showSection('orders')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         Commandes
+      </div>
+      <div class="nav-item" onclick="showSection('products')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Produits
+      </div>
+      <div class="nav-item" onclick="showSection('clients')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        Clients
       </div>
       <a class="nav-item" href="atechgroupe_ecommerce.html" target="_blank">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -497,6 +594,34 @@ input, select, textarea { font-family: inherit; }
         </div>
       </div>
 
+      <!-- Products section -->
+      <div class="section-card section-spacer" id="productsSection" style="display:none">
+        <div class="section-head">
+          <h2>🛍️ Produits</h2>
+          <div class="search-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" class="search-input" id="searchProducts" placeholder="Nom, marque…" oninput="renderProductsTable()">
+          </div>
+          <button class="btn-add-product" onclick="openProductForm(null)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Ajouter un produit
+          </button>
+        </div>
+        <div id="productsTableWrap"><div class="table-loading">Chargement…</div></div>
+      </div>
+
+      <!-- Clients section -->
+      <div class="section-card section-spacer" id="clientsSection" style="display:none">
+        <div class="section-head">
+          <h2>👥 Clients</h2>
+          <div class="search-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" class="search-input" id="searchClients" placeholder="Nom, téléphone…" oninput="renderClientsTable()">
+          </div>
+        </div>
+        <div id="clientsTableWrap"><div class="table-loading">Chargement…</div></div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -511,6 +636,61 @@ input, select, textarea { font-family: inherit; }
       <button class="modal-admin-close" onclick="closeDetail()">✕</button>
     </div>
     <div class="modal-admin-body" id="detailBody"></div>
+  </div>
+</div>
+
+<!-- PRODUCT FORM MODAL -->
+<div class="pf-overlay" id="pfOverlay">
+  <div class="pf-box">
+    <div class="pf-head">
+      <h3 id="pfTitle">Ajouter un produit</h3>
+      <button class="pf-close" onclick="closeProductForm()">✕</button>
+    </div>
+    <div class="pf-body">
+      <input type="hidden" id="pfId">
+      <div class="pf-grid">
+        <div class="pf-full">
+          <label class="pf-label">Nom du produit *</label>
+          <input type="text" class="pf-input" id="pfName" placeholder="Ex: Laptop Dell Inspiron 15">
+        </div>
+        <div>
+          <label class="pf-label">Catégorie *</label>
+          <select class="pf-select" id="pfCategory">
+            <option value="9526039a-6970-4df8-86f6-99f9a4d430fe">Ordinateurs & Laptops</option>
+            <option value="67ecbb0e-d6fc-48ab-ad26-bdd953c14eb5">Périphériques</option>
+            <option value="3ae948f2-2bd3-43c9-be24-64e7cc41b02a">Réseau & Sécurité</option>
+            <option value="74ddda6b-e061-4c4e-9775-91185cd30c2c">Caméras IP</option>
+            <option value="c09ce9af-8185-4917-bdbc-39bbd38567f0">Consommables</option>
+            <option value="08fc455a-4578-48b6-b3f9-1cdced864907">Multimédia</option>
+          </select>
+        </div>
+        <div>
+          <label class="pf-label">Marque</label>
+          <input type="text" class="pf-input" id="pfBrand" placeholder="Ex: Logitech">
+        </div>
+        <div>
+          <label class="pf-label">Prix FCFA *</label>
+          <input type="number" class="pf-input" id="pfPrice" placeholder="Ex: 45000" min="1">
+        </div>
+        <div>
+          <label class="pf-label">Stock *</label>
+          <input type="number" class="pf-input" id="pfStock" placeholder="Ex: 10" min="0">
+        </div>
+        <div class="pf-full">
+          <label class="pf-label">URL image principale</label>
+          <input type="url" class="pf-input" id="pfImage" placeholder="https://…" oninput="previewImg()">
+          <img id="pfPreview" class="pf-preview" src="" alt="Aperçu" style="display:none">
+        </div>
+        <div class="pf-full">
+          <label class="pf-label">Description courte</label>
+          <textarea class="pf-textarea" id="pfDesc" placeholder="Caractéristiques principales…"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="pf-footer">
+      <button class="btn-pf-cancel" onclick="closeProductForm()">Annuler</button>
+      <button class="btn-pf-save" id="btnPfSave" onclick="saveProduct()">Enregistrer</button>
+    </div>
   </div>
 </div>
 
@@ -573,6 +753,24 @@ function showDashboard(user) {
   document.getElementById('sidebarName').textContent   = name;
   document.getElementById('sidebarAvatar').textContent = name.slice(0, 2).toUpperCase();
   loadAll();
+}
+
+/* ---------- SECTION NAV ---------- */
+const SECTIONS = { orders: 'ordersSection', products: 'productsSection', clients: 'clientsSection' };
+const TITLES   = { orders: 'Commandes', products: 'Produits', clients: 'Clients' };
+let _currentSection = 'orders';
+
+function showSection(name) {
+  _currentSection = name;
+  document.getElementById('topbarTitle').textContent = TITLES[name] || name;
+  Object.entries(SECTIONS).forEach(([k, id]) => {
+    document.getElementById(id).style.display = k === name ? 'block' : 'none';
+  });
+  document.getElementById('ordersSection').style.display = name === 'orders' ? '' : 'none';
+  document.querySelectorAll('.nav-item').forEach((el, i) => el.classList.remove('active'));
+  document.querySelectorAll('.nav-item')[['orders','products','clients'].indexOf(name) + 1]?.classList.add('active');
+  if (name === 'products') loadProducts();
+  if (name === 'clients')  loadClients();
 }
 
 /* ---------- DATA ---------- */
@@ -791,6 +989,159 @@ async function saveStatus(orderId) {
   setTimeout(() => saved.classList.remove('show'), 2500);
   renderTable();
   renderStats();
+}
+
+/* ---------- PRODUCTS ---------- */
+let _allProducts = [];
+let _allCats = {};
+
+async function loadProducts() {
+  document.getElementById('productsTableWrap').innerHTML = '<div class="table-loading">Chargement…</div>';
+  const { data, error } = await _sb
+    .from('products')
+    .select('id, sku, name, brand, price_fcfa, stock_qty, stock_status, is_active, images, categories!inner(name)')
+    .order('is_active', { ascending: false })
+    .order('name');
+  if (error) { document.getElementById('productsTableWrap').innerHTML = `<div class="table-empty">Erreur : ${error.message}</div>`; return; }
+  _allProducts = data || [];
+  renderProductsTable();
+}
+
+function renderProductsTable() {
+  const search = document.getElementById('searchProducts')?.value.toLowerCase() || '';
+  let rows = _allProducts.filter(p =>
+    !search || p.name?.toLowerCase().includes(search) || p.brand?.toLowerCase().includes(search) || p.sku?.toLowerCase().includes(search)
+  );
+  if (!rows.length) { document.getElementById('productsTableWrap').innerHTML = '<div class="table-empty">Aucun produit.</div>'; return; }
+  document.getElementById('productsTableWrap').innerHTML = `
+  <table class="orders-table">
+    <thead><tr>
+      <th>Image</th><th>Produit</th><th>Prix</th><th>Stock</th><th>Statut</th><th>Actions</th>
+    </tr></thead>
+    <tbody>
+    ${rows.map(p => {
+      const img = p.images?.[0]?.url || '';
+      const st  = p.stock_status || '';
+      const stockCls = st === 'in_stock' ? 'stock-ok' : st === 'low_stock' ? 'stock-low' : 'stock-out';
+      const stockLbl = st === 'in_stock' ? 'En stock' : st === 'low_stock' ? 'Stock bas' : 'Rupture';
+      return `<tr>
+        <td>${img ? `<img class="product-thumb" src="${img}" alt="">` : '<div class="product-thumb"></div>'}</td>
+        <td><div class="product-name-cell">${p.name}</div><div class="product-brand">${p.brand || '—'} · ${p.sku}</div></td>
+        <td>${formatPrice(p.price_fcfa)}</td>
+        <td><span class="${stockCls}">${p.stock_qty} · ${stockLbl}</span></td>
+        <td><span class="status-badge ${p.is_active ? 'status-confirmed' : 'status-cancelled'}">${p.is_active ? 'Actif' : 'Inactif'}</span></td>
+        <td>
+          <button class="btn-edit" onclick="openProductForm('${p.id}')">✏️ Modifier</button>
+          <button class="${p.is_active ? 'btn-toggle-off' : 'btn-toggle-on'}" onclick="toggleProduct('${p.id}', ${!p.is_active})">${p.is_active ? 'Désactiver' : 'Activer'}</button>
+        </td>
+      </tr>`;
+    }).join('')}
+    </tbody>
+  </table>`;
+}
+
+function openProductForm(productId) {
+  const p = productId ? _allProducts.find(x => x.id === productId) : null;
+  document.getElementById('pfTitle').textContent   = p ? 'Modifier le produit' : 'Ajouter un produit';
+  document.getElementById('pfId').value            = p?.id || '';
+  document.getElementById('pfName').value          = p?.name || '';
+  document.getElementById('pfBrand').value         = p?.brand || '';
+  document.getElementById('pfPrice').value         = p?.price_fcfa || '';
+  document.getElementById('pfStock').value         = p?.stock_qty ?? '';
+  document.getElementById('pfImage').value         = p?.images?.[0]?.url || '';
+  document.getElementById('pfDesc').value          = p?.short_description || '';
+  document.getElementById('pfCategory').value      = p?.category_id || '';
+  previewImg();
+  document.getElementById('pfOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeProductForm() { document.getElementById('pfOverlay').classList.remove('open'); document.body.style.overflow = ''; }
+document.getElementById('pfOverlay').addEventListener('click', e => { if (e.target === document.getElementById('pfOverlay')) closeProductForm(); });
+
+function previewImg() {
+  const url = document.getElementById('pfImage').value.trim();
+  const prev = document.getElementById('pfPreview');
+  if (url) { prev.src = url; prev.style.display = 'block'; } else { prev.style.display = 'none'; }
+}
+
+async function saveProduct() {
+  const btn  = document.getElementById('btnPfSave');
+  const id   = document.getElementById('pfId').value;
+  const name = document.getElementById('pfName').value.trim();
+  const price= parseInt(document.getElementById('pfPrice').value);
+  const stock= parseInt(document.getElementById('pfStock').value);
+  const img  = document.getElementById('pfImage').value.trim();
+  const cat  = document.getElementById('pfCategory').value;
+  const brand= document.getElementById('pfBrand').value.trim();
+  const desc = document.getElementById('pfDesc').value.trim();
+  if (!name || !price || isNaN(stock) || !cat) { alert('Remplissez les champs obligatoires (*)'); return; }
+  btn.disabled = true; btn.textContent = '…';
+  const payload = {
+    name, brand: brand || null, price_fcfa: price, stock_qty: stock,
+    category_id: cat, short_description: desc || null,
+    images: img ? [{ url: img, alt: name, is_primary: true }] : [],
+    ...(id ? {} : { slug: name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''), sku: 'ATECH-' + Date.now() })
+  };
+  const { error } = id
+    ? await _sb.from('products').update(payload).eq('id', id)
+    : await _sb.from('products').insert(payload);
+  btn.disabled = false; btn.textContent = 'Enregistrer';
+  if (error) { alert('Erreur : ' + error.message); return; }
+  closeProductForm();
+  await loadProducts();
+}
+
+async function toggleProduct(id, newState) {
+  await _sb.from('products').update({ is_active: newState }).eq('id', id);
+  const p = _allProducts.find(x => x.id === id);
+  if (p) p.is_active = newState;
+  renderProductsTable();
+}
+
+/* ---------- CLIENTS ---------- */
+let _allClients = [];
+
+async function loadClients() {
+  document.getElementById('clientsTableWrap').innerHTML = '<div class="table-loading">Chargement…</div>';
+  const { data, error } = await _sb
+    .from('orders')
+    .select('delivery_name, delivery_phone, subtotal_fcfa, delivery_fee_fcfa, discount_fcfa, created_at')
+    .order('created_at', { ascending: false });
+  if (error) { document.getElementById('clientsTableWrap').innerHTML = `<div class="table-empty">Erreur : ${error.message}</div>`; return; }
+
+  const map = {};
+  (data || []).forEach(o => {
+    const key = o.delivery_phone;
+    if (!map[key]) map[key] = { name: o.delivery_name, phone: o.delivery_phone, nb: 0, total: 0, last: o.created_at };
+    map[key].nb++;
+    map[key].total += (o.subtotal_fcfa || 0) + (o.delivery_fee_fcfa || 0) - (o.discount_fcfa || 0);
+    if (o.created_at > map[key].last) { map[key].last = o.created_at; map[key].name = o.delivery_name; }
+  });
+  _allClients = Object.values(map).sort((a, b) => b.total - a.total);
+  renderClientsTable();
+}
+
+function renderClientsTable() {
+  const search = document.getElementById('searchClients')?.value.toLowerCase() || '';
+  const rows = _allClients.filter(c => !search || c.name?.toLowerCase().includes(search) || c.phone?.includes(search));
+  if (!rows.length) { document.getElementById('clientsTableWrap').innerHTML = '<div class="table-empty">Aucun client.</div>'; return; }
+  document.getElementById('clientsTableWrap').innerHTML = `
+  <table class="orders-table">
+    <thead><tr><th>Client</th><th>Téléphone</th><th>Commandes</th><th>CA généré</th><th>Dernière commande</th></tr></thead>
+    <tbody>
+    ${rows.map(c => {
+      const initials = (c.name || '?').split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase();
+      const date = new Date(c.last).toLocaleDateString('fr-FR', { day:'2-digit', month:'short', year:'numeric' });
+      return `<tr>
+        <td><div class="client-name-cell"><div class="client-avatar">${initials}</div><div class="client-name">${c.name || '—'}</div></div></td>
+        <td class="td-date">${c.phone || '—'}</td>
+        <td style="font-weight:700">${c.nb}</td>
+        <td class="td-total">${formatPrice(c.total)}</td>
+        <td class="td-date">${date}</td>
+      </tr>`;
+    }).join('')}
+    </tbody>
+  </table>`;
 }
 
 /* ---------- CONFIRM PAYMENT ---------- */
