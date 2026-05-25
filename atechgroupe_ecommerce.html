@@ -1713,6 +1713,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     <div class="confirm-screen" id="confirmScreen">
       <div class="confirm-icon">✅</div>
       <h3>Commande reçue !</h3>
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:4px;">Numéro de commande</p>
+      <p style="font-size:1.15rem;font-weight:700;letter-spacing:.04em;color:var(--lime-dk);margin-bottom:16px;" id="confirmOrderNum">—</p>
       <p>Merci pour votre confiance. Voici les instructions de paiement :</p>
       <div class="confirm-payment-step" id="confirmPaymentStep">
         <strong id="confirmPaymentTitle"></strong>
@@ -1734,11 +1736,20 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 </div>
 
 
+<!-- Supabase JS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+
 <!-- ============================================================
      JAVASCRIPT — Cart, Modals, Filter, Search, Animations
      ============================================================ -->
 <script>
 'use strict';
+
+/* ---------- SUPABASE CLIENT ---------- */
+const _sb = window.supabase.createClient(
+  'https://bwybsfubmrwjyijxsbbk.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3eWJzZnVibXJ3anlpanhzYmJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2NTIwOTUsImV4cCI6MjA5NTIyODA5NX0.1mYbu_Yn3IjSWPRH_0sW9lhc1cCVJnRI82gLEYWvJs0'
+);
 
 /* ---------- STATE ---------- */
 let cart = JSON.parse(localStorage.getItem('atech_cart') || '[]');
@@ -2059,7 +2070,7 @@ function closeCheckout() {
   document.body.style.overflow = '';
 }
 
-function submitOrder() {
+async function submitOrder() {
   const prenom  = document.getElementById('fieldPrenom').value.trim();
   const nom     = document.getElementById('fieldNom').value.trim();
   const tel     = document.getElementById('fieldTel').value.trim();
@@ -2070,13 +2081,37 @@ function submitOrder() {
     return;
   }
 
-  const payMethod = document.querySelector('input[name="payment"]:checked').value;
+  const btn = document.querySelector('.btn-submit');
+  btn.disabled = true;
+  btn.textContent = '⏳ Traitement en cours…';
+
+  const payMethod  = document.querySelector('input[name="payment"]:checked').value;
   const payLabels  = { wave: 'Wave', om: 'Orange Money' };
   const payNumbers = { wave: '77 000 00 00', om: '77 000 00 00' };
 
+  const items = cart.map(i => ({ name: i.name, image: i.img || '', price: i.price, qty: i.qty }));
+
+  const { data, error } = await _sb.rpc('place_order', {
+    p_delivery_name:     `${prenom} ${nom}`,
+    p_delivery_phone:    tel,
+    p_delivery_quartier: adresse,
+    p_delivery_commune:  'Dakar',
+    p_payment_method:    payMethod,
+    p_items:             items
+  });
+
+  btn.disabled = false;
+  btn.textContent = '✅ Confirmer la commande';
+
+  if (error || !data?.success) {
+    showToast('❌ Erreur : ' + (data?.error || error?.message || 'Réessayez plus tard'));
+    return;
+  }
+
+  document.getElementById('confirmOrderNum').textContent = data.order_number;
   document.getElementById('confirmPaymentTitle').textContent = `Paiement via ${payLabels[payMethod]}`;
   document.getElementById('confirmPaymentInstr').textContent =
-    `Envoyez ${formatPrice(cartTotal())} au ${payNumbers[payMethod]} (ATECH GROUPE), puis envoyez la capture d'écran sur WhatsApp au +221 76 382 11 52 en mentionnant votre nom.`;
+    `Envoyez ${formatPrice(cartTotal())} au ${payNumbers[payMethod]} (ATECH GROUPE), puis envoyez la capture d'écran sur WhatsApp au +221 76 382 11 52 en mentionnant votre nom et le n° ${data.order_number}.`;
   document.getElementById('confirmTel').textContent = tel;
 
   document.getElementById('checkoutForm').style.display = 'none';
