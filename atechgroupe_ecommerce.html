@@ -997,6 +997,43 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .top-ventes-header { flex-direction: column; align-items: flex-start; }
   .testimonials-grid { grid-template-columns: 1fr; }
 }
+
+/* ---------- PLACEHOLDER IMAGE (produits sans photo) ---------- */
+.img-ph {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px; text-align: center; padding: 14px;
+  background:
+    radial-gradient(120% 120% at 50% 0%, rgba(200,241,53,.16) 0%, transparent 60%),
+    linear-gradient(135deg, var(--bg2) 0%, var(--bg4) 100%);
+  color: var(--muted);
+  position: relative;
+}
+.img-ph::after {
+  content: 'ATECH'; position: absolute; bottom: 8px; right: 11px;
+  font-size: .58rem; font-weight: 800; letter-spacing: .14em;
+  color: var(--lime-dk); opacity: .55;
+}
+.img-ph-ico { font-size: 2.4rem; line-height: 1; opacity: .9; }
+.img-ph-name {
+  font-size: .72rem; font-weight: 700; color: var(--ink);
+  text-transform: uppercase; letter-spacing: .04em; line-height: 1.25; max-width: 92%;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.img-ph-modal { aspect-ratio: 1/1; min-height: 220px; border-radius: 12px; }
+.img-ph-modal .img-ph-ico { font-size: 4rem; }
+.img-ph-modal .img-ph-name { font-size: .9rem; }
+
+/* ---------- BOUTON « CHARGER PLUS » ---------- */
+.load-more-wrap { display: flex; justify-content: center; margin-top: 28px; }
+.btn-load-more {
+  appearance: none; cursor: pointer;
+  background: var(--ink); color: #fff;
+  font-family: inherit; font-size: .9rem; font-weight: 700;
+  padding: 13px 28px; border: none; border-radius: 10px;
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.btn-load-more:hover { transform: translateY(-2px); background: #000; box-shadow: 0 10px 24px -10px rgba(0,0,0,.4); }
 </style>
 </head>
 
@@ -1204,6 +1241,22 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
       <div class="cat-pill-icon">🎧</div>
       <div class="cat-pill-lbl">Multimédia</div>
     </div>
+    <div class="cat-pill" data-filter="telephones" onclick="filterCat(this)">
+      <div class="cat-pill-icon">📱</div>
+      <div class="cat-pill-lbl">Téléphones &amp; Tablettes</div>
+    </div>
+    <div class="cat-pill" data-filter="electromenager" onclick="filterCat(this)">
+      <div class="cat-pill-icon">🔌</div>
+      <div class="cat-pill-lbl">Électroménager</div>
+    </div>
+    <div class="cat-pill" data-filter="gaming" onclick="filterCat(this)">
+      <div class="cat-pill-icon">🎮</div>
+      <div class="cat-pill-lbl">Consoles &amp; Jeux</div>
+    </div>
+    <div class="cat-pill" data-filter="accessoires" onclick="filterCat(this)">
+      <div class="cat-pill-icon">🧩</div>
+      <div class="cat-pill-lbl">Accessoires</div>
+    </div>
   </div>
 </div>
 
@@ -1242,11 +1295,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     <p id="catalogueEmpty" style="grid-column:1/-1;text-align:center;color:var(--muted);padding:60px 0">
       Chargement du catalogue…
     </p>
+  </div>
 
-    <div class="no-results hidden" id="noResults">
-      Aucun produit trouvé. Essayez un autre terme. 🔍
-    </div>
+  <div class="no-results hidden" id="noResults">
+    Aucun produit trouvé. Essayez un autre terme. 🔍
+  </div>
 
+  <div class="load-more-wrap">
+    <button id="loadMoreBtn" class="btn-load-more" onclick="renderMore()" style="display:none">Charger plus de produits</button>
   </div>
 </section>
 
@@ -1656,17 +1712,21 @@ const _sb = window.supabase.createClient(
 /* ---------- PRODUCT DB LOADER ---------- */
 const DB_SLUG_MAP = {
   'ordinateurs':'ordinateurs','laptops':'ordinateurs','pc-bureau':'ordinateurs',
-  'peripheriques':'peripheriques','souris':'peripheriques','claviers':'peripheriques','accessoires':'peripheriques',
+  'peripheriques':'peripheriques','souris':'peripheriques','claviers':'peripheriques',
   'reseau-securite':'reseaux',
   'cameras-ip':'securite',
   'consommables':'consommables','cartouches':'consommables',
   'multimedia':'multimedia',
+  'telephones':'telephones',
+  'electromenager':'electromenager',
+  'gaming':'gaming',
+  'accessoires':'accessoires',
 };
 
 async function loadProductsFromDB() {
   const { data: products, error } = await _sb
     .from('products')
-    .select('name, price_fcfa, stock_qty, short_description, images, categories!inner(slug, name)')
+    .select('name, price_fcfa, stock_qty, short_description, images, brand, categories!inner(slug, name)')
     .eq('is_active', true)
     .order('price_fcfa');
 
@@ -1690,36 +1750,12 @@ async function loadProductsFromDB() {
     img:   p.images?.[0]?.url || '',
     cat:   DB_SLUG_MAP[p.categories?.slug] || p.categories?.slug || 'autre',
     stock: p.stock_qty,
-    desc:  p.short_description || ''
+    desc:  p.short_description || '',
+    brand: p.brand || ''
   }));
 
-  const grid = document.getElementById('productsGrid');
-  if (!grid) return;
-  grid.innerHTML = mapped.map(p => `
-    <div class="product-card fade-up visible"
-         data-name="${p.name.replace(/"/g,'&quot;')}"
-         data-price="${p.price}"
-         data-img="${p.img.replace(/"/g,'&quot;')}"
-         data-cat="${p.cat}"
-         data-stock="${p.stock}"
-         data-desc="${p.desc.replace(/"/g,'&quot;')}"
-         onclick="openModal(this)">
-      <div class="product-img">
-        <img src="${p.img}" alt="${p.name.replace(/"/g,'&quot;')}" loading="lazy">
-      </div>
-      <div class="product-body">
-        <div class="product-cat">${catLabels[p.cat] || p.cat}</div>
-        <div class="product-name">${p.name}</div>
-        <div class="product-price">${p.price.toLocaleString('fr-FR')} <span>FCFA</span></div>
-        <div class="product-stock"></div>
-        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
-      </div>
-    </div>`).join('') + '<div class="no-results hidden" id="noResults">Aucun produit trouvé. 🔍</div>';
-
-  document.getElementById('productsCount').textContent = mapped.length + ' produit' + (mapped.length !== 1 ? 's' : '');
-  document.querySelectorAll('.product-card.fade-up').forEach(el => {
-    if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
-  });
+  ALL_PRODUCTS = mapped;
+  renderReset(ALL_PRODUCTS);
 
   // Peupler "Meilleures ventes" avec le top 3 (prix décroissant)
   const top3 = [...mapped].sort((a, b) => b.price - a.price).slice(0, 3);
@@ -1738,7 +1774,9 @@ async function loadProductsFromDB() {
            onclick="openModal(this)">
         <div class="featured-badge"><span class="badge badge-lime">${featBadges[i]}</span></div>
         <div class="featured-img-wrap">
-          <img src="${p.img}" alt="${p.name.replace(/"/g,'&quot;')}" loading="lazy">
+          ${p.img
+            ? `<img src="${p.img}" alt="${p.name.replace(/"/g,'&quot;')}" loading="lazy">`
+            : `<div class="img-ph"><span class="img-ph-ico">${CAT_ICON[p.cat]||'📦'}</span><span class="img-ph-name">${(p.brand||p.name).replace(/"/g,'&quot;')}</span></div>`}
         </div>
         <div class="featured-info">
           <div class="featured-cat">${catLabels[p.cat] || p.cat}</div>
@@ -1766,15 +1804,76 @@ const catLabels = {
   reseaux:       'Réseaux & WiFi',
   securite:      'Vidéosurveillance',
   consommables:  'Consommables',
-  multimedia:    'Multimédia'
+  multimedia:    'Multimédia',
+  telephones:    'Téléphones & Tablettes',
+  electromenager:'Électroménager',
+  gaming:        'Consoles & Jeux',
+  accessoires:   'Accessoires'
+};
+const CAT_ICON = {
+  ordinateurs:'💻', peripheriques:'🖱️', reseaux:'📡', securite:'📹',
+  consommables:'🔧', multimedia:'🎧', telephones:'📱', electromenager:'🔌',
+  gaming:'🎮', accessoires:'🧩'
 };
 
 const productDescs = {};
 
+/* ---------- RENDU CATALOGUE (data-driven + pagination) ---------- */
+let ALL_PRODUCTS = [];
+let FILTERED = [];
+let SHOWN = 0;
+const PAGE_SIZE = 24;
+
+function escAttr(s){ return (s == null ? '' : String(s)).replace(/"/g,'&quot;'); }
+
+function productCardHTML(p){
+  const stock = p.stock || 0;
+  let stockHtml, disabled = '';
+  if (stock === 0)     { stockHtml = '<span style="color:#dc2626">✗ Rupture de stock</span>'; disabled = 'disabled'; }
+  else if (stock <= 3) { stockHtml = `<span style="color:#b45309">⚠ Plus que ${stock} en stock !</span>`; }
+  else                 { stockHtml = `<span style="color:#16a34a">✓ En stock (${stock})</span>`; }
+  const media = p.img
+    ? `<img src="${p.img}" alt="${escAttr(p.name)}" loading="lazy">`
+    : `<div class="img-ph"><span class="img-ph-ico">${CAT_ICON[p.cat]||'📦'}</span><span class="img-ph-name">${escAttr(p.brand||p.name)}</span></div>`;
+  return `<div class="product-card fade-up visible"
+       data-name="${escAttr(p.name)}" data-price="${p.price}" data-img="${escAttr(p.img)}"
+       data-cat="${p.cat}" data-stock="${stock}" data-desc="${escAttr(p.desc)}"
+       onclick="openModal(this)">
+    <div class="product-img">${media}</div>
+    <div class="product-body">
+      <div class="product-cat">${catLabels[p.cat] || p.cat}</div>
+      <div class="product-name">${p.name}</div>
+      <div class="product-price">${(p.price||0).toLocaleString('fr-FR')} <span>FCFA</span></div>
+      <div class="product-stock">${stockHtml}</div>
+      <button class="btn-cart" ${disabled} onclick="event.stopPropagation(); addToCart(this.closest('.product-card'))">🛒 Ajouter</button>
+    </div>
+  </div>`;
+}
+
+function renderMore(){
+  const grid = document.getElementById('productsGrid');
+  if (!grid) return;
+  const next = FILTERED.slice(SHOWN, SHOWN + PAGE_SIZE);
+  grid.insertAdjacentHTML('beforeend', next.map(productCardHTML).join(''));
+  SHOWN += next.length;
+  const btn = document.getElementById('loadMoreBtn');
+  if (btn) btn.style.display = (SHOWN < FILTERED.length) ? '' : 'none';
+}
+
+function renderReset(list){
+  FILTERED = list; SHOWN = 0;
+  const grid = document.getElementById('productsGrid');
+  if (grid) grid.innerHTML = '';
+  renderMore();
+  const count = document.getElementById('productsCount');
+  if (count) count.textContent = list.length + ' produit' + (list.length !== 1 ? 's' : '');
+  const nr = document.getElementById('noResults');
+  if (nr) nr.classList.toggle('hidden', list.length > 0);
+}
+
 /* ---------- INIT ---------- */
 document.addEventListener('DOMContentLoaded', async () => {
   await loadProductsFromDB();
-  initStocks();
   updateBadge();
   renderCartDrawer();
   initSearch();
@@ -1818,18 +1917,13 @@ function initSearch() {
   if (!input) return;
   input.addEventListener('input', () => {
     const q = input.value.trim().toLowerCase();
-    if (!q) { applyFilter('all'); return; }
-    const cards = document.querySelectorAll('.product-card');
-    let visible = 0;
-    cards.forEach(c => {
-      const match = c.dataset.name.toLowerCase().includes(q)
-        || (catLabels[c.dataset.cat] || '').toLowerCase().includes(q);
-      c.classList.toggle('hidden', !match);
-      if (match) visible++;
-    });
-    document.getElementById('productsCount').textContent = visible + ' produit' + (visible !== 1 ? 's' : '');
-    document.getElementById('noResults').classList.toggle('hidden', visible > 0);
-    document.getElementById('produits').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (!q) { renderReset(ALL_PRODUCTS); return; }
+    const list = ALL_PRODUCTS.filter(p =>
+      p.name.toLowerCase().includes(q)
+      || (p.brand || '').toLowerCase().includes(q)
+      || (catLabels[p.cat] || '').toLowerCase().includes(q)
+    );
+    renderReset(list);
   });
 }
 
@@ -1849,15 +1943,8 @@ function filterByName(filter) {
 }
 
 function applyFilter(filter) {
-  const cards = document.querySelectorAll('.product-card');
-  let visible = 0;
-  cards.forEach(c => {
-    const show = filter === 'all' || c.dataset.cat === filter;
-    c.classList.toggle('hidden', !show);
-    if (show) visible++;
-  });
-  document.getElementById('productsCount').textContent = visible + ' produit' + (visible !== 1 ? 's' : '');
-  document.getElementById('noResults').classList.toggle('hidden', visible > 0);
+  const list = (filter === 'all') ? ALL_PRODUCTS : ALL_PRODUCTS.filter(p => p.cat === filter);
+  renderReset(list);
 }
 
 /* ---------- CART ---------- */
@@ -1979,8 +2066,20 @@ function openModal(card) {
   const stock = parseInt(card.dataset.stock) || 0;
   const name = card.dataset.name;
 
-  document.getElementById('modalImg').src = card.dataset.img;
-  document.getElementById('modalImg').alt = name;
+  const mImg = document.getElementById('modalImg');
+  const mWrap = mImg.parentElement;
+  let mPh = mWrap.querySelector('.img-ph');
+  if (card.dataset.img) {
+    mImg.style.display = '';
+    mImg.src = card.dataset.img;
+    mImg.alt = name;
+    if (mPh) mPh.style.display = 'none';
+  } else {
+    mImg.style.display = 'none';
+    if (!mPh) { mPh = document.createElement('div'); mPh.className = 'img-ph img-ph-modal'; mWrap.appendChild(mPh); }
+    mPh.style.display = '';
+    mPh.innerHTML = `<span class="img-ph-ico">${CAT_ICON[card.dataset.cat]||'📦'}</span><span class="img-ph-name">${escAttr(name)}</span>`;
+  }
   document.getElementById('modalCat').textContent = catLabels[card.dataset.cat] || card.dataset.cat;
   document.getElementById('modalTitle').textContent = name;
   document.getElementById('modalPrice').textContent = formatPrice(parseInt(card.dataset.price));

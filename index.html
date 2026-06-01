@@ -1411,7 +1411,7 @@ nav.scrolled {
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-actions">
-    <a href="atechgroupe_ecommerce.html" class="nav-shop" aria-label="Visiter la boutique en ligne">
+    <a href="atechgroupe_ecommerce.html" class="nav-shop" aria-label="Visiter la boutique en ligne" onclick="return shopSoon(event)">
       <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
       <span class="shop-label">Boutique en ligne</span>
     </a>
@@ -1538,7 +1538,7 @@ nav.scrolled {
         <li>Stockage, imprimantes & consommables</li>
         <li>Paiement Wave, Orange Money, cash</li>
       </ul>
-      <a href="atechgroupe_ecommerce.html" class="pole-link">Visiter la boutique →</a>
+      <a href="atechgroupe_ecommerce.html" class="pole-link" onclick="return shopSoon(event)">Visiter la boutique →</a>
     </div>
   </div>
 </section>
@@ -2103,6 +2103,44 @@ function submitForm() {
   const success = document.getElementById('formSuccess');
   success.style.display = 'block';
 }
+</script>
+<!-- MODAL : BOUTIQUE EN TRAVAUX -->
+<style>
+.shopsoon-overlay{position:fixed;inset:0;z-index:9500;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(11,12,16,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);}
+.shopsoon-overlay.open{display:flex;animation:ssFade .25s var(--ease);}
+@keyframes ssFade{from{opacity:0}to{opacity:1}}
+.shopsoon-card{position:relative;max-width:430px;width:100%;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px 32px 30px;text-align:center;box-shadow:0 30px 70px -20px rgba(20,22,15,.45);animation:ssPop .35s var(--ease-spring);}
+@keyframes ssPop{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
+.shopsoon-ico{width:72px;height:72px;margin:0 auto 18px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:34px;background:rgba(200,241,53,.18);border:1px solid rgba(93,122,0,.3);}
+.shopsoon-card h3{font-family:'Clash Display',sans-serif;font-size:24px;font-weight:700;letter-spacing:-.5px;margin-bottom:10px;color:var(--white);}
+.shopsoon-card p{font-size:15px;line-height:1.65;color:var(--muted);margin-bottom:24px;}
+.shopsoon-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.shopsoon-wa{display:inline-flex;align-items:center;gap:8px;background:var(--lime);color:var(--dark);font-weight:700;font-size:14px;padding:12px 22px;border-radius:10px;text-decoration:none;cursor:none;transition:transform .25s var(--ease),box-shadow .25s var(--ease);}
+.shopsoon-wa:hover{transform:translateY(-2px);box-shadow:var(--shadow-lime);}
+.shopsoon-close{background:transparent;border:1px solid rgba(0,0,0,.15);color:var(--white);font-family:'Epilogue',sans-serif;font-weight:600;font-size:14px;padding:12px 22px;border-radius:10px;cursor:none;transition:border-color .25s var(--ease);}
+.shopsoon-close:hover{border-color:rgba(0,0,0,.4);}
+.shopsoon-badge{position:absolute;top:15px;right:18px;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);}
+@media(hover:none),(max-width:768px){.shopsoon-wa,.shopsoon-close{cursor:pointer;}}
+</style>
+<div class="shopsoon-overlay" id="shopSoonOverlay" onclick="if(event.target===this) closeShopSoon()">
+  <div class="shopsoon-card">
+    <span class="shopsoon-badge">ATECH</span>
+    <div class="shopsoon-ico">🚧</div>
+    <h3>Boutique en travaux</h3>
+    <p>Notre boutique en ligne arrive <strong>très bientôt</strong>. Merci de votre patience — revenez d'ici peu !<br>En attendant, contactez-nous pour toute commande de matériel informatique.</p>
+    <div class="shopsoon-actions">
+      <a class="shopsoon-wa" href="https://wa.me/221763821152?text=Bonjour%20ATECH%20GROUPE%2C%20je%20souhaite%20commander%20du%20mat%C3%A9riel%20informatique." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.69.25-1.29.18-1.41-.08-.12-.27-.2-.57-.35z"/></svg>
+        Écrire sur WhatsApp
+      </a>
+      <button class="shopsoon-close" onclick="closeShopSoon()">Fermer</button>
+    </div>
+  </div>
+</div>
+<script>
+function shopSoon(e){ if(e) e.preventDefault(); document.getElementById('shopSoonOverlay').classList.add('open'); return false; }
+function closeShopSoon(){ document.getElementById('shopSoonOverlay').classList.remove('open'); }
+document.addEventListener('keydown', function(ev){ if(ev.key === 'Escape') closeShopSoon(); });
 </script>
 </body>
 </html>

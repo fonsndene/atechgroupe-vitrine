@@ -36,3 +36,18 @@ screenshots/
 # Variantes archivées (anciennes versions)
 _archive_vitrine-sans-photos.html
 atechgroupe_vitrine.html
+
+# Artefacts import catalogue (gros / one-shot)
+scripts/import_catalogue_atech.sql
+scripts/_*.js
+scripts/_*.log
+scripts/update_descriptions_atech.sql
+
+# Pipeline images (fichiers de travail)
+scripts/images_catalogue.csv
+scripts/update_images_atech.sql
+
+# Outillage interne (generateurs one-shot)
+scripts/gen_import.py
+scripts/gen_descriptions.py
+scripts/images_tool.py
