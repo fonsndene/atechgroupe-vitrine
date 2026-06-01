@@ -1,0 +1,19 @@
+# Documents internes / business — ne jamais déployer
+*.xlsx
+*.docx
+*.pptx
+*.pdf
+atechshop_schema.sql
+atechshop_supabase_prompt.md
+deploy-github.md
+guide_execution_terminal.md
+screenshots/
+scripts/
+.claude/
+.agents/
+rtk/
+skills-lock.json
+
+# Variantes archivées
+_archive_vitrine-sans-photos.html
+atechgroupe_vitrine.html

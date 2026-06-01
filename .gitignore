@@ -3,21 +3,36 @@
 Thumbs.db
 desktop.ini
 
-# Éditeurs
+# Éditeurs / outils de dev
 .vscode/
 .idea/
 *.swp
 *.swo
+.claude/
+.agents/
+rtk/
+skills-lock.json
 
 # Fichiers temporaires
 *.tmp
 *.log
 
-# Dossiers non liés au site web
-rtk/
-ATECH_GROUPE_Dakar.pptx
-atechgroupe_vitrine.html
-
-# Variables d'environnement
+# Variables d'environnement / déploiement
 .env
 .env.local
+.vercel
+
+# Documents internes / business — NE PAS publier
+*.xlsx
+*.docx
+*.pptx
+Business_IT_Produits*.pdf
+atechshop_schema.sql
+atechshop_supabase_prompt.md
+deploy-github.md
+guide_execution_terminal.md
+screenshots/
+
+# Variantes archivées (anciennes versions)
+_archive_vitrine-sans-photos.html
+atechgroupe_vitrine.html
