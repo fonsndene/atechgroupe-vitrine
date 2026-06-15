@@ -11,6 +11,19 @@
 <meta name="theme-color" content="#4F86C6">
 <link rel="canonical" href="https://www.atechgroupe.com/">
 
+<!-- Langue / international (site monolingue FR) -->
+<link rel="alternate" hreflang="fr" href="https://www.atechgroupe.com/">
+<link rel="alternate" hreflang="x-default" href="https://www.atechgroupe.com/">
+
+<!-- Géolocalisation (SEO local Dakar) -->
+<meta name="geo.region" content="SN-DK">
+<meta name="geo.placename" content="Dakar, Sénégal">
+<meta name="geo.position" content="14.6928;-17.4467">
+<meta name="ICBM" content="14.6928, -17.4467">
+
+<!-- Préchargement de l'image LCP (héro) -->
+<link rel="preload" as="image" href="/hero.webp" fetchpriority="high">
+
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/favicon.svg">
@@ -22,49 +35,120 @@
 <meta property="og:url" content="https://www.atechgroupe.com/">
 <meta property="og:title" content="ATECH GROUPE — Agence Web & Développement à Dakar, Sénégal">
 <meta property="og:description" content="Sites web premium, applications mobiles, plateformes SaaS et e-commerce pour les entreprises du Sénégal. Devis gratuit · paiement Wave & Orange Money.">
-<meta property="og:image" content="https://www.atechgroupe.com/hero.jpg">
+<meta property="og:image" content="https://www.atechgroupe.com/og-atech.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="ATECH GROUPE — agence tech à Dakar, Sénégal">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ATECH GROUPE — Agence Web & Développement à Dakar, Sénégal">
 <meta name="twitter:description" content="Sites web premium, applications mobiles, SaaS et e-commerce pour les entreprises du Sénégal. Devis gratuit · Wave & Orange Money.">
-<meta name="twitter:image" content="https://www.atechgroupe.com/hero.jpg">
+<meta name="twitter:image" content="https://www.atechgroupe.com/og-atech.jpg">
 
-<!-- Données structurées : entreprise locale -->
+<!-- Données structurées : graphe lié (entreprise, site, page, avis, FAQ, services) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "@id": "https://www.atechgroupe.com/#organization",
-  "name": "ATECH GROUPE",
-  "alternateName": "Atechgroupe",
-  "url": "https://www.atechgroupe.com/",
-  "image": "https://www.atechgroupe.com/hero.jpg",
-  "logo": "https://www.atechgroupe.com/favicon.svg",
-  "description": "Agence technologique à Dakar : développement de sites web, applications mobiles, plateformes SaaS, e-commerce et vente de matériel informatique.",
-  "telephone": "+221763821152",
-  "email": "contact@atechgroupe.com",
-  "priceRange": "$$",
-  "currenciesAccepted": "XOF",
-  "paymentAccepted": "Wave, Orange Money, Espèces, Virement bancaire",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Fann",
-    "addressLocality": "Dakar",
-    "addressCountry": "SN"
-  },
-  "areaServed": {
-    "@type": "Country",
-    "name": "Sénégal"
-  },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-    "opens": "08:00",
-    "closes": "19:00"
-  },
-  "knowsAbout": ["Développement web","Applications mobiles","Plateformes SaaS","E-commerce","UI/UX Design","Matériel informatique"]
+  "@graph": [
+    {
+      "@type": ["ProfessionalService", "Organization"],
+      "@id": "https://www.atechgroupe.com/#organization",
+      "name": "ATECH GROUPE",
+      "alternateName": "Atechgroupe",
+      "url": "https://www.atechgroupe.com/",
+      "image": "https://www.atechgroupe.com/og-atech.jpg",
+      "logo": { "@type": "ImageObject", "url": "https://www.atechgroupe.com/favicon.svg" },
+      "description": "Agence web et tech à Dakar (Sénégal) : création de sites web premium, applications mobiles iOS/Android, plateformes SaaS, e-commerce et vente de matériel informatique. Devis gratuit, paiement Wave & Orange Money.",
+      "slogan": "Votre vision, notre code, votre succès.",
+      "telephone": "+221763821152",
+      "email": "contact@atechgroupe.com",
+      "priceRange": "$$",
+      "currenciesAccepted": "XOF",
+      "paymentAccepted": "Wave, Orange Money, Espèces, Virement bancaire",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Fann",
+        "addressLocality": "Dakar",
+        "addressCountry": "SN"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": 14.6928, "longitude": -17.4467 },
+      "areaServed": [
+        { "@type": "Country", "name": "Sénégal" },
+        { "@type": "City", "name": "Dakar" },
+        { "@type": "City", "name": "Thiès" },
+        { "@type": "City", "name": "Saint-Louis" },
+        { "@type": "City", "name": "Ziguinchor" }
+      ],
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "08:00",
+        "closes": "19:00"
+      },
+      "knowsAbout": ["Développement web","Applications mobiles","Plateformes SaaS","E-commerce","UI/UX Design","Référencement SEO","Matériel informatique"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Services ATECH GROUPE",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Site Vitrine Premium", "description": "Un site web professionnel, rapide, responsive et bien référencé qui donne immédiatement confiance à vos visiteurs.", "provider": { "@id": "https://www.atechgroupe.com/#organization" } } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "E-Commerce & Boutique", "description": "Plateforme de vente en ligne avec paiement Wave/Orange Money intégré, gestion des stocks et tableau de bord.", "provider": { "@id": "https://www.atechgroupe.com/#organization" } } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Application Mobile", "description": "App iOS et Android native ou cross-platform, livrée sur les stores avec maintenance incluse la première année.", "provider": { "@id": "https://www.atechgroupe.com/#organization" } } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Plateforme SaaS", "description": "Outils métier, plateformes de gestion, systèmes d'information sur mesure pour votre activité spécifique.", "provider": { "@id": "https://www.atechgroupe.com/#organization" } } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "UI/UX Design", "description": "Conception d'interfaces belles et intuitives — maquettes, prototypes interactifs et guides de style.", "provider": { "@id": "https://www.atechgroupe.com/#organization" } } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Maintenance & SEO", "description": "Contrat mensuel de maintenance, mises à jour, sauvegardes automatiques et optimisation moteurs de recherche.", "provider": { "@id": "https://www.atechgroupe.com/#organization" } } }
+        ]
+      },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "3", "bestRating": "5", "worstRating": "1" },
+      "review": [
+        { "@type": "Review", "author": { "@type": "Person", "name": "Omar Diallo" }, "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }, "reviewBody": "Atechgroupe a conçu notre plateforme de gestion complète : suivi des stocks et des bouteilles de gaz, distribution, facturation et tableau de bord en temps réel. Un outil fiable et sur mesure qui a transformé notre organisation au quotidien.", "itemReviewed": { "@id": "https://www.atechgroupe.com/#organization" } },
+        { "@type": "Review", "author": { "@type": "Organization", "name": "Médicos del Mundo" }, "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }, "reviewBody": "Atechgroupe a développé notre plateforme SaaS avec un niveau de sécurité remarquable. Chiffrement des données, authentification renforcée, gestion fine des accès — chaque exigence a été respectée. Un partenaire technique fiable pour des projets sensibles.", "itemReviewed": { "@id": "https://www.atechgroupe.com/#organization" } },
+        { "@type": "Review", "author": { "@type": "Person", "name": "Béaz Gamiz" }, "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }, "reviewBody": "Le site de notre école reflète parfaitement notre identité et nos valeurs. Parents et élèves l'ont adopté immédiatement. Atechgroupe a compris nos besoins dès le premier échange et livré un résultat soigné dans les délais.", "itemReviewed": { "@id": "https://www.atechgroupe.com/#organization" } }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.atechgroupe.com/#website",
+      "url": "https://www.atechgroupe.com/",
+      "name": "ATECH GROUPE",
+      "description": "Agence web & développement à Dakar, Sénégal.",
+      "publisher": { "@id": "https://www.atechgroupe.com/#organization" },
+      "inLanguage": "fr-FR"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.atechgroupe.com/#webpage",
+      "url": "https://www.atechgroupe.com/",
+      "name": "ATECH GROUPE — Agence Web & Développement à Dakar, Sénégal",
+      "isPartOf": { "@id": "https://www.atechgroupe.com/#website" },
+      "about": { "@id": "https://www.atechgroupe.com/#organization" },
+      "primaryImageOfPage": "https://www.atechgroupe.com/og-atech.jpg",
+      "inLanguage": "fr-FR",
+      "breadcrumb": { "@id": "https://www.atechgroupe.com/#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.atechgroupe.com/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.atechgroupe.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.atechgroupe.com/#services" },
+        { "@type": "ListItem", "position": 3, "name": "Réalisations", "item": "https://www.atechgroupe.com/#portfolio" },
+        { "@type": "ListItem", "position": 4, "name": "Contact", "item": "https://www.atechgroupe.com/#contact" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.atechgroupe.com/#faq",
+      "inLanguage": "fr-FR",
+      "mainEntity": [
+        { "@type": "Question", "name": "Comment se passe le paiement ?", "acceptedAnswer": { "@type": "Answer", "text": "Nous acceptons le paiement en plusieurs fois : généralement 50% à la commande, 50% à la livraison. Modes de paiement : Wave, Orange Money, virement bancaire (BICIS, Ecobank, etc.) ou espèces. Aucune mauvaise surprise." } },
+        { "@type": "Question", "name": "Combien de temps pour livrer un site ?", "acceptedAnswer": { "@type": "Answer", "text": "Un site vitrine simple est livré en 7 à 14 jours ouvrables. Un e-commerce prend 3 à 4 semaines. Une application mobile ou une plateforme SaaS entre 6 semaines et 3 mois selon la complexité. Nous respectons les délais annoncés." } },
+        { "@type": "Question", "name": "Est-ce que je peux modifier mon site moi-même ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, nous intégrons un tableau de bord simple pour modifier vos textes, images, prix et produits sans coder. Une formation est incluse dans toutes nos offres Business et Premium." } },
+        { "@type": "Question", "name": "Proposez-vous la maintenance après la livraison ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, nous proposons des contrats de maintenance mensuels à partir de 35 000 FCFA/mois incluant : mises à jour, sauvegardes automatiques, corrections de bugs, hébergement et support technique par WhatsApp." } },
+        { "@type": "Question", "name": "Travaillez-vous avec des clients hors de Dakar ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, nous travaillons avec des clients dans tout le Sénégal (Thiès, Saint-Louis, Ziguinchor…) et dans d'autres pays d'Afrique de l'Ouest. Tout le suivi se fait à distance via WhatsApp, Zoom et email." } }
+      ]
+    }
+  ]
 }
 </script>
 
@@ -1470,7 +1554,7 @@ nav.scrolled {
   </div>
 
   <div class="hero-right">
-    <img src="hero.jpg" alt="Setup tech — moniteurs et ordinateur" loading="eager">
+    <img src="hero.webp" alt="Agence ATECH GROUPE — création de sites web et applications à Dakar" width="1040" height="771" loading="eager" fetchpriority="high">
     <div class="hero-right-overlay"></div>
   </div>
 </section>
@@ -1504,7 +1588,7 @@ nav.scrolled {
   <div class="poles-grid">
     <div class="pole-card">
       <div class="pole-img">
-        <img src="dev saas.jpg" alt="Développement digital" loading="lazy">
+        <img src="dev-saas.webp" alt="Développement digital : sites web, applications mobiles et SaaS" width="1160" height="667" loading="lazy">
       </div>
       <div class="pole-num">01</div>
       <div class="pole-icon">
@@ -1523,7 +1607,7 @@ nav.scrolled {
     </div>
     <div class="pole-card">
       <div class="pole-img">
-        <img src="ecommerce.JPG" alt="E-boutique informatique" loading="lazy">
+        <img src="ecommerce.webp" alt="E-boutique informatique : matériel et accessoires à Dakar" width="1160" height="645" loading="lazy">
       </div>
       <div class="pole-num">02</div>
       <div class="pole-icon">
@@ -1621,7 +1705,7 @@ nav.scrolled {
 
 <!-- DAKAR CITYSCAPE BANNER -->
 <div class="dakar-banner">
-  <img class="dakar-banner-img" src="https://images.unsplash.com/photo-1690323223790-4df744a1a033?w=3840&q=90&auto=format&fit=crop" alt="Vue de Dakar depuis le Monument de la Renaissance Africaine, Sénégal" loading="lazy">
+  <img class="dakar-banner-img" src="dakar.webp" alt="Vue de Dakar, Sénégal — ATECH GROUPE" width="1600" height="805" loading="lazy">
   <div class="dakar-banner-content">
     <div class="dakar-banner-flag">🇸🇳</div>
     <div class="dakar-banner-text">Fièrement ancrés à <span>Dakar</span>,<br>nous bâtissons le digital sénégalais de demain.</div>
@@ -1638,7 +1722,7 @@ nav.scrolled {
 
   <div class="portfolio-grid">
     <div class="portfolio-card tall" style="grid-row:span 2">
-      <img class="portfolio-img" src="https://images.unsplash.com/photo-1664396113489-e50bddd4a777?w=3840&q=90&auto=format&fit=crop" alt="SADG — Société Africaine de Distribution de Gaz, Sénégal" loading="lazy">
+      <img class="portfolio-img" src="proj-sadg.webp" alt="SADG — Société Africaine de Distribution de Gaz, Sénégal" width="900" height="600" loading="lazy">
       <div class="portfolio-overlay">
         <div class="portfolio-tag">Énergie · Plateforme de gestion</div>
         <div class="portfolio-name">SADG</div>
@@ -1646,7 +1730,7 @@ nav.scrolled {
       </div>
     </div>
     <div class="portfolio-card">
-      <img class="portfolio-img" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=3840&q=90&auto=format&fit=crop" alt="Médicos del Mundo Sénégal — plateforme médicale sécurisée" loading="lazy">
+      <img class="portfolio-img" src="proj-medicos.webp" alt="Médicos del Mundo Sénégal — plateforme médicale sécurisée" width="900" height="600" loading="lazy">
       <div class="portfolio-overlay">
         <div class="portfolio-tag">Santé · SaaS sécurisé</div>
         <div class="portfolio-name">Médicos del Mundo Sénégal</div>
@@ -1654,7 +1738,7 @@ nav.scrolled {
       </div>
     </div>
     <div class="portfolio-card">
-      <img class="portfolio-img" src="https://images.unsplash.com/photo-1530785602389-07594beb8b73?w=3840&q=90&auto=format&fit=crop" alt="SWAA Sénégal — ONG, Society for Women and AIDS in Africa" loading="lazy">
+      <img class="portfolio-img" src="proj-swaa.webp" alt="SWAA Sénégal — ONG, Society for Women and AIDS in Africa" width="900" height="1350" loading="lazy">
       <div class="portfolio-overlay">
         <div class="portfolio-tag">ONG · Site web</div>
         <div class="portfolio-name">SWAA Sénégal</div>
@@ -1662,7 +1746,7 @@ nav.scrolled {
       </div>
     </div>
     <div class="portfolio-card">
-      <img class="portfolio-img" src="https://images.unsplash.com/photo-1536337005238-94b997371b40?w=3840&q=90&auto=format&fit=crop" alt="École Christ Roi — établissement scolaire, Sénégal" loading="lazy">
+      <img class="portfolio-img" src="proj-christroi.webp" alt="École Christ Roi — établissement scolaire, Sénégal" width="900" height="601" loading="lazy">
       <div class="portfolio-overlay">
         <div class="portfolio-tag">Éducation · Site web</div>
         <div class="portfolio-name">École Christ Roi</div>
@@ -1670,7 +1754,7 @@ nav.scrolled {
       </div>
     </div>
     <div class="portfolio-card">
-      <img class="portfolio-img" src="https://images.unsplash.com/photo-1509099863731-ef4bff19e808?w=3840&q=90&auto=format&fit=crop" alt="RNP+ Sénégal — réseau associatif et organisation, Sénégal" loading="lazy">
+      <img class="portfolio-img" src="proj-rnp.webp" alt="RNP+ Sénégal — réseau associatif et organisation, Sénégal" width="900" height="599" loading="lazy">
       <div class="portfolio-overlay">
         <div class="portfolio-tag">Association · Site web</div>
         <div class="portfolio-name">RNP+ Sénégal</div>
@@ -1774,7 +1858,7 @@ nav.scrolled {
       <div class="testi-text">"Le site de notre école reflète parfaitement notre identité et nos valeurs. Parents et élèves l'ont adopté immédiatement. Atechgroupe a compris nos besoins dès le premier échange et livré un résultat soigné dans les délais."</div>
       <div class="testi-author">
         <div class="testi-avatar is-logo">
-          <img src="logo-christ-roi.jpg" alt="Logo École Christ Roi — 30 ans" loading="lazy">
+          <img src="logo-christ-roi.webp" alt="Logo École Christ Roi — 30 ans" width="160" height="160" loading="lazy">
         </div>
         <div>
           <div class="testi-name">Béaz Gamiz</div>

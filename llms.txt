@@ -1,0 +1,28 @@
+# ATECH GROUPE
+
+> Agence web et technologique basée à Dakar (Sénégal). ATECH GROUPE conçoit des sites web premium, des applications mobiles iOS/Android, des plateformes SaaS et des solutions e-commerce, et vend du matériel informatique. Devis gratuit, paiement Wave & Orange Money, livraison à Dakar.
+
+## Pages principales
+- [Accueil](https://www.atechgroupe.com/): présentation de l'agence, services, réalisations, offres et contact.
+- [Services](https://www.atechgroupe.com/#services): développement digital et e-boutique informatique.
+- [Réalisations](https://www.atechgroupe.com/#portfolio): projets livrés (SADG, Médicos del Mundo, École Christ Roi, SWAA, RNP+).
+- [Offres & tarifs](https://www.atechgroupe.com/#tarifs): formules Starter, Business, Premium.
+- [FAQ](https://www.atechgroupe.com/#faq): paiement, délais, maintenance, zone d'intervention.
+- [Contact](https://www.atechgroupe.com/#contact): devis gratuit sous 24 h.
+
+## Services
+- Site vitrine premium : site professionnel, rapide, responsive et référencé.
+- E-commerce & boutique : vente en ligne avec paiement Wave/Orange Money, gestion des stocks, tableau de bord.
+- Application mobile : iOS et Android (native ou cross-platform), publiée sur les stores.
+- Plateforme SaaS : outils métier et systèmes d'information sur mesure.
+- UI/UX Design : maquettes, prototypes interactifs, design systems.
+- Maintenance & SEO : contrat mensuel, mises à jour, sauvegardes, référencement.
+
+## Faits clés
+- Localisation : Fann, Dakar, Sénégal. Zone servie : tout le Sénégal (Dakar, Thiès, Saint-Louis, Ziguinchor) et l'Afrique de l'Ouest.
+- Contact : +221 76 382 11 52 (téléphone & WhatsApp), contact@atechgroupe.com.
+- Horaires : lundi à samedi, 8 h – 19 h.
+- Paiement : Wave, Orange Money, virement bancaire, espèces (devise XOF / FCFA).
+- Délais : site vitrine 7–14 jours ; e-commerce 3–4 semaines ; app mobile / SaaS 6 semaines à 3 mois.
+- Maintenance à partir de 35 000 FCFA/mois.
+- Note clients : 5/5 (3 avis publiés).

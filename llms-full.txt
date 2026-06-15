@@ -1,0 +1,50 @@
+# ATECH GROUPE — Agence web & développement à Dakar, Sénégal
+
+> ATECH GROUPE (Atechgroupe) est une agence technologique basée à Fann, Dakar (Sénégal). Elle conçoit des sites web premium, des applications mobiles, des plateformes SaaS et des solutions e-commerce, et vend du matériel informatique. Slogan : « Votre vision, notre code, votre succès. »
+
+## Présentation
+ATECH GROUPE accompagne les entreprises, PME, écoles et ONG du Sénégal et d'Afrique de l'Ouest dans leur transformation digitale. L'agence couvre deux pôles : le développement digital (web, mobile, SaaS, e-commerce) et la vente de matériel informatique. Le suivi se fait sur place à Dakar ou à distance (WhatsApp, Zoom, email).
+
+## Services détaillés
+1. Site Vitrine Premium — Un site web professionnel, rapide, responsive et bien référencé qui donne immédiatement confiance à vos visiteurs.
+2. E-Commerce & Boutique — Plateforme de vente en ligne avec paiement Wave/Orange Money intégré, gestion des stocks et tableau de bord.
+3. Application Mobile — App iOS et Android native ou cross-platform, livrée sur les stores avec maintenance incluse la première année.
+4. Plateforme SaaS — Outils métier, plateformes de gestion, systèmes d'information sur mesure pour votre activité spécifique.
+5. UI/UX Design — Conception d'interfaces belles et intuitives : maquettes, prototypes interactifs et guides de style.
+6. Maintenance & SEO — Contrat mensuel de maintenance, mises à jour, sauvegardes automatiques et optimisation pour les moteurs de recherche.
+
+## Offres
+- Starter — Pour commerçants et indépendants : site vitrine 5 pages, design responsive, formulaire de contact, hébergement 1 an et nom de domaine .sn inclus, livraison en 2 semaines. Paiement en 2 fois possible.
+- Business (le plus populaire) — Pour PME : site complet + e-commerce, paiement Wave/Orange Money, tableau de bord admin, SEO et vitesse optimisés, formation incluse, 3 mois de maintenance, livraison en 3–4 semaines. Paiement en 3 fois possible.
+- Premium — Pour projets ambitieux : application mobile iOS & Android, plateforme SaaS sur mesure, API et intégrations, architecture scalable, maintenance dédiée, support prioritaire. Selon complexité.
+
+## Réalisations
+- SADG (Société Africaine de Distribution de Gaz) — plateforme de gestion : stocks, distribution, facturation, tableau de bord temps réel.
+- Médicos del Mundo Sénégal — plateforme SaaS ultra-sécurisée pour une ONG médicale internationale.
+- École Christ Roi (Dakar) — site web institutionnel.
+- SWAA Sénégal — site web d'ONG (Society for Women and AIDS in Africa).
+- RNP+ Sénégal — site web d'organisation/réseau associatif.
+
+## Questions fréquentes
+Q : Comment se passe le paiement ?
+R : Paiement en plusieurs fois (généralement 50 % à la commande, 50 % à la livraison). Modes : Wave, Orange Money, virement bancaire (BICIS, Ecobank…) ou espèces.
+
+Q : Combien de temps pour livrer un site ?
+R : Site vitrine simple : 7 à 14 jours ouvrables. E-commerce : 3 à 4 semaines. Application mobile ou plateforme SaaS : 6 semaines à 3 mois selon la complexité.
+
+Q : Est-ce que je peux modifier mon site moi-même ?
+R : Oui, un tableau de bord simple permet de modifier textes, images, prix et produits sans coder. Formation incluse dans les offres Business et Premium.
+
+Q : Proposez-vous la maintenance après la livraison ?
+R : Oui, contrats mensuels à partir de 35 000 FCFA/mois : mises à jour, sauvegardes automatiques, corrections de bugs, hébergement et support WhatsApp.
+
+Q : Travaillez-vous avec des clients hors de Dakar ?
+R : Oui, partout au Sénégal (Thiès, Saint-Louis, Ziguinchor…) et en Afrique de l'Ouest, avec suivi à distance.
+
+## Coordonnées
+- Adresse : Fann, Dakar, Sénégal
+- Téléphone & WhatsApp : +221 76 382 11 52
+- Email : contact@atechgroupe.com
+- Horaires : lundi à samedi, 8 h – 19 h
+- Site : https://www.atechgroupe.com/
+- Note clients : 5/5 (3 avis)
