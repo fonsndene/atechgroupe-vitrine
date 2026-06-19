@@ -1,6 +1,6 @@
 -- ============================================================
 -- SEED PRODUITS RÉELS — ATECHSHOP
--- Source: Business_IT_Produits Alphonse2.xlsx
+-- Source: catalogue produits ATECH (source interne)
 -- Photos: Unsplash CDN | Descriptions: personnalisées FR
 -- À exécuter dans Supabase → SQL Editor
 --
