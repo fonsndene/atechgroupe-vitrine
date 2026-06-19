@@ -22,3 +22,7 @@ atechgroupe_vitrine.html
 # Sources de marque brutes (logo) — les assets web vivent dans brand/
 *.zip
 Logo gamme Atech groupe/
+
+# Signatures e-mail — usage interne, jamais servies comme page publique
+Signature-*.html
+Signature-*.png
