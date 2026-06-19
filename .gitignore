@@ -38,6 +38,10 @@ _archive_vitrine-sans-photos.html
 _backup_*.html
 atechgroupe_vitrine.html
 
+# Sources de marque brutes (logo) — les assets web vivent dans brand/
+Logo gamme Atech groupe/
+Logo gamme Atech groupe.zip
+
 # Artefacts import catalogue (gros / one-shot)
 scripts/import_catalogue_atech.sql
 scripts/_*.js

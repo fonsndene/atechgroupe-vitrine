@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>Admin — ATECHSHOP</title>
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/brand/ATech-apple-touch-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -92,6 +95,7 @@ input, select, textarea { font-family: inherit; }
 }
 .sidebar-logo span { color: var(--lime); }
 .sidebar-logo small { display: block; font-size: .7rem; font-weight: 500; color: rgba(255,255,255,.4); margin-top: 2px; }
+.logo-medallion { width: 1.5em; height: 1.5em; margin-right: .4em; vertical-align: -.32em; }
 .sidebar-nav { flex: 1; padding: 16px 12px; display: flex; flex-direction: column; gap: 4px; }
 .nav-item {
   display: flex; align-items: center; gap: 10px;
@@ -557,7 +561,7 @@ input, select, textarea { font-family: inherit; }
      ============================================================ -->
 <div id="loginGate">
   <div class="login-card">
-    <div class="login-logo">ATECH<span>SHOP</span></div>
+    <div class="login-logo"><svg class="logo-medallion" viewBox="0 0 200 200" fill="none" aria-hidden="true" focusable="false"><circle cx="100" cy="100" r="88" stroke="#1B47A8" stroke-width="2"/><circle cx="100" cy="100" r="80" stroke="#1B47A8" stroke-width="1.2" stroke-opacity=".55"/><line x1="76" y1="120" x2="124" y2="120" stroke="#5C8FD8" stroke-width="9" stroke-linecap="round"/><path d="M60 150 L100 56 L140 150" stroke="#15309B" stroke-width="9.5" stroke-linejoin="miter" stroke-linecap="round"/><circle cx="100" cy="56" r="3.4" fill="#15309B"/></svg>ATECH<span>SHOP</span></div>
     <p class="login-sub">Accès réservé à l'administration</p>
     <label class="login-label">Adresse e-mail</label>
     <input type="email" class="login-input" id="lgEmail" placeholder="admin@example.com" autocomplete="email">
@@ -580,7 +584,7 @@ input, select, textarea { font-family: inherit; }
   <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
-      ATECH<span>SHOP</span>
+      <svg class="logo-medallion" viewBox="0 0 200 200" fill="none" aria-hidden="true" focusable="false"><circle cx="100" cy="100" r="88" stroke="#FFFFFF" stroke-width="2"/><circle cx="100" cy="100" r="80" stroke="#FFFFFF" stroke-width="1.2" stroke-opacity=".5"/><line x1="76" y1="120" x2="124" y2="120" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" stroke-opacity=".6"/><path d="M60 150 L100 56 L140 150" stroke="#FFFFFF" stroke-width="9.5" stroke-linejoin="miter" stroke-linecap="round"/><circle cx="100" cy="56" r="3.4" fill="#FFFFFF"/></svg>ATECH<span>SHOP</span>
       <small>Administration</small>
     </div>
     <nav class="sidebar-nav">

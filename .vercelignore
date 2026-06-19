@@ -18,3 +18,7 @@ skills-lock.json
 _archive_vitrine-sans-photos.html
 _backup_*.html
 atechgroupe_vitrine.html
+
+# Sources de marque brutes (logo) — les assets web vivent dans brand/
+*.zip
+Logo gamme Atech groupe/
