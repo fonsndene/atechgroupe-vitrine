@@ -700,24 +700,43 @@ nav.scrolled {
   transition: transform .5s ease;
 }
 .portfolio-card:hover .portfolio-bg { transform: scale(1.06); }
-.portfolio-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(11,12,16,.95) 0%, transparent 50%);
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 24px;
-  opacity: 0; transition: opacity .3s;
+/* Chip secteur — glassmorphism, toujours visible */
+.portfolio-chip {
+  position: absolute; top: 14px; left: 14px; z-index: 2;
+  display: inline-flex; align-items: center;
+  padding: 6px 12px; border-radius: 999px;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 1.4px;
+  text-transform: uppercase; color: #fff;
+  background: rgba(15,27,58,.5);
+  border: 1px solid rgba(255,255,255,.22);
+  box-shadow: 0 4px 16px rgba(15,27,58,.28);
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
 }
-.portfolio-card:hover .portfolio-overlay { opacity: 1; }
-.portfolio-tag {
-  font-size: 10px; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--lime);
-  margin-bottom: 6px;
+/* Légende — dégradé + nom permanents, description révélée au survol */
+.portfolio-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to top, rgba(11,16,30,.92) 0%, rgba(11,16,30,.45) 32%, transparent 62%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 22px;
+  opacity: 1;
 }
 .portfolio-name {
   font-family: 'Clash Display', sans-serif;
-  font-size: 20px; font-weight: 700;
+  font-size: 20px; font-weight: 700; color: #fff;
+  text-shadow: 0 2px 12px rgba(0,0,0,.45);
 }
-.portfolio-desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.portfolio-desc {
+  font-size: 12.5px; line-height: 1.5; color: rgba(255,255,255,.82);
+  margin-top: 4px;
+  max-height: 0; opacity: 0; transform: translateY(8px);
+  overflow: hidden;
+  transition: max-height .45s var(--ease), opacity .35s var(--ease), transform .45s var(--ease), margin-top .45s var(--ease);
+}
+.portfolio-card:hover .portfolio-desc,
+.portfolio-card:focus-within .portfolio-desc {
+  max-height: 120px; opacity: 1; transform: translateY(0); margin-top: 7px;
+}
 
 /* ─── TARIFS ──────────────────────────────────── */
 .tarifs-bg { background: var(--ink2); }
@@ -1367,20 +1386,26 @@ nav.scrolled {
 }
 .testi-card:hover { border-color: rgba(44,92,151,.25); transform: translateY(-6px); box-shadow: 0 20px 40px -22px rgba(20,22,15,.2); }
 
-/* — Portfolio : overlay sombre conservé, texte clair, liseré au survol — */
+/* — Portfolio : carte premium — soulèvement, ombre, liseré + voile au survol — */
+.portfolio-card {
+  transition: transform .45s var(--ease), box-shadow .45s var(--ease);
+  box-shadow: 0 6px 22px -14px rgba(15,27,58,.45);
+}
+/* !important : le scroll-reveal pose un transform inline qui sinon écraserait le lift */
+.portfolio-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 26px 50px -22px rgba(15,27,58,.5);
+}
 .portfolio-card::after {
-  content: ''; position: absolute; inset: 0; border-radius: 16px;
+  content: ''; position: absolute; inset: 0; border-radius: 16px; z-index: 2;
   box-shadow: inset 0 0 0 1px transparent; transition: box-shadow .4s var(--ease); pointer-events: none;
 }
-.portfolio-card:hover::after { box-shadow: inset 0 0 0 1px rgba(79,134,198,.5); }
-.portfolio-overlay {
-  background: linear-gradient(to top, rgba(11,12,16,.95) 0%, rgba(11,12,16,.4) 35%, transparent 60%);
-  transition: opacity .4s var(--ease);
+.portfolio-card:hover::after { box-shadow: inset 0 0 0 1.5px rgba(79,134,198,.6); }
+/* dégradé légèrement renforcé au survol pour faire « ressortir » la carte */
+.portfolio-overlay { transition: background .4s var(--ease); }
+.portfolio-card:hover .portfolio-overlay {
+  background: linear-gradient(to top, rgba(11,16,30,.95) 0%, rgba(11,16,30,.55) 38%, rgba(11,16,30,.08) 70%);
 }
-.portfolio-overlay > * { transform: translateY(12px); transition: transform .45s var(--ease); }
-.portfolio-card:hover .portfolio-overlay > * { transform: translateY(0); }
-.portfolio-name { color: #fff; }
-.portfolio-desc { color: rgba(255,255,255,.72); }
 
 /* — Champs de formulaire : halo de focus — */
 .form-group input, .form-group select, .form-group textarea {
@@ -1722,46 +1747,46 @@ nav.scrolled {
   <p class="section-sub">Des réalisations livrées pour des entreprises, ONG et organisations au Sénégal.</p>
 
   <div class="portfolio-grid">
-    <div class="portfolio-card tall" style="grid-row:span 2">
+    <article class="portfolio-card tall" style="grid-row:span 2">
       <img class="portfolio-img" src="proj-sadg.webp" alt="SADG — Société Africaine de Distribution de Gaz, Sénégal" width="900" height="600" loading="lazy">
+      <span class="portfolio-chip">Énergie</span>
       <div class="portfolio-overlay">
-        <div class="portfolio-tag">Énergie · Plateforme de gestion</div>
         <div class="portfolio-name">SADG</div>
         <div class="portfolio-desc">Plateforme de gestion complète pour la Société Africaine de Distribution de Gaz</div>
       </div>
-    </div>
-    <div class="portfolio-card">
+    </article>
+    <article class="portfolio-card">
       <img class="portfolio-img" src="proj-medicos.webp" alt="Médicos del Mundo Sénégal — plateforme médicale sécurisée" width="900" height="600" loading="lazy">
+      <span class="portfolio-chip">Santé · SaaS sécurisé</span>
       <div class="portfolio-overlay">
-        <div class="portfolio-tag">Santé · SaaS sécurisé</div>
         <div class="portfolio-name">Médicos del Mundo Sénégal</div>
         <div class="portfolio-desc">Plateforme SaaS ultra-sécurisée pour l'ONG médicale internationale</div>
       </div>
-    </div>
-    <div class="portfolio-card">
+    </article>
+    <article class="portfolio-card">
       <img class="portfolio-img" src="proj-swaa.webp" alt="SWAA Sénégal — ONG, Society for Women and AIDS in Africa" width="900" height="1350" loading="lazy">
+      <span class="portfolio-chip">ONG · Site web</span>
       <div class="portfolio-overlay">
-        <div class="portfolio-tag">ONG · Site web</div>
         <div class="portfolio-name">SWAA Sénégal</div>
         <div class="portfolio-desc">Site web de l'ONG SWAA Sénégal (Society for Women and AIDS in Africa)</div>
       </div>
-    </div>
-    <div class="portfolio-card">
+    </article>
+    <article class="portfolio-card">
       <img class="portfolio-img" src="proj-christroi.webp" alt="École Christ Roi — établissement scolaire, Sénégal" width="900" height="601" loading="lazy">
+      <span class="portfolio-chip">Éducation · Site web</span>
       <div class="portfolio-overlay">
-        <div class="portfolio-tag">Éducation · Site web</div>
         <div class="portfolio-name">École Christ Roi</div>
         <div class="portfolio-desc">Site web de l'établissement scolaire Christ Roi</div>
       </div>
-    </div>
-    <div class="portfolio-card">
+    </article>
+    <article class="portfolio-card">
       <img class="portfolio-img" src="proj-rnp.webp" alt="RNP+ Sénégal — réseau associatif et organisation, Sénégal" width="900" height="599" loading="lazy">
+      <span class="portfolio-chip">Association · Site web</span>
       <div class="portfolio-overlay">
-        <div class="portfolio-tag">Association · Site web</div>
         <div class="portfolio-name">RNP+ Sénégal</div>
         <div class="portfolio-desc">Site web de l'organisation RNP+ Sénégal</div>
       </div>
-    </div>
+    </article>
   </div>
 </section>
 
