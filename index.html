@@ -577,33 +577,52 @@ nav.scrolled {
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 20px;
 }
 .svc-card {
-  background: var(--card);
+  background: linear-gradient(180deg, #ffffff 0%, #fafbfe 100%);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 32px 28px;
-  transition: all .3s;
+  border-radius: 20px;
+  padding: 36px 30px 34px;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
+  box-shadow: 0 1px 2px rgba(15,27,58,.04), 0 10px 28px -22px rgba(15,27,58,.22);
 }
+/* halo radial bleu qui s'illumine au survol */
 .svc-card::after {
   content: '';
-  position: absolute; bottom: 0; left: 0; right: 0;
-  height: 0;
-  background: linear-gradient(to top, rgba(79,134,198,.05), transparent);
-  transition: height .3s;
+  position: absolute; inset: 0;
+  background: radial-gradient(130% 100% at 100% 0%, rgba(79,134,198,.12), transparent 55%);
+  opacity: 0;
+  transition: opacity .45s var(--ease);
+  z-index: -1;
 }
-.svc-card:hover { border-color: rgba(79,134,198,.25); transform: translateY(-4px); }
-.svc-card:hover::after { height: 100%; }
+.svc-card:hover::after { opacity: 1; }
 .svc-emoji { font-size: 28px; margin-bottom: 18px; }
 .svc-name {
   font-family: 'Clash Display', sans-serif;
-  font-size: 20px; font-weight: 700;
-  margin-bottom: 10px; letter-spacing: -.3px;
+  font-size: 21px; font-weight: 700;
+  margin-bottom: 12px; letter-spacing: -.3px;
 }
-.svc-desc { font-size: 14px; color: var(--muted); line-height: 1.75; }
+.svc-desc { font-size: 14px; color: var(--muted); line-height: 1.75; max-width: 92%; }
+/* flèche premium révélée au survol */
+.svc-arrow {
+  position: absolute; top: 34px; right: 28px;
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border);
+  color: var(--accent); font-size: 17px; line-height: 1;
+  background: rgba(255,255,255,.6);
+  opacity: 0; transform: translate(-4px, 4px) scale(.85);
+  transition: opacity .4s var(--ease), transform .4s var(--ease), background .4s var(--ease), border-color .4s var(--ease), color .4s var(--ease);
+  pointer-events: none;
+}
+.svc-card:hover .svc-arrow {
+  opacity: 1; transform: translate(0,0) scale(1);
+  background: var(--accent); color: #fff; border-color: var(--accent);
+  box-shadow: 0 10px 22px -10px rgba(44,92,151,.7);
+}
 .svc-price {
   margin-top: 20px;
   font-family: 'Clash Display', sans-serif;
@@ -613,26 +632,34 @@ nav.scrolled {
 
 /* ─── SVC ICON SVG ────────────────────────────── */
 .svc-icon {
-  width: 64px; height: 64px;
-  background: rgba(79,134,198,.12);
-  border: 1px solid rgba(79,134,198,.2);
-  border-radius: 16px;
+  width: 62px; height: 62px;
+  background: linear-gradient(145deg, rgba(79,134,198,.18), rgba(79,134,198,.05));
+  border: 1px solid rgba(79,134,198,.22);
+  border-radius: 17px;
   display: flex; align-items: center; justify-content: center;
-  margin-bottom: 28px;
+  margin-bottom: 26px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 6px 16px -10px rgba(44,92,151,.5);
 }
-.svc-icon svg { width: 28px; height: 28px; }
+.svc-icon svg { width: 27px; height: 27px; }
 .svc-card[data-num]::before {
   content: attr(data-num);
-  position: absolute; bottom: 12px; right: 18px;
+  position: absolute; bottom: -22px; right: 6px;
   font-family: 'Clash Display', sans-serif;
-  font-size: 72px; font-weight: 700; line-height: 1;
-  color: rgba(255,255,255,.03); pointer-events: none; user-select: none;
+  font-size: 116px; font-weight: 700; line-height: 1;
+  color: transparent;
+  background: linear-gradient(180deg, rgba(44,92,151,.13), rgba(44,92,151,0) 85%);
+  -webkit-background-clip: text; background-clip: text;
+  pointer-events: none; user-select: none;
+  transition: transform .55s var(--ease);
 }
+.svc-card:hover[data-num]::before { transform: translateY(-8px) scale(1.04); }
 .svc-card-line {
   position: absolute; top: 0; left: 0; right: 0;
-  height: 2px; background: var(--lime);
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), #4F86C6 55%, transparent);
+  border-radius: 20px 20px 0 0;
   transform: scaleX(0); transform-origin: left;
-  transition: transform .4s ease;
+  transition: transform .5s var(--ease);
 }
 .svc-card:hover .svc-card-line { transform: scaleX(1); }
 
@@ -1369,9 +1396,9 @@ nav.scrolled {
 
 /* — Cartes : transitions raffinées + ombres — */
 .svc-card { transition: border-color .4s var(--ease), transform .4s var(--ease), box-shadow .4s var(--ease); }
-.svc-card:hover { border-color: rgba(44,92,151,.3); transform: translateY(-6px); box-shadow: 0 20px 40px -22px rgba(20,22,15,.22); }
-.svc-icon { transition: background .4s var(--ease), border-color .4s var(--ease), transform .4s var(--ease); }
-.svc-card:hover .svc-icon { background: rgba(79,134,198,.22); border-color: rgba(44,92,151,.35); transform: translateY(-2px); }
+.svc-card:hover { border-color: rgba(44,92,151,.28); transform: translateY(-8px); box-shadow: 0 30px 60px -28px rgba(15,27,58,.35), 0 1px 2px rgba(15,27,58,.05); }
+.svc-icon { transition: background .4s var(--ease), border-color .4s var(--ease), transform .4s var(--ease), box-shadow .4s var(--ease); }
+.svc-card:hover .svc-icon { background: linear-gradient(145deg, rgba(79,134,198,.3), rgba(79,134,198,.12)); border-color: rgba(44,92,151,.4); transform: translateY(-3px) rotate(-4deg); box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 14px 26px -12px rgba(44,92,151,.6); }
 .pole-card:hover { box-shadow: 0 24px 50px -28px rgba(20,22,15,.25); }
 .tarif-card { transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease); }
 .tarif-card:hover { transform: translateY(-8px); border-color: rgba(44,92,151,.3); box-shadow: 0 28px 50px -26px rgba(20,22,15,.28); }
@@ -1662,36 +1689,42 @@ nav.scrolled {
   <div class="services-grid">
     <div class="svc-card" data-num="01">
       <div class="svc-card-line"></div>
+      <div class="svc-arrow" aria-hidden="true">→</div>
       <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#4F86C6" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
       <div class="svc-name">Site Vitrine Premium</div>
       <div class="svc-desc">Un site web professionnel, rapide, responsive et bien référencé qui donne immédiatement confiance à vos visiteurs.</div>
     </div>
     <div class="svc-card" data-num="02">
       <div class="svc-card-line"></div>
+      <div class="svc-arrow" aria-hidden="true">→</div>
       <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#4F86C6" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
       <div class="svc-name">E-Commerce & Boutique</div>
       <div class="svc-desc">Plateforme de vente en ligne avec paiement Wave/Orange Money intégré, gestion des stocks et tableau de bord.</div>
     </div>
     <div class="svc-card" data-num="03">
       <div class="svc-card-line"></div>
+      <div class="svc-arrow" aria-hidden="true">→</div>
       <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#4F86C6" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
       <div class="svc-name">Application Mobile</div>
       <div class="svc-desc">App iOS et Android native ou cross-platform, livrée sur les stores avec maintenance incluse la première année.</div>
     </div>
     <div class="svc-card" data-num="04">
       <div class="svc-card-line"></div>
+      <div class="svc-arrow" aria-hidden="true">→</div>
       <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#4F86C6" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14M12 2v2M12 20v2M2 12h2M20 12h2"/></svg></div>
       <div class="svc-name">Plateforme SaaS</div>
       <div class="svc-desc">Outils métier, plateformes de gestion, systèmes d'information sur mesure pour votre activité spécifique.</div>
     </div>
     <div class="svc-card" data-num="05">
       <div class="svc-card-line"></div>
+      <div class="svc-arrow" aria-hidden="true">→</div>
       <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#4F86C6" stroke-width="1.5"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12.5" r="2.5"/><path d="M12 22a7 7 0 007-7c0-3.87-2.24-7-5-7s-5 3.13-5 7a7 7 0 007 7z"/></svg></div>
       <div class="svc-name">UI/UX Design</div>
       <div class="svc-desc">Conception d'interfaces belles et intuitives — maquettes, prototypes interactifs et guides de style.</div>
     </div>
     <div class="svc-card" data-num="06">
       <div class="svc-card-line"></div>
+      <div class="svc-arrow" aria-hidden="true">→</div>
       <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#4F86C6" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
       <div class="svc-name">Maintenance & SEO</div>
       <div class="svc-desc">Contrat mensuel de maintenance, mises à jour, sauvegardes automatiques et optimisation moteurs de recherche.</div>
